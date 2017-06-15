@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+apply from: '../global_config.gradle'
+version "1.0"
+android {
+    defaultConfig {
+        versionCode 1
+        versionName project.version
+    }
+    buildToolsVersion '25.0.0'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}

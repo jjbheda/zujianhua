@@ -1,0 +1,398 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+import java.util.zip.ZipEntry
+import java.util.zip.ZipFile
+import java.util.zip.ZipOutputStream
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '24.0.2'
+    defaultConfig {
+        applicationId "com.huanju.chajianhuatest"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        sourceSets{
+            main{
+                manifest.srcFile 'AndroidManifest.xml'
+                assets.srcDirs = ['assets']
+                res.srcDirs =['res']
+                resources.srcDirs=['src']
+                java.srcDirs=['src']
+            }
+        }
+    }
+
+
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':basemodule')
+//    compile project(':demoOne')
+//    compile 'com.android.support:appcompat-v7:22.1.1'
+    if (!solidMode) {
+        compile project(':chajiandemo')
+        compile project(':demoOne')
+    }
+}
+
+//afterEvaluate {
+//    tasks['compileDebugJavaWithJavac'].doLast{
+//        println "---------------------------------------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!--------------"
+//        archiveName = "appclasses.jar"
+//        from('build/intermediates/classes/debug')
+//        destinationDir = file('build/libs')
+//        exclude('**/R.class')
+//        exclude('**/R\$*.class')
+//    }
+//}
+
+
+////Copy类型
+task jarClass(type: Jar, dependsOn: ['compileDebugJavaWithJavac']) {
+    archiveName = "appclasses.jar"
+    from('build/intermediates/classes/release')
+    destinationDir = file('build/libs')
+    exclude('**/BuildConfig.class')
+    exclude('**/R.class')
+    exclude('**/R\$*.class')
+}
+
+//
+//
+////打包后复制到build-output 目录apk.manifest.mapping
+task copyClass(type:Copy,dependsOn: 'jarClass'){
+    println '--------------------copy 动作开始-----------'
+//    from ("$buildDir/outputs/apk/app-release-unsigned.apk") {
+//        rename  'app-release-unsigned.apk','demo-base-release.apk'
+//    }
+    from "$buildDir/libs/appclasses.jar"
+//    from ("$buildDir/outputs/mapping/release/mapping.txt"){
+//        rename 'mapping.txt' ,'demo-base-mapping.txt'
+//    }
+
+    into new File(rootDir,'build-outputs')
+    println '--------------------copy 结束-----------'
+}
+
+
+
+//在终端执行生成JAR包
+// gradlew makeJar
+
+
+
+clean {
+    delete buildDir
+    delete "${rootDir}/build-outputs/demo-base-release.apk"
+    delete "${rootDir}/build-outputs/AndroidManifest.xml"
+    delete "${rootDir}/build-outputs/demo-base-mapping.txt"
+    delete "${rootDir}/build-outputs/demo-mapping-final.txt"
+    delete "${rootDir}/build-outputs/demo-release-reloaded.apk"
+    delete "${rootDir}/build-outputs/demo-release-resigned.apk"
+    delete "${rootDir}/build-outputs/demo-release-repacked.apk"
+    delete "${rootDir}/build-outputs/demo-release-final.apk"
+    delete fileTree("${rootDir}/build-outputs") {
+        include '*.so'
+    }
+
+    delete fileTree("${rootDir}/build-outputs") {
+        include '*.apk'
+    }
+
+    println '------------------clean 动作完成-----------------'
+}
+
+def getZipAlignPath(){
+    def zipAlignPath = "${android.sdkDirectory}/build-tools/${android.buildToolsVersion}/zipalign"
+    if(Os.isFamily(Os.FAMILY_WINDOWS)){
+        zipAlignPath += '.exe'
+    }
+    assert (new File(zipAlignPath)).exists() : '没有找到zipalign应用程序！'
+
+    return zipAlignPath
+}
+
+import java.util.zip.ZipEntry
+import java.util.zip.ZipFile
+import java.util.zip.ZipOutputStream
+
+// 打包过程中很多手工zip过程：
+// 1，为了压缩resources.arsc文件而对标准产出包重新压缩
+// 2，以及各子apk的纯手打apk包
+// 但对于音频等文件，压缩会导致资源加载报异常
+// 重新打包方法，使用STORED过滤掉不应该压缩的文件们
+// 后缀名列表来自于android源码
+def repackApk(originApk, targetApk){
+    def noCompressExt = [".jpg", ".jpeg", ".png", ".gif",
+                         ".wav", ".mp2", ".mp3", ".ogg", ".aac",
+                         ".mpg", ".mpeg", ".mid", ".midi", ".smf", ".jet",
+                         ".rtttl", ".imy", ".xmf", ".mp4", ".m4a",
+                         ".m4v", ".3gp", ".3gpp", ".3g2", ".3gpp2",
+                         ".amr", ".awb", ".wma", ".wmv"]
+
+    ZipFile zipFile = new ZipFile(originApk)
+    ZipOutputStream zos = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(targetApk)))
+    zipFile.entries().each{ entryIn ->
+        if(entryIn.directory){
+            println "${entryIn.name} is a directory"
+        }
+        else{
+            def entryOut = new ZipEntry(entryIn.name)
+            def dotPos = entryIn.name.lastIndexOf('.')
+            def ext = (dotPos >= 0) ? entryIn.name.substring(dotPos) : ""
+            def isRes = entryIn.name.startsWith('res/')
+            if(isRes && ext in noCompressExt){
+                entryOut.method = ZipEntry.STORED
+                entryOut.size = entryIn.size
+                entryOut.compressedSize = entryIn.size
+                entryOut.crc = entryIn.crc
+            }
+            else{
+                entryOut.method = ZipEntry.DEFLATED
+            }
+            zos.putNextEntry(entryOut)
+            zos << zipFile.getInputStream(entryIn)
+            zos.closeEntry()
+        }
+    }
+    zos.finish()
+    zos.close()
+    zipFile.close()
+}
+
+    //打包后复制到build-output 目录apk.manifest.mapping
+task copyReleaseOutputs(type:Copy){
+    println '--------------------copy 动作开始-----------'
+        from ("$buildDir/outputs/apk/app-release-unsigned.apk") {
+            rename  'app-release-unsigned.apk','demo-base-release.apk'
+        }
+        from "$buildDir/intermediates/manifests/full/release/AndroidManifest.xml"
+        from ("$buildDir/outputs/mapping/release/mapping.txt"){
+            rename 'mapping.txt' ,'demo-base-mapping.txt'
+        }
+
+        into new File(rootDir,'build-outputs')
+    println '--------------------copy 结束-----------'
+    }
+
+afterEvaluate {
+
+//    tasks['assembleRelease'].doFirst{
+//      clean.execute()
+//    }
+
+    tasks['assembleRelease'].doLast{
+        copyReleaseOutputs.execute()
+    }
+}
+//base apk的assets中填充各子apk
+//输入：Ctrip-base-release.apk
+//输出：Ctrip-release-reloaded.apk
+task reload(type:Zip){
+    inputs.file  "$rootDir/build-outputs/demo-base-release.apk"
+    inputs.files fileTree(new File(rootDir,'build-outputs')).include('*.so')
+    outputs.file "$rootDir/build-outputs/demo-release-reloaded.apk"
+
+    into 'assets/',{
+        from fileTree(new File(rootDir,'build-outputs')).include('*.so')
+    }
+
+    from zipTree("$rootDir/build-outputs/demo-base-release.apk"), {
+        exclude('**/META-INF/*.SF')
+        exclude('**/META-INF/*.RSA')
+    }
+
+    destinationDir file("$rootDir/build-outputs/")
+
+    archiveName 'demo-release-reloaded.apk'
+}
+
+//对apk重新压缩，调整各文件压缩比到正确
+//输入：Ctrip-release-reloaded.apk
+//输出：Ctrip-release-repacked.apk
+task repack (dependsOn: 'reload') {
+    inputs.file "$rootDir/build-outputs/demo-release-reloaded.apk"
+    outputs.file "$rootDir/build-outputs/demo-release-repacked.apk"
+
+    doLast{
+        println "release打包之后，重新压缩一遍，以压缩resources.arsc"
+
+        def oldApkFile = file("$rootDir/build-outputs/demo-release-reloaded.apk")
+
+        assert oldApkFile != null : "没有找到release包！"
+
+        def newApkFile = new File(oldApkFile.parentFile, 'demo-release-repacked.apk')
+
+        //重新打包
+        repackApk(oldApkFile.absolutePath, newApkFile.absolutePath)
+
+        assert newApkFile.exists() : "没有找到重新压缩的release包！"
+    }
+}
+
+//对apk重签名
+//输入：Ctrip-release-repacked.apk
+//输出：Ctrip-release-resigned.apk
+task resign(type:Exec,dependsOn: 'repack'){
+    inputs.file "$rootDir/build-outputs/demo-release-repacked.apk"
+    outputs.file "$rootDir/build-outputs/demo-release-resigned.apk"
+
+    workingDir "$rootDir/build-outputs"
+    executable "${System.env.'JAVA_HOME'}/bin/jarsigner"
+
+    def argv = []
+    argv << '-verbose'
+    argv << '-sigalg'
+    argv << 'SHA1withRSA'
+    argv << '-digestalg'
+    argv << 'SHA1'
+    argv << '-keystore'
+    argv << "$rootDir/demo.jks"
+    argv << '-storepass'
+    argv << '123456'
+    argv << '-keypass'
+    argv << '123456'
+    argv << '-signedjar'
+    argv << 'demo-release-resigned.apk'
+    argv << 'demo-release-repacked.apk'
+    argv << 'demo'
+
+    args = argv
+}
+
+
+//重新对jar包做对齐操作
+//输入：Ctrip-release-resigned.apk
+//输出：Ctrip-release-final.apk
+task realign (dependsOn: 'resign') {
+    inputs.file "$rootDir/build-outputs/demo-release-resigned.apk"
+    outputs.file "$rootDir/build-outputs/demo-release-final.apk"
+
+    doLast{
+        println '重新zipalign，还可以加大压缩率!'
+
+        def oldApkFile = file("$rootDir/build-outputs/demo-release-resigned.apk")
+        assert oldApkFile != null : "没有找到release包！"
+
+        def newApkFile = new File(oldApkFile.parentFile,'demo-release-final.apk')
+
+        def cmdZipAlign = getZipAlignPath()
+        def argv = []
+        argv << '-f'    //overwrite existing outfile.zip
+        // argv << '-z'    //recompress using Zopfli
+        argv << '-v'    //verbose output
+        argv << '4'     //alignment in bytes, e.g. '4' provides 32-bit alignment
+        argv << oldApkFile.absolutePath
+        argv << newApkFile.absolutePath
+
+        project.exec {
+            commandLine cmdZipAlign
+            args argv
+        }
+
+        assert newApkFile.exists() : "没有找到重新zipalign的release包！"
+    }
+}
+
+/**
+ * 恢复子模块 xml 文件
+ */
+task ReReplace (dependsOn: 'realign')  << {
+    def layoutFiles = files(file("$rootDir/chajiandemo/res/layout").listFiles())
+    println '重新替换文件' + "---------------------------------------------------------------------------------------------------"
+    layoutFiles.each { File file ->
+
+        def filePath = "$rootDir/chajiandemo/res/layout/"+file.name
+        println filePath
+        fileAppRReader(filePath)
+    }
+}
+
+
+task ReReplaceForDelete ()  << {
+    def layoutFiles = files(file("$rootDir/chajiandemo/res/layout").listFiles())
+    println '重新替换文件' + "---------------------------------------------------------------------------------------------------"
+    layoutFiles.each { File file ->
+
+        def filePath = "$rootDir/chajiandemo/res/layout/"+file.name
+        println filePath
+        fileAppRReader(filePath)
+    }
+}
+
+
+def fileAppRReader(String bundlefilepath){
+    //读取
+    def stringBuffer = new StringBuffer()
+
+    new File(bundlefilepath).withReader('UTF-8') { reader ->
+        reader.eachLine {
+           if  (it.find("@*com.huanju.chajianhuatest:")){
+                def lineStr = it.replace("@*com.huanju.chajianhuatest:","@")
+                println lineStr
+                stringBuffer.append(lineStr+"\n")
+            } else {
+               stringBuffer.append(it+"\n")
+           }
+        }
+        def res_auto =  "xmlns:app=\"http://schemas.android.com/apk/res/com.huanju.chajianhuatest\"";
+        def origin = "xmlns:app=\"http://schemas.android.com/apk/res-auto\"";
+
+        if(stringBuffer.toString().contains(res_auto)){
+            stringBuffer.replace(stringBuffer.indexOf(res_auto), stringBuffer.indexOf(res_auto)+res_auto.length()+4,origin);
+        }
+
+        new File(bundlefilepath).withWriter('UTF-8') {
+            writer ->
+                writer.append(stringBuffer)
+        }
+    }
+}
+
+
+/**
+ * 用来连接文件的task
+ */
+class ConcatFiles extends DefaultTask {
+    @InputFiles
+    FileCollection sources
+
+    @OutputFile
+    File target
+
+    @TaskAction
+    void concat() {
+        File tmp = File.createTempFile('concat', null, target.getParentFile())
+        tmp.withWriter { writer ->
+            sources.each { file ->
+                file.withReader { reader ->
+                    writer << reader
+                }
+            }
+        }
+        target.delete()
+        tmp.renameTo(target)
+    }
+}
+
+//合并base和所有模块的mapping文件
+task concatMappings(type: ConcatFiles){
+    sources = fileTree(new File(rootDir,'build-outputs')).include('*mapping.txt')
+    target = new File(rootDir,'build-outputs/demo-mapping-final.txt')
+}
+
+task repackAll(dependsOn: ['reload','resign','repack','realign','concatMappings','ReReplace'])

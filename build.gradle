@@ -1,0 +1,28 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+    }
+}
+ext{
+    java.util.Properties properties = new Properties();
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+     sdkDir = properties.getProperty('sdk.dir')
+    //solidMode = true 时
+    // 使用  gradle assembleRelease bundleRelease repackAll 打包
+    solidMode = true
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">组件测试</string>
+    <string name="tv_tst">测试textView</string>
+    <string name="shanshui">shanshui</string>
+</resources>

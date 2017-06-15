@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BaseModule</string>
+    <string name="bundle_tv">this is the base bundle tv</string>
+</resources>

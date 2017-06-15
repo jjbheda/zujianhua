@@ -1,0 +1,19 @@
+if (solidMode) {
+    project.ext {
+        packageName = 'com.huanju.chajiandemo'
+        apkName = packageName.replace(".", "_")
+    }
+    apply from: '../sub-project-build.gradle'
+} else {
+    apply plugin: 'com.android.library'
+    apply from: '../global_config.gradle'
+
+    dependencies {
+        compile project(':basemodule')
+        compile project(':demoOne')
+        compile project(':tempmodule')
+        provided files('libs/appclasses.jar')
+    }
+
+}
+

@@ -1,0 +1,132 @@
+com.huanju.chajianhuatest.CircleImageView -> com.huanju.chajianhuatest.CircleImageView:
+    android.widget.ImageView$ScaleType SCALE_TYPE -> a
+    android.graphics.Bitmap$Config BITMAP_CONFIG -> b
+    android.graphics.RectF mDrawableRect -> c
+    android.graphics.RectF mBorderRect -> d
+    android.graphics.Matrix mShaderMatrix -> e
+    android.graphics.Paint mBitmapPaint -> f
+    android.graphics.Paint mBorderPaint -> g
+    android.graphics.Paint mFillPaint -> h
+    int mBorderColor -> i
+    int mBorderWidth -> j
+    int mFillColor -> k
+    android.graphics.Bitmap mBitmap -> l
+    android.graphics.BitmapShader mBitmapShader -> m
+    int mBitmapWidth -> n
+    int mBitmapHeight -> o
+    float mDrawableRadius -> p
+    float mBorderRadius -> q
+    android.graphics.ColorFilter mColorFilter -> r
+    boolean mReady -> s
+    boolean mSetupPending -> t
+    boolean mBorderOverlay -> u
+    boolean mDisableCircularTransformation -> v
+    void <init>(android.content.Context) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
+    void init() -> a
+    android.widget.ImageView$ScaleType getScaleType() -> getScaleType
+    void setScaleType(android.widget.ImageView$ScaleType) -> setScaleType
+    void setAdjustViewBounds(boolean) -> setAdjustViewBounds
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void setPadding(int,int,int,int) -> setPadding
+    void setPaddingRelative(int,int,int,int) -> setPaddingRelative
+    int getBorderColor() -> getBorderColor
+    void setBorderColor(int) -> setBorderColor
+    void setBorderColorResource(int) -> setBorderColorResource
+    int getFillColor() -> getFillColor
+    void setFillColor(int) -> setFillColor
+    void setFillColorResource(int) -> setFillColorResource
+    int getBorderWidth() -> getBorderWidth
+    void setBorderWidth(int) -> setBorderWidth
+    void setBorderOverlay(boolean) -> setBorderOverlay
+    void setDisableCircularTransformation(boolean) -> setDisableCircularTransformation
+    void setImageBitmap(android.graphics.Bitmap) -> setImageBitmap
+    void setImageDrawable(android.graphics.drawable.Drawable) -> setImageDrawable
+    void setImageResource(int) -> setImageResource
+    void setImageURI(android.net.Uri) -> setImageURI
+    void setColorFilter(android.graphics.ColorFilter) -> setColorFilter
+    android.graphics.ColorFilter getColorFilter() -> getColorFilter
+    void applyColorFilter() -> b
+    android.graphics.Bitmap getBitmapFromDrawable(android.graphics.drawable.Drawable) -> a
+    void initializeBitmap() -> c
+    void setup() -> d
+    android.graphics.RectF calculateBounds() -> e
+    void updateShaderMatrix() -> f
+    void <clinit>() -> <clinit>
+com.huanju.chajianhuatest.MainActivity -> com.huanju.chajianhuatest.MainActivity:
+    boolean flag -> a
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+    void attachBaseContext(android.content.Context) -> attachBaseContext
+    boolean setapkClassloader() -> c
+    java.lang.String getapkPath() -> a
+    java.util.List getBundleApkPaths() -> b
+    boolean access$000(com.huanju.chajianhuatest.MainActivity) -> a
+    boolean access$100(com.huanju.chajianhuatest.MainActivity) -> b
+com.huanju.chajianhuatest.MainActivity$1 -> com.huanju.chajianhuatest.MainActivity$1:
+    com.huanju.chajianhuatest.MainActivity this$0 -> a
+    void <init>(com.huanju.chajianhuatest.MainActivity) -> <init>
+    void onClick(android.view.View) -> onClick
+com.huanju.chajianhuatest.MainActivity$2 -> com.huanju.chajianhuatest.MainActivity$2:
+    com.huanju.chajianhuatest.MainActivity this$0 -> a
+    void <init>(com.huanju.chajianhuatest.MainActivity) -> <init>
+    void onClick(android.view.View) -> onClick
+com.huanju.chajianhuatest.MainActivity$3 -> com.huanju.chajianhuatest.MainActivity$3:
+    com.huanju.chajianhuatest.MainActivity this$0 -> a
+    void <init>(com.huanju.chajianhuatest.MainActivity) -> <init>
+    void run() -> run
+com.huanju.chajianhuatest.MyApplication -> com.huanju.chajianhuatest.MyApplication:
+    android.content.Context sContext -> a
+    android.content.res.AssetManager assetManager -> b
+    android.content.res.Resources newResource -> c
+    android.content.res.Resources$Theme mTheme -> d
+    void <init>() -> <init>
+    void attachBaseContext(android.content.Context) -> attachBaseContext
+    android.content.res.AssetManager getAssets() -> getAssets
+    android.content.res.Resources getResources() -> getResources
+    android.content.res.Resources$Theme getTheme() -> getTheme
+    android.content.Context getContext() -> a
+    java.lang.String getapkPath() -> b
+    java.util.List getBundleApkPaths() -> c
+com.huanju.chajianhuatest.MyHookHelper -> com.huanju.chajianhuatest.a:
+    void inject(dalvik.system.DexClassLoader) -> a
+    java.lang.Object getPathList(java.lang.Object) -> a
+    java.lang.Object getField(java.lang.Object,java.lang.Class,java.lang.String) -> a
+    java.lang.Object getDexElements(java.lang.Object) -> b
+    void setField(java.lang.Object,java.lang.Class,java.lang.String,java.lang.Object) -> a
+    java.lang.Object combineArray(java.lang.Object,java.lang.Object) -> a
+com.huanju.chajianhuatest.R -> com.huanju.chajianhuatest.b:
+com.huanju.chajianhuatest.R$styleable -> com.huanju.chajianhuatest.b$a:
+    int[] CircleImageView -> CircleImageView
+    int CircleImageView_civ_border_color -> CircleImageView_civ_border_color
+    int CircleImageView_civ_border_overlay -> CircleImageView_civ_border_overlay
+    int CircleImageView_civ_border_width -> CircleImageView_civ_border_width
+    int CircleImageView_civ_fill_color -> CircleImageView_civ_fill_color
+    void <clinit>() -> <clinit>
+com.huanju.chajianhuatest.RoundImageTest -> com.huanju.chajianhuatest.RoundImageTest:
+    void <init>(android.content.Context) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
+com.huanju.chajianhuatest.aidlmode.TestBean -> com.huanju.chajianhuatest.aidlmode.TestBean:
+    java.lang.String s -> a
+    int i -> b
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    int describeContents() -> describeContents
+    void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    void <init>() -> <init>
+    void <init>(android.os.Parcel) -> <init>
+    void <clinit>() -> <clinit>
+com.huanju.chajianhuatest.aidlmode.TestBean$1 -> com.huanju.chajianhuatest.aidlmode.TestBean$1:
+    void <init>() -> <init>
+    com.huanju.chajianhuatest.aidlmode.TestBean createFromParcel(android.os.Parcel) -> a
+    com.huanju.chajianhuatest.aidlmode.TestBean[] newArray(int) -> a
+    java.lang.Object[] newArray(int) -> newArray
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+qiyi.basemodule.BaseBundleActivity -> qiyi.basemodule.BaseBundleActivity:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+qiyi.basemodule.R -> qiyi.basemodule.a:
+qiyi.basemodule.R$layout -> qiyi.basemodule.a$a:
+    int basebundle -> basebundle
