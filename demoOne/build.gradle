@@ -1,14 +1,12 @@
-apply plugin: 'com.android.library'
-apply from: '../global_config.gradle'
-version "1.0"
-android {
-    defaultConfig {
-        versionCode 1
-        versionName project.version
+if (solidMode) {
+    project.ext {
+        packageName = 'qiyi.demo1'
+        apkName = packageName.replace(".", "_")
     }
-    buildToolsVersion '25.0.0'
-}
+    apply from: '../sub-project-build.gradle'
+} else {
+    apply plugin: 'com.android.library'
+    apply from: '../global_config.gradle'
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+
 }

@@ -57,14 +57,19 @@ com.huanju.chajianhuatest.CircleImageView -> com.huanju.chajianhuatest.CircleIma
     void <clinit>() -> <clinit>
 com.huanju.chajianhuatest.MainActivity -> com.huanju.chajianhuatest.MainActivity:
     boolean flag -> a
+    boolean flag2 -> b
     void <init>() -> <init>
     void onCreate(android.os.Bundle) -> onCreate
     void attachBaseContext(android.content.Context) -> attachBaseContext
-    boolean setapkClassloader() -> c
-    java.lang.String getapkPath() -> a
-    java.util.List getBundleApkPaths() -> b
+    boolean setapkClassloader() -> b
+    void loadResource(int) -> a
+    boolean setapkClassloader2() -> c
+    java.lang.String getapkPath(int) -> b
+    java.util.List getBundleApkPaths() -> a
     boolean access$000(com.huanju.chajianhuatest.MainActivity) -> a
     boolean access$100(com.huanju.chajianhuatest.MainActivity) -> b
+    boolean access$200(com.huanju.chajianhuatest.MainActivity) -> c
+    boolean access$300(com.huanju.chajianhuatest.MainActivity) -> d
 com.huanju.chajianhuatest.MainActivity$1 -> com.huanju.chajianhuatest.MainActivity$1:
     com.huanju.chajianhuatest.MainActivity this$0 -> a
     void <init>(com.huanju.chajianhuatest.MainActivity) -> <init>
@@ -77,19 +82,15 @@ com.huanju.chajianhuatest.MainActivity$3 -> com.huanju.chajianhuatest.MainActivi
     com.huanju.chajianhuatest.MainActivity this$0 -> a
     void <init>(com.huanju.chajianhuatest.MainActivity) -> <init>
     void run() -> run
+com.huanju.chajianhuatest.MainActivity$4 -> com.huanju.chajianhuatest.MainActivity$4:
+    com.huanju.chajianhuatest.MainActivity this$0 -> a
+    void <init>(com.huanju.chajianhuatest.MainActivity) -> <init>
+    void run() -> run
 com.huanju.chajianhuatest.MyApplication -> com.huanju.chajianhuatest.MyApplication:
     android.content.Context sContext -> a
-    android.content.res.AssetManager assetManager -> b
-    android.content.res.Resources newResource -> c
-    android.content.res.Resources$Theme mTheme -> d
     void <init>() -> <init>
     void attachBaseContext(android.content.Context) -> attachBaseContext
-    android.content.res.AssetManager getAssets() -> getAssets
-    android.content.res.Resources getResources() -> getResources
-    android.content.res.Resources$Theme getTheme() -> getTheme
     android.content.Context getContext() -> a
-    java.lang.String getapkPath() -> b
-    java.util.List getBundleApkPaths() -> c
 com.huanju.chajianhuatest.MyHookHelper -> com.huanju.chajianhuatest.a:
     void inject(dalvik.system.DexClassLoader) -> a
     java.lang.Object getPathList(java.lang.Object) -> a
