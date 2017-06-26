@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <!-- Gpad新增适配dimens -->
+    <!-- Gpad新增适配dimens -->
+    <!-- Gpad新增适配dimens -->
+    <!-- Gpad新增适配dimens -->
+    <!-- Gpad新增适配dimens -->
+    <!-- Gpad新增适配dimens -->
+
+    <dimen name="pad_text_size_20sp">16dp</dimen>
+    <dimen name="pad_text_size_16sp">13dp</dimen>
+    <dimen name="pad_text_size_14sp">12dp</dimen>
+    <dimen name="pad_text_size_12sp">10dp</dimen>
+
+    <!-- 全局通用 -->
+    <dimen name="pad_padding_233dp">174.75dp</dimen>
+
+    <dimen name="pad_padding_168dp">126dp</dimen>
+    <dimen name="pad_padding_100dp">75dp</dimen>
+    <dimen name="pad_padding_80dp">60dp</dimen>
+    <dimen name="pad_padding_70dp">53dp</dimen>
+    <dimen name="pad_padding_64dp">48dp</dimen>
+    <dimen name="pad_padding_61dp">45.75dp</dimen>
+    <dimen name="pad_padding_52dp">39dp</dimen>
+    <dimen name="pad_padding_48dp">36dp</dimen>
+    <dimen name="pad_padding_40dp">30dp</dimen>
+    <dimen name="pad_padding_28dp">21dp</dimen>
+    <dimen name="pad_padding_36dp">27dp</dimen>
+    <dimen name="pad_padding_32dp">24dp</dimen>
+    <dimen name="pad_padding_30dp">22.5dp</dimen>
+    <dimen name="pad_padding_27dp">20.25dp</dimen>
+    <dimen name="pad_padding_24dp">18dp</dimen>
+    <dimen name="pad_padding_22dp">16.5dp</dimen>
+    <dimen name="pad_padding_20dp">15dp</dimen>
+    <dimen name="pad_padding_18dp">13.5dp</dimen>
+    <dimen name="pad_padding_16dp">12dp</dimen>
+    <dimen name="pad_padding_14dp">10.5dp</dimen>
+    <dimen name="pad_padding_12dp">9dp</dimen>
+    <dimen name="pad_padding_10dp">7.5dp</dimen>
+    <dimen name="pad_padding_8dp">6dp</dimen>
+    <dimen name="pad_padding_6dp">4.5dp</dimen>
+    <dimen name="pad_padding_4dp">3dp</dimen>
+    <dimen name="pad_padding_3dp">2.25dp</dimen>
+    <dimen name="pad_icon_size_72dp">54dp</dimen>
+    <dimen name="pad_icon_size_64dp">48dp</dimen>
+    <dimen name="pad_icon_size_48dp">36dp</dimen>
+    <dimen name="pad_icon_size_36dp">27dp</dimen>
+    <dimen name="pad_icon_size_24dp">18dp</dimen>
+    <dimen name="pad_icon_size_16dp">12dp</dimen>
+    <dimen name="pad_image_width_200dp">150dp</dimen>
+    <dimen name="pad_image_height_200dp">150dp</dimen>
+    <dimen name="pad_image_width_128dp">96dp</dimen>
+    <dimen name="pad_image_height_101dp">75.75dp</dimen>
+    <dimen name="pad_button_width_88dp">66dp</dimen>
+    <dimen name="pad_button_height_36dp">27dp</dimen>
+    <dimen name="pad_toast_width_288dp">216dp</dimen>
+    <dimen name="pad_toast_height_48dp">36dp</dimen>
+    <dimen name="pad_toast_radius_corner">3dp</dimen>
+
+    <dimen name="pad_video_detail_poster_height">135.75dp</dimen>
+    <dimen name="pad_video_detail_poster_width">105dp</dimen>
+    <dimen name="pad_character_icon_width">87dp</dimen>
+    <dimen name="pad_character_icon_height">94.5dp</dimen>
+    <dimen name="pad_character_item_width">60dp</dimen>
+
+    <!--for pad pay sdk-->
+    <dimen name="pad_pay_window_width">325.5dp</dimen>
+    <dimen name="pad_pay_window_height">450dp</dimen>
+    <dimen name="pad_pay_title_width_167dp">125.25dp</dimen>
+    <dimen name="pad_pay_title_width_139dp">116.25dp</dimen>
+    <dimen name="pad_pay_title_height_84dp">64dp</dimen>
+    <dimen name="pad_pay_title_height_80dp">60dp</dimen>
+    <dimen name="pad_pay_title_height_72dp">54dp</dimen>
+    <dimen name="pad_pay_title_height_54dp">40.5dp</dimen>
+    <dimen name="pad_pay_title_height_48dp">36dp</dimen>
+    <dimen name="pad_pay_title_height_24dp">18dp</dimen>
+    <dimen name="pad_pay_frame_width_2dp">1.5dp</dimen>
+    <dimen name="pad_pay_frame_width_1dp">0.75dp</dimen>
+
+    <dimen name="pad_pay_title_height_pannel">64dp</dimen>
+
+    <!-- 我的页面-通用 -->
+    <dimen name="pad_my_title_height">48dp</dimen>
+    <dimen name="pad_my_button_height">36dp</dimen>
+    <dimen name="pad_my_bottom_tips_height">68dp</dimen>
+
+
+
+    <!-- 我的页面-登录 -->
+    <dimen name="pad_passport_button_width">66dp</dimen>
+    <dimen name="pad_passport_button_height">27dp</dimen>
+    <dimen name="pad_passport_account_hint_height">40.5dp</dimen>
+    <dimen name="pad_passport_input_height">36dp</dimen>
+    <dimen name="pad_passport_edit_height">24dp</dimen>
+    <dimen name="pad_passport_vcode_width">72dp</dimen>
+    <dimen name="pad_passport_vcode_height">24dp</dimen>
+    <dimen name="pad_passport_info_height">40.5dp</dimen>
+    <dimen name="pad_passport_strength_hint_height">18dp</dimen>
+    <dimen name="pad_passport_strength_width">41.25dp</dimen>
+    <dimen name="pad_passport_strength_height">3.75dp</dimen>
+    <dimen name="pad_passport_sns_width">138.75dp</dimen>
+    <dimen name="pad_passport_sns_height">36dp</dimen>
+    <dimen name="pad_passport_window_width">325.5dp</dimen>
+    <dimen name="pad_passport_window_height">450dp</dimen>
+    <dimen name="pad_passport_region_box_width">343.5dp</dimen>
+    <dimen name="pad_passport_region_item_height">36dp</dimen>
+
+</resources>

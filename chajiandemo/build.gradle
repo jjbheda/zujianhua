@@ -2,17 +2,40 @@ if (solidMode) {
     project.ext {
         packageName = 'com.huanju.chajiandemo'
         apkName = packageName.replace(".", "_")
+        TypeModuleSO = true
     }
     apply from: '../sub-project-build.gradle'
+    apply from: '../common_build.gradle'
+
+    dependencies {
+        needBuildFile project(':tempmodule')
+    }
+
+    task copyFile(type: Copy) {
+        from configurations.needBuildFile
+        into "${rootDir}/build-inputs/"
+    }
+
+    gradle.taskGraph.whenReady { taskGraph ->
+        if (rootProject.hasProperty('TypeModuleSO')) {
+            init << {
+                copyFile.execute()
+            }
+        }
+    }
+
+
 } else {
     apply plugin: 'com.android.library'
     apply from: '../global_config.gradle'
 
     dependencies {
         compile project(':basemodule')
-        compile project(':demoOne')
+//        compile project(':demoOne')
         compile project(':tempmodule')
-        provided files('libs/appclasses.jar')
+//        provided files('libs/appclasses.jar')
+//        provided files('libs/base.jar')
+
     }
 
 }

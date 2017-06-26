@@ -37,63 +37,65 @@ public class MyApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         sContext = base;
-        //读取build.gradle 内容，取出
-//
-//        try {
-////            String apkPath = getapkPath();
-//            ArrayList<String> apkPathList = getapkPathList();
-//            String mPath = getPackageResourcePath();
-////            assetManager = AssetManager.class.newInstance();
-//            assetManager= getAssets();      //用主app自己的assetManager 实现资源混用
-//            Method addAssetPathMethod = assetManager.getClass().getDeclaredMethod("addAssetPath", String.class);
-//            addAssetPathMethod.setAccessible(true);
-//
-//            addAssetPathMethod.invoke(assetManager, mPath);
-//            Log.e("Main", "apkPathList.size = " + apkPathList.size());
-//            for(String apkPath: apkPathList){
-//                addAssetPathMethod.invoke(assetManager, apkPath);
-//                Log.e("Main", "apkPath= " + apkPath);
-//            }
-//
-//            Method ensureStringBlocks = AssetManager.class.getDeclaredMethod("ensureStringBlocks");
-//            ensureStringBlocks.setAccessible(true);
-//            ensureStringBlocks.invoke(assetManager);
-////            Resources supResource = getResources();
-////            Log.e("Main", "supResource = " + supResource);
-////            newResource = new Resources(assetManager, supResource.getDisplayMetrics(), supResource.getConfiguration());
-////            Log.e("Main", "设置 getResource = " + getResources());
-////            mTheme = newResource.newTheme();
-////            mTheme.setTo(super.getTheme());
-////            hookreSource(base);
-//
-//        } catch (Exception e) {
-//            Log.e("Main", "走了我的callActivityOnCreate 错了 = " + e.getMessage());
-//            e.printStackTrace();
-//        }
+        updateResource();
     }
 
-//    @Override
-//    public AssetManager getAssets() {
-//        return assetManager == null ? super.getAssets() : assetManager;
-//    }
+    //尝试更新资源
+    public void updateResource(){
+        try {
+//            Thread.sleep(5000);
+//            String apkPath = getapkPath();
+            ArrayList<String> apkPathList = getapkPathList();
+            String mPath = getPackageResourcePath();
+            assetManager = AssetManager.class.newInstance();
+//            assetManager= getAssets();      //用主app自己的assetManager 实现资源混用
+            Method addAssetPathMethod = assetManager.getClass().getDeclaredMethod("addAssetPath", String.class);
+            addAssetPathMethod.setAccessible(true);
 
-//    @Override
-//    public Resources getResources() {
-////        return newResource == null ? super.getResources() : newResource;
+            addAssetPathMethod.invoke(assetManager, mPath);
+            Log.e("Main", "apkPathList.size = " + apkPathList.size());
+            for(String apkPath: apkPathList){
+                addAssetPathMethod.invoke(assetManager, apkPath);
+                Log.e("Main", "apkPath= " + apkPath);
+            }
+
+            Method ensureStringBlocks = AssetManager.class.getDeclaredMethod("ensureStringBlocks");
+            ensureStringBlocks.setAccessible(true);
+            ensureStringBlocks.invoke(assetManager);
+            Resources supResource = getResources();
+            Log.e("Main", "supResource = " + supResource);
+            newResource = new Resources(assetManager, supResource.getDisplayMetrics(), supResource.getConfiguration());
+            Log.e("Main", "设置 getResource = " + getResources());
+            mTheme = newResource.newTheme();
+            mTheme.setTo(super.getTheme());
+//            hookreSource(base);
+
+        } catch (Exception e) {
+            Log.e("Main", "走了我的callActivityOnCreate 错了 = " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public AssetManager getAssets() {
+        return assetManager == null ? super.getAssets() : assetManager;
+    }
+
+    @Override
+    public Resources getResources() {
+        return newResource == null ? super.getResources() : newResource;
 //        return super.getResources();
-//    }
+    }
 
-//    @Override
-//    public Resources.Theme getTheme() {
-//        return mTheme == null ? super.getTheme() : mTheme;
-//    }
+    @Override
+    public Resources.Theme getTheme() {
+        return mTheme == null ? super.getTheme() : mTheme;
+    }
 
     public static Context getContext() {
         return sContext;
     }
-
-
-
 
     /**从assetmanager目录中读取apk文件
     */
@@ -158,8 +160,10 @@ public class MyApplication extends Application {
         try {
             String files[] = getAssets().list("");
            for(String fName:files){
-                if (fName.endsWith(".so"))
+                if (fName.endsWith(".so")) {
                     apkList.add(fName);
+                }
+
            }
 
         } catch (IOException e) {

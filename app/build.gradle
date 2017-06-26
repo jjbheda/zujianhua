@@ -41,11 +41,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':basemodule')
+    compile project(':QYBaseCore')
 //    compile project(':demoOne')
 //    compile 'com.android.support:appcompat-v7:22.1.1'
     if (!solidMode) {
-        compile project(':chajiandemo')
-        compile project(':demoOne')
+//        compile project(':chajiandemo')
+//        compile project(':demoOne')
     }
 }
 
@@ -62,14 +63,14 @@ dependencies {
 
 
 ////Copy类型
-task jarClass(type: Jar, dependsOn: ['compileDebugJavaWithJavac']) {
-    archiveName = "appclasses.jar"
-    from('build/intermediates/classes/release')
-    destinationDir = file('build/libs')
-    exclude('**/BuildConfig.class')
-    exclude('**/R.class')
-    exclude('**/R\$*.class')
-}
+//task jarClass(type: Jar, dependsOn: ['compileDebugJavaWithJavac']) {
+//    archiveName = "appclasses.jar"
+//    from('build/intermediates/classes/release')
+//    destinationDir = file('build/libs')
+//    exclude('**/BuildConfig.class')
+//    exclude('**/R.class')
+//    exclude('**/R\$*.class')
+//}
 
 //
 //
@@ -79,7 +80,7 @@ task copyClass(type:Copy,dependsOn: 'jarClass'){
 //    from ("$buildDir/outputs/apk/app-release-unsigned.apk") {
 //        rename  'app-release-unsigned.apk','demo-base-release.apk'
 //    }
-    from "$buildDir/libs/appclasses.jar"
+//    from "$buildDir/libs/appclasses.jar"
 //    from ("$buildDir/outputs/mapping/release/mapping.txt"){
 //        rename 'mapping.txt' ,'demo-base-mapping.txt'
 //    }
@@ -92,8 +93,6 @@ task copyClass(type:Copy,dependsOn: 'jarClass'){
 
 //在终端执行生成JAR包
 // gradlew makeJar
-
-
 
 clean {
     delete buildDir

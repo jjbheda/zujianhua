@@ -8,10 +8,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/QYBaseCore" />
+            <option value="$PROJECT_DIR$/QYScanQRCode" />
+            <option value="$PROJECT_DIR$/android_support" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/basemodule" />
-            <option value="$PROJECT_DIR$/chajiandemo" />
-            <option value="$PROJECT_DIR$/demoOne" />
             <option value="$PROJECT_DIR$/tempmodule" />
           </set>
         </option>

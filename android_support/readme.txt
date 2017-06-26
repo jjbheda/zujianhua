@@ -1,0 +1,1 @@
+该module用于维护Android官方的support lib，目前包含support-v4、recyclerview-v7

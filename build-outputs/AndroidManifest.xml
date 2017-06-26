@@ -35,6 +35,7 @@
         <activity android:name="com.huanju.chajiandemo.TestActivity" />
         <activity android:name="com.huanju.chajiandemo.TestActivityTwo" />
         <activity android:name="com.huanju.chajiandemo.MainActivity" />
+        <activity android:name="org.qiyi.qyscanqrcode.scan.ScanActivity" />
         <activity android:name="qiyi.demo1.MainAc" />
         <activity android:name="qiyi.basemodule.BaseBundleActivity" />
     </application>

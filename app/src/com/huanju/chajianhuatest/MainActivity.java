@@ -13,18 +13,13 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
 import dalvik.system.DexClassLoader;
-import dalvik.system.DexFile;
 
 
 /**
@@ -46,7 +41,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 if (flag) {
                     try {
-                        startActivity(new Intent(getApplicationContext(), Class.forName("com.huanju.chajiandemo.TestActivity")));
+                        startActivity(new Intent(getApplicationContext(), Class.forName("org.qiyi.qyscanqrcode.scan.ScanActivity")));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -96,7 +91,7 @@ public class MainActivity extends Activity {
             DexClassLoader mClassLoader = new DexClassLoader(apkPath, cachePath, cachePath, getClassLoader());
             MyHookHelper.inject(mClassLoader);
             flag = true;
-            loadResource(0);
+//            loadResource(0);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -141,7 +136,7 @@ public class MainActivity extends Activity {
             DexClassLoader mClassLoader = new DexClassLoader(apkPath, cachePath, cachePath, getClassLoader());
             MyHookHelper.inject(mClassLoader);
             flag2 = true;
-            loadResource(1);
+//            loadResource(1);
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -200,8 +195,8 @@ public class MainActivity extends Activity {
 //        }
 //
 //        Log.e("TAG",apkList.toString());
-        apkList.add("com_huanju_chajiandemo.so");
-        apkList.add("qiyi_demo1.so");
+        apkList.add("org_qiyi_qyscanqrcode.so");
+//        apkList.add("qiyi_demo1.apk");
         return apkList;
     }
 

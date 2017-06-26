@@ -3,11 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LiujiaqiAndroid-master2.iml" filepath="$PROJECT_DIR$/LiujiaqiAndroid-master2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QYBaseCore/QYBaseCore.iml" filepath="$PROJECT_DIR$/QYBaseCore/QYBaseCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QYScanQRCode/QYScanQRCode.iml" filepath="$PROJECT_DIR$/QYScanQRCode/QYScanQRCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android_support/android_support.iml" filepath="$PROJECT_DIR$/android_support/android_support.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/basemodule/basemodule.iml" filepath="$PROJECT_DIR$/basemodule/basemodule.iml" />
-      <module fileurl="file://$PROJECT_DIR$/chajiandemo/chajiandemo.iml" filepath="$PROJECT_DIR$/chajiandemo/chajiandemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demoOne/demoOne.iml" filepath="$PROJECT_DIR$/demoOne/demoOne.iml" />
       <module fileurl="file://$PROJECT_DIR$/tempmodule/tempmodule.iml" filepath="$PROJECT_DIR$/tempmodule/tempmodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zujianhua.iml" filepath="$PROJECT_DIR$/zujianhua.iml" />
     </modules>
   </component>
 </project>

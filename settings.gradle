@@ -1,1 +1,1 @@
-include ':app', ':chajiandemo', ':demoOne', ':basemodule', ':tempmodule'
+include ':app', ':basemodule', ':tempmodule',':QYBaseCore',':android_support',':QYScanQRCode'

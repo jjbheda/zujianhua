@@ -14,7 +14,17 @@ ext{
      sdkDir = properties.getProperty('sdk.dir')
     //solidMode = true 时
     // 使用  gradle assembleRelease bundleRelease repackAll 打包
+//    solidMode = false
     solidMode = true
+
+    supportLibraryVersion = '24.2.0'
+    compileSdkVersion = 24
+    buildToolsVersion = '24.0.2'
+    minSdkVersion = 14
+    targetSdkVersion = 24
+    okhttpVersion = '2.7.1'
+    okhttp3Version = '3.4.1'
+    daggerVersion = '2.9'
 }
 
 allprojects {

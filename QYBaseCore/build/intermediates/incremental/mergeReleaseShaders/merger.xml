@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\github_prj\liujiaqi2\zujianhua\QYBaseCore\src\main\shaders"/></dataSet><dataSet config="release"><source path="D:\github_prj\liujiaqi2\zujianhua\QYBaseCore\build-types\release\shaders"/></dataSet></merger>

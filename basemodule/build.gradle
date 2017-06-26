@@ -1,22 +1,16 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 24
     buildToolsVersion '24.0.2'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
     }
 
     sourceSets{
@@ -27,7 +21,18 @@ android {
             resources.srcDirs=['src']
             java.srcDirs=['src']
         }
+
     }
+
+}
+
+task buildMyJar (type:Jar,dependsOn:['build']) <<{
+    archiveName = 'base.jar'
+    from('build/intermediates/classes/release')
+    destinationDir = file('build/libs')
+    exclude('qiyi/basemodule/BuildConfig.class')
+    exclude('**/R.class')
+    exclude('**/R\$*.class')
 }
 
 dependencies {

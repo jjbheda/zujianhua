@@ -7,6 +7,11 @@ if (solidMode) {
 } else {
     apply plugin: 'com.android.library'
     apply from: '../global_config.gradle'
-
+    dependencies {
+        compile project(':tempmodule')
+//        provided project(':android_support')
+        compile files('libs/basecore_lib-8.6.0623.69.jar')
+    }
 
 }
+

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <SurfaceView
+        android:id="@+id/preview_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center" />
+
+    <org.qiyi.qyscanqrcode.scan.ViewfinderView
+        android:id="@+id/viewfinder_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <org.qiyi.qyscanqrcode.scan.ScanLineView
+        android:id="@+id/scan_line"
+        android:layout_width="260dip"
+        android:layout_height="2dip"
+        android:layout_marginTop="135dip"
+        android:layout_gravity="center_horizontal"/>
+
+    <RelativeLayout
+        style="@style/top_base_item_new_scan">
+
+        <TextView
+            android:id="@+id/phoneTitle"
+            style="@style/top_title_new_scan"
+            android:text="@string/scanner_title_scan" />
+
+        <ImageView
+            android:id="@+id/scan_help"
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="6dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/scan_help_button_scan"
+            android:scaleType="centerInside"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/login_fail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="65dip"
+        android:text="@string/scan_fail_text_scan"
+        android:textColor="#fd2500"
+        android:textSize="12dip"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="440dip"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="43dip"
+            android:layout_height="43dip"
+            android:layout_marginRight="17dip"
+            android:background="@drawable/scan_icon_scan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/icon"
+            android:layout_marginTop="4dip"
+            android:layout_toRightOf="@+id/icon"
+            android:text="在手机上续看视频"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/icon"
+            android:layout_marginBottom="4dip"
+            android:layout_toRightOf="@+id/icon"
+            android:text="下载应用"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+</FrameLayout>
