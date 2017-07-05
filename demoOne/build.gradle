@@ -3,15 +3,13 @@ if (solidMode) {
         packageName = 'qiyi.demo1'
         apkName = packageName.replace(".", "_")
     }
+    apply from: '../common_build.gradle'
     apply from: '../sub-project-build.gradle'
 } else {
     apply plugin: 'com.android.library'
     apply from: '../global_config.gradle'
     dependencies {
         compile project(':tempmodule')
-//        provided project(':android_support')
-        compile files('libs/basecore_lib-8.6.0623.69.jar')
     }
-
 }
 

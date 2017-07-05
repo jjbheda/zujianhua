@@ -11,12 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import qiyi.basemodule.BasePro;
+
 /**
  * Created by DELL-PC on 2017/2/21.
  */
 
 public class TestActivity extends Activity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,10 @@ public class TestActivity extends Activity {
             }
         });
         setContentView(textView);
-
-
+        BasePro basePro = new BasePro();
+        String ss =basePro.getBaseStatusString("11");
+        Log.e("TAG",ss);
+        Toast.makeText(TestActivity.this,"ss",Toast.LENGTH_SHORT).show();
     }
 
     @Override

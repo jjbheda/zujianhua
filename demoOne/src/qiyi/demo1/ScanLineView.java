@@ -12,9 +12,6 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 
 
-import org.qiyi.basecore.utils.UIUtils;
-
-
 /**
  * Created by zhangqixun on 17/6/7.
  */
@@ -45,17 +42,6 @@ public class ScanLineView extends View {
         mRect = new Rect();
 //        mScanLine = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.scan_line);
 
-        mAnimation = new TranslateAnimation(0, 0, 0, UIUtils.dip2px(260));
-        mAnimation.setRepeatMode(Animation.REVERSE);
-        mAnimation.setDuration(2500);
-        mAnimation.setRepeatCount(-1);
-        mAnimation.setInterpolator(new LinearInterpolator());
-        post(new Runnable() {
-            @Override
-            public void run() {
-                startAnimation(mAnimation);
-            }
-        });
     }
 
     @Override

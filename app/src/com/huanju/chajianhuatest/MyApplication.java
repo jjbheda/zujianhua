@@ -21,6 +21,8 @@ import java.util.zip.ZipFile;
 
 import dalvik.system.DexClassLoader;
 
+import static android.R.attr.value;
+
 /**
  * @author
  * @date 17/2/21
@@ -43,22 +45,18 @@ public class MyApplication extends Application {
     //尝试更新资源
     public void updateResource(){
         try {
-//            Thread.sleep(5000);
-//            String apkPath = getapkPath();
             ArrayList<String> apkPathList = getapkPathList();
             String mPath = getPackageResourcePath();
             assetManager = AssetManager.class.newInstance();
 //            assetManager= getAssets();      //用主app自己的assetManager 实现资源混用
             Method addAssetPathMethod = assetManager.getClass().getDeclaredMethod("addAssetPath", String.class);
             addAssetPathMethod.setAccessible(true);
-
             addAssetPathMethod.invoke(assetManager, mPath);
             Log.e("Main", "apkPathList.size = " + apkPathList.size());
             for(String apkPath: apkPathList){
                 addAssetPathMethod.invoke(assetManager, apkPath);
                 Log.e("Main", "apkPath= " + apkPath);
             }
-
             Method ensureStringBlocks = AssetManager.class.getDeclaredMethod("ensureStringBlocks");
             ensureStringBlocks.setAccessible(true);
             ensureStringBlocks.invoke(assetManager);
@@ -75,7 +73,6 @@ public class MyApplication extends Application {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public AssetManager getAssets() {
@@ -95,34 +92,6 @@ public class MyApplication extends Application {
 
     public static Context getContext() {
         return sContext;
-    }
-
-    /**从assetmanager目录中读取apk文件
-    */
-
-    public String getapkPath(){
-        List<String> bundleFiles = getBundleApkPaths ();
-        File apkDir = new File(getFilesDir(),"apkDir");
-        apkDir.mkdir();
-        String apkFilePath = "";
-        try{
-            File apkFile = new File(apkDir, bundleFiles.get(0));
-            InputStream ins = getAssets().open(bundleFiles.get(0));
-            if(apkFile.length()!=ins.available()){
-                FileOutputStream fos = new FileOutputStream(apkFile);
-                byte[] buf = new byte[2048];
-                int l;
-                while((l=ins.read(buf))!=-1){
-                    fos.write(buf,0,l);
-                }
-                fos.close();
-            }
-            ins.close();
-            apkFilePath = apkFile.getAbsolutePath();
-        }catch (Exception e) {
-
-        }
-        return apkFilePath;
     }
 
     public  ArrayList<String> getapkPathList(){
@@ -150,10 +119,8 @@ public class MyApplication extends Application {
 
             }
         }
-
         return finalBundleFilePathList;
     }
-
 
     public List<String> getBundleApkPaths(){
         List<String> apkList = new ArrayList<>();
@@ -163,7 +130,6 @@ public class MyApplication extends Application {
                 if (fName.endsWith(".so")) {
                     apkList.add(fName);
                 }
-
            }
 
         } catch (IOException e) {
@@ -171,6 +137,5 @@ public class MyApplication extends Application {
         }
         return apkList;
     }
-
 
 }

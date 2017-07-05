@@ -19,7 +19,24 @@
 #-keepattributes SourceFile,LineNumberTable
 
 
-#-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Activity
+-keep public class * extends android.support.v4.app.FragmentActivity
+-keep public class com.huanju.chajiandemo.TestActivityTwo{
+    <fields>;
+    <methods>;
+}
+
+-keep public class com.huanju.chajiandemo.fragment.HelloFragment{
+    <fields>;
+    <methods>;
+}
+
+-keep public class com.huanju.chajiandemo.fragment.SecondFragment{
+    <fields>;
+    <methods>;
+}
+
+
 #-keep public class * extends android.app.Application
 #-keep public class * extends android.app.Service
 #-keep public class * extends android.content.BroadcastReceiver
@@ -114,6 +131,7 @@
 -keep public class * extends android.support.v4.**
 -keep public class * extends android.support.v7.**
 -keep public class * extends android.app.Fragment
+-keep public class * extends android.support.v4.app.Fragment
 
 #-libraryjars libs/AnyShare-FullSDK.jar
 -dontwarn com.lenovo.**
@@ -280,6 +298,7 @@
 -keep public class com.qiyi.pingback.merge.model.PingbackModel{
 	<fields>;
 }
+
 
 ####EventBus混淆###
 -keepclassmembers class ** {
@@ -1176,6 +1195,11 @@
     *;
 }
 
+-keep class  qiyi.basemodule.BasePro{
+    <fields>;
+    <methods>;
+}
+
 -keep class * extends org.qiyi.video.module.icommunication.ModuleBean{
         public <fields>;
         public <methods>;
@@ -1222,3 +1246,6 @@
 -keepclasseswithmembers class * {
     @android.support.annotation.Keep <init>(...);
 }
+
+
+

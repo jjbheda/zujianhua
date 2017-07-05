@@ -16,8 +16,6 @@ import android.widget.Toast;
 import android.util.TypedValue;
 import android.graphics.Color;
 
-
-
 /**
  * Created by jiangjingbo on 2017/5/27.
  */
@@ -35,12 +33,6 @@ public class MainAc extends BaseActivity {
 //        textView.setTextColor(Color.RED);
 //        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
 //        textView.setGravity(Gravity.CENTER);
-
-        LinearLayout lt = (LinearLayout)findViewById(R.id.lt);
-        ScanLineView lineView = new ScanLineView(this);
-        lineView.draw(new Canvas());
-        lt.addView(lineView);
-
 
     }
 

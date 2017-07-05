@@ -6,8 +6,7 @@
 -verbose
 
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
-#-classobfuscationdictionary windows_name.txt
-
+-ignorewarnings
 -keepattributes *Annotation*
 
 -useuniqueclassmembernames
@@ -20,7 +19,8 @@
 #-keepattributes SourceFile,LineNumberTable
 
 
-#-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Activity
+-keep public class * extends android.support.v4.app.FragmentActivity
 #-keep public class * extends android.app.Application
 #-keep public class * extends android.app.Service
 #-keep public class * extends android.content.BroadcastReceiver
@@ -71,20 +71,20 @@
   public static final android.os.Parcelable$Creator *;
 }
 
--keepclassmembers class org.iqiyi.video.ui.SNSBindWebview$MyJavaSriptInterface {  
-    <methods>;  
-}  
+-keepclassmembers class org.iqiyi.video.ui.SNSBindWebview$MyJavaSriptInterface {
+    <methods>;
+}
 -keepclassmembers class org.qiyi.android.video.ui.account.sns.PhoneSNSBind$MyJavaSriptInterface {
-    <methods>;  
-} 
+    <methods>;
+}
 
--keepclassmembers class org.iqiyi.video.ui.SNSBindForSingleWebview$MyJavaSriptInterface {  
-    <methods>;  
-} 
+-keepclassmembers class org.iqiyi.video.ui.SNSBindForSingleWebview$MyJavaSriptInterface {
+    <methods>;
+}
 
 -keepclassmembers class org.iqiyi.video.advertising.AdsWebView$MyJavaSriptInterface {
-    <methods>;  
-} 
+    <methods>;
+}
 
 # ConstructProtobufData keep
 
@@ -105,6 +105,8 @@
 -keep class android.support.annotation.** { *; }
 #-baidu lite sdk
 -keep class com.baidu.bottom.** { *; }
+
+-keep class org.qiyi.qyscanqrcode.scan.**{*;}
 
 -dontwarn org.qiyi.android.video.view**
 #-keep class android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateJellyBeanImpl {*;}
@@ -428,11 +430,11 @@
     <methods>;
 }
 
--keepclassmembers class org.qiyi.android.share.SNSBindWebview$MyJavaSriptInterface {  
-    <methods>;  
+-keepclassmembers class org.qiyi.android.share.SNSBindWebview$MyJavaSriptInterface {
+    <methods>;
 }
--keepclassmembers class org.qiyi.android.share.SNSLoginWebview$MyJavaSriptInterface {  
-    <methods>;  
+-keepclassmembers class org.qiyi.android.share.SNSLoginWebview$MyJavaSriptInterface {
+    <methods>;
 }
 
 -keepclassmembers class com.iqiyi.passportsdk.thirdparty.BindPhoneWebView$NewDeviceInterface{
@@ -661,7 +663,7 @@
               java.lang.Object writeReplace();
               java.lang.Object readResolve();
             }
-            
+
  ##---------------Begin: proguard configuration for Gson  ----------
 # Gson uses generic type information stored in a class file when working with fields. Proguard
 # removes such information by default, so configure it to keep all of it.
@@ -708,9 +710,9 @@
 -dontwarn com.android.iqiyi.sdk.**
 
 
--keep class org.iqiyi.video.view.CommonWebView$* {  
+-keep class org.iqiyi.video.view.CommonWebView$* {
     <fields>;
-    <methods>;  
+    <methods>;
 }
 
 -keep class org.iqiyi.video.vote.bean.** { *; }
@@ -1101,7 +1103,7 @@
 
 -keep class com.enhance.gameservice.** {*;}
 
-# qyapm 
+# qyapm
 -dontwarn com.qiyi.qyapm.agent.**
 -dontwarn com.qiyi.video.QYApmAdapter
 -keep class com.qiyi.qyapm.agent.** { *; }
@@ -1222,4 +1224,8 @@
     @android.support.annotation.Keep <init>(...);
 }
 
--ignorewarnings
+
+-keep class  qiyi.basemodule.BasePro{
+    <fields>;
+    <methods>;
+}

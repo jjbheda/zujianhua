@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ApkModules>
-    <Module  packageName="org.qiyi.qyscanqrcode" resourceId="0x38"/>
+    <Module  packageName="com.huanju.chajiandemo" resourceId="0x38"/>
+    <Module  packageName="qiyi.demo1" resourceId="0x37"/>
 
 </ApkModules>

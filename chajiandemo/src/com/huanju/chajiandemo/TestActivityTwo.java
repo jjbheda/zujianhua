@@ -5,11 +5,20 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-
-//import qiyi.basemodule.StringUtils;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.huanju.chajiandemo.fragment.HelloFragment;
+import com.huanju.chajiandemo.fragment.SecondFragment;
+import java.lang.reflect.Method;
+import qiyi.basemodule.BasePro;
+import static android.R.attr.x;
 
 
 
@@ -17,36 +26,53 @@ import android.widget.ImageView;
  * Created by DELL-PC on 2017/2/22.
  */
 
-public class TestActivityTwo extends Activity {
+public class TestActivityTwo extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Log.e("Main","test this = " + this);
-//        Log.e("Main","getResource = " + getResources());
-//        Log.e("Main","getApplication = " + getApplication());
-//        Log.e("Main","getApplication class = " + getApplication().getClass().getName());
         setContentView(R.layout.second);
 //        ImageView imageView=(ImageView)findViewById(R.id.iv_01);
-//        imageView.setImageResource(R.drawable.xin);
+//        imageView.setImageResource(R.drawable.abc_btn_switch_to_on_mtrl_00001);
 //        imageView.setImageResource(getResources().getIdentifier("fenghuang","drawable",getPackageName()));
+        TextView tv = (TextView) findViewById(R.id.to_demo1);
+        if(tv == null){
+            Log.e("TAG","tv is null ");
+        } else {
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        startActivity(new Intent(getApplicationContext(), Class.forName("qiyi.demo1.MainAc")));
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
 
 
-        findViewById(R.id.to_demo1).setOnClickListener(new View.OnClickListener() {
+        BasePro basePro = new BasePro();
+        String ss =basePro.getBaseStatusString("112");
+        Log.e("TAG",ss);
+        Toast.makeText(TestActivityTwo.this,"来自插件APP"+ss,Toast.LENGTH_SHORT).show();
+        HelloFragment rightFragment = new HelloFragment();
+        FragmentManager fm = TestActivityTwo.this.getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.fragment_lt, rightFragment, "Fragment");
+        ft.commit();
+
+        TextView tv_change = (TextView) findViewById(R.id.change_fragment);
+        tv_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(MainActivity.this,TestActivity.class));
-                try {
-//                    StringUtils utils = new StringUtils();
-//                    int x = utils.getSum(3,6);
-//                    if(x > 5)
-//                    Log.e("TAG","x = "+x);
-
-                    startActivity(new Intent(getApplicationContext(), Class.forName("qiyi.demo1.MainAc")));
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
+                SecondFragment rightFragment = new SecondFragment();
+                FragmentManager fm = TestActivityTwo.this.getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.fragment_lt, rightFragment, "Fragment2");
+                ft.commit();
             }
         });
+
     }
 
     @Override
