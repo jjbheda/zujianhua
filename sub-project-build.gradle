@@ -184,15 +184,14 @@ task listFileAndReplace <<{
     }
 }
 
-//task aaptRelease (type: Exec,dependsOn:['init','listFileAndReplace']){
-task aaptRelease (type: Exec,dependsOn:['initBuild']) {
-//task aaptRelease (type: Exec,dependsOn:'init'){
+task aaptRelease (type: Exec,dependsOn:['initBuild','listFileAndReplace']){
+//task aaptRelease (type: Exec,dependsOn:['initBuild']) {
     inputs.file "$sdk.androidJar"
     inputs.file "${rootDir}/build-outputs/demo-base-release.apk"
     inputs.file "$projectDir/AndroidManifest.xml"
     inputs.dir "$projectDir/res"
     inputs.dir "$projectDir/assets"
-//    inputs.file "${rootDir}/app/build/generated/source/r/release/com/huanju/chajianhuatest/R.java"
+    inputs.file "${rootDir}/app/build/generated/source/r/release/com/huanju/chajianhuatest/R.java"
     outputs.dir "$buildDir/gen/r"
     outputs.file "$buildDir/intermediates/res/resources.zip"
     outputs.file "$buildDir/intermediates/res/aapt-rules.txt"
@@ -205,6 +204,7 @@ task aaptRelease (type: Exec,dependsOn:['initBuild']) {
             println "find packageName: " + module.@packageName + " ,resourceId:" + resourceId
         }
     }
+
     workingDir buildDir
     executable sdk.aapt
 
@@ -216,54 +216,6 @@ task aaptRelease (type: Exec,dependsOn:['initBuild']) {
     argv << "$sdk.androidJar"        //添加一个已有的固化jar包
     argv << '-I'
     argv << "${rootDir}/build-outputs/demo-base-release.apk"
-    if (project.hasProperty('parentModuleName') && rootProject.hasProperty('TypeModuleSO')) {
-        argv << '-I'
-        argv << "${rootDir}/build-inputs/${parentModuleName}-${parentDependency}-RES.zip"
-    } else if (project.hasProperty('parentModuleName')) {
-        def parentProject = project(":${parentModuleName}");
-        argv << '-I'
-        argv << "${parentProject.buildDir}/intermediates/res/resources.zip"
-    }
-
-    //---------------aar start
-    def aarFileTrees = new File(rootDir, 'build-inputs').list(new FilenameFilter() {
-        @Override
-        boolean accept(File dir, String name) {
-            return name.endsWith(".aar");
-        }
-    })
-    if (aarFileTrees.size() > 0) {
-        argv << '--auto-add-overlay'
-        def extraPackages = ""
-        aarFileTrees.each {
-            aarName ->
-                println "$aarName"
-                if(new File("$buildDir/intermediates/explore-aar/${aarName}/AndroidManifest.xml").exists()){
-                    def parseManifestXml = new XmlSlurper().parse("$buildDir/intermediates/explore-aar/${aarName}/AndroidManifest.xml")
-                    println "+++++++++++++++++parseManifestXml.@'package': " + parseManifestXml.@'package'
-                    extraPackages = extraPackages + ":" + parseManifestXml.@'package'
-                    argv << '-M'
-                    argv << "$buildDir/intermediates/explore-aar/${aarName}/AndroidManifest.xml"
-                    //指定manifest文件
-                    argv << '-S'
-                    argv << "$buildDir/intermediates/explore-aar/${aarName}/res"
-                    argv << '-A'
-                    argv << "$buildDir/intermediates/explore-aar/${aarName}/assets"
-                }
-
-                // assets目录
-        }
-
-        if(extraPackages.length()>1){
-            extraPackages = extraPackages.substring(1, extraPackages.length())
-            println "+++++++++++++++++--extra-packages : " + extraPackages
-            argv << '--extra-packages'
-            argv << extraPackages
-        }
-
-    }
-    //---------------aar end
-
     argv << '-M'
     argv << "$projectDir/AndroidManifest.xml"    //指定manifest文件
     argv << '-S'
@@ -282,8 +234,8 @@ task aaptRelease (type: Exec,dependsOn:['initBuild']) {
     argv << "${packageName}"
     argv << '-0'    //指定哪些后缀名不会被压缩
     argv << 'apk'
-//    argv << '--public-R-path'
-//    argv << "${rootDir}/app/build/generated/source/r/release/com/huanju/chajianhuatest/R.java"
+    argv << '--public-R-path'
+    argv << "${rootDir}/app/build/generated/source/r/release/com/huanju/chajianhuatest/R.java"
     argv << '--apk-module'
     argv << "$resourceId"
     args = argv
@@ -326,7 +278,6 @@ task compileRelease(type: JavaCompile,dependsOn:'aaptRelease') {
     println "-------compileRelease-" + aarFileTrees.size()
     if (aarFileTrees.size() > 0) {
         aarFileTrees.each {}
-        classpath.from(fileTree("$buildDir/intermediates/explore-aar").include('**/*.jar'))
         classpath.from(fileTree("$buildDir/intermediates/explore-aar").include('**/*.jar'))
     }
 
@@ -449,7 +400,59 @@ class UnZipTask extends DefaultTask {
     }
 }
 
-task bundleRelease (type:Zip,dependsOn:['obfuscateRelease', 'compileRelease', 'aaptRelease', 'dexRelease']){
+/**
+ * 回写 逻辑
+ */
+def replaceToOrigin(String bundlefilepath) {
+    //读取
+    def stringBuffer = new StringBuffer()
+    println bundlefilepath + "开始回写逻辑"
+    new File(bundlefilepath).withReader('UTF-8') { reader ->
+        reader.eachLine {
+            if (it.find("@*com.huanju.chajianhuatest:")) {
+                println  "发现回写点 "+it
+                def lineStr = it.replace("@*com.huanju.chajianhuatest:", "@")
+
+                println  "回写后String = "+lineStr
+                stringBuffer.append(lineStr + "\n")
+            } else {
+                stringBuffer.append(it + "\n")
+                println  "readline = "+it
+            }
+        }
+        def res_auto = "xmlns:app=\"http://schemas.android.com/apk/res/com.huanju.chajianhuatest\"";
+        def origin = "xmlns:app=\"http://schemas.android.com/apk/res-auto\"";
+
+        if (stringBuffer.toString().contains(res_auto)) {
+            stringBuffer.replace(stringBuffer.indexOf(res_auto), stringBuffer.indexOf(res_auto) + res_auto.length() + 4, origin);
+        }
+
+        new File(bundlefilepath).withWriter('UTF-8') {
+            writer ->
+                writer.append(stringBuffer)
+        }
+    }
+}
+
+/**
+ * 恢复子模块 xml 文件
+ */
+task ReReplace(dependsOn: 'dexRelease') <<{
+    def layoutFiles = files(file("$projectDir/res/layout").listFiles())
+    println '重新替换文件' + "---------------------------------------------------------------------------------------------------"
+    layoutFiles.each { File file ->
+        def filePath = "$projectDir/res/layout/" + file.name
+        println filePath
+        replaceToOrigin(filePath)
+    }
+}
+
+
+/*
+ * 回写 逻辑结束
+ */
+
+task bundleRelease (type:Zip,dependsOn:['obfuscateRelease', 'compileRelease', 'aaptRelease', 'dexRelease','ReReplace']){
     inputs.file "$buildDir/intermediates/dex/${project.name}_dex.zip"
     inputs.file "$buildDir/intermediates/res/resources.zip"
 

@@ -306,16 +306,16 @@ task ReReplace(dependsOn: 'realign') << {
 }
 
 
-task ReReplaceForDelete() << {
-    def layoutFiles = files(file("$rootDir/chajiandemo/res/layout").listFiles())
-    println '重新替换文件' + "---------------------------------------------------------------------------------------------------"
-    layoutFiles.each { File file ->
-
-        def filePath = "$rootDir/chajiandemo/res/layout/" + file.name
-        println filePath
-        fileAppRReader(filePath)
-    }
-}
+//task ReReplaceForDelete() << {
+//    def layoutFiles = files(file("$rootDir/chajiandemo/res/layout").listFiles())
+//    println '重新替换文件' + "---------------------------------------------------------------------------------------------------"
+//    layoutFiles.each { File file ->
+//
+//        def filePath = "$rootDir/chajiandemo/res/layout/" + file.name
+//        println filePath
+//        fileAppRReader(filePath)
+//    }
+//}
 
 
 def fileAppRReader(String bundlefilepath) {

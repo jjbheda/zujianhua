@@ -11,7 +11,7 @@ buildscript {
 ext{
     java.util.Properties properties = new Properties();
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
-     sdkDir = properties.getProperty('sdk.dir')
+    sdkDir = properties.getProperty('sdk.dir')
     //solidMode = true 时
     // 使用  gradle assembleRelease bundleRelease repackAll 打包
     solidMode = true

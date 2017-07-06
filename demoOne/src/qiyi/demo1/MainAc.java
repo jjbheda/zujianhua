@@ -30,7 +30,7 @@ public class MainAc extends BaseActivity {
         tv.setText(R.string.app_name_demo1);
 
        ImageView iv = (ImageView) findViewById(R.id.iv_constellatory);
-        iv.setImageResource(R.drawable.shizi);
+       iv.setImageResource(R.drawable.baiyang);
 
     }
 

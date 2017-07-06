@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+>
+<LinearLayout
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
@@ -7,11 +13,20 @@
 
     <ImageView
 
-        android:id="@+id/iv"
+        android:id="@+id/iv_chajian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/shanshui2"
+        android:src="@drawable/baiyang"
     />
+
+
+    <ImageView
+
+        android:id="@+id/iv_chajian_02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/shizi"
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -24,3 +39,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>
+</ScrollView>

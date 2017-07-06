@@ -2,6 +2,7 @@ if (solidMode) {
     project.ext {
         packageName = 'com.huanju.chajiandemo'
         apkName = packageName.replace(".", "_")
+        parentModuleName = 'basemodule'
     }
     apply from: '../common_build.gradle'
     allprojects {
@@ -39,7 +40,7 @@ if (solidMode) {
     }
     dependencies {
         provided project(':basemodule')
-
+        compile project(':tempmodule')
     }
 
 }
