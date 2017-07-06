@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Button;
@@ -28,11 +29,8 @@ public class MainAc extends BaseActivity {
         TextView tv = (TextView) findViewById(R.id.demo1_textView1);
         tv.setText(R.string.app_name_demo1);
 
-//        Button textView = new Button(this);
-//        textView.setText("我是插件Demo1 Activity,我是代码布局，没有资源");
-//        textView.setTextColor(Color.RED);
-//        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,30);
-//        textView.setGravity(Gravity.CENTER);
+       ImageView iv = (ImageView) findViewById(R.id.iv_constellatory);
+        iv.setImageResource(R.drawable.shizi);
 
     }
 

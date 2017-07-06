@@ -2,6 +2,7 @@ package com.huanju.chajianhuatest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -9,6 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,11 +32,12 @@ public class MainActivity extends FragmentActivity {
     private boolean flag = false;
     private boolean flag2 = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        EventBus.getDefault().register(this);
+
         ImageView iv = (ImageView) findViewById(R.id.test);
         iv.setImageResource(R.drawable.shuimo);
         BasePro basePro = new BasePro();
@@ -73,6 +80,10 @@ public class MainActivity extends FragmentActivity {
             }
         });
 
+
+
+
+
     }
 
     @Override
@@ -88,6 +99,7 @@ public class MainActivity extends FragmentActivity {
             MyHookHelper.inject(mClassLoader);
             flag = true;
 //            loadResource(0);
+            sendInstallBroadCastReceiver();
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -170,4 +182,17 @@ public class MainActivity extends FragmentActivity {
         return apkList;
     }
 
+    public void sendInstallBroadCastReceiver(){
+        Log.e("TAG","发送注册广播");
+        EventBus.getDefault().post(new DataSynEvent(true));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(DataSynEvent event) {/* Do something */};
 }

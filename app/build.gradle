@@ -51,6 +51,7 @@ allprojects {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'org.greenrobot:eventbus:3.0.0'
 //    compile "com.qiyi.video.allclasses:support_lib:latest.release"
     compile project(':basemodule')
     if (!solidMode) {

@@ -3,9 +3,14 @@ package com.huanju.chajianhuatest;
 import android.app.Application;
 import android.app.Instrumentation;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.util.Log;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,10 +41,15 @@ public class MyApplication extends Application {
     private Resources.Theme mTheme;
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        EventBus.getDefault().register(this);//订阅
+    }
+
+    @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         sContext = base;
-        updateResource();
     }
 
     //尝试更新资源
@@ -136,6 +146,14 @@ public class MyApplication extends Application {
             e.printStackTrace();
         }
         return apkList;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN) //在ui线程执行
+    public void onDataSynEvent(DataSynEvent event) {
+        Log.e("TAG","收到了注册广播");
+        if(event.isBeginInstall()){
+            updateResource();
+        }
     }
 
 }

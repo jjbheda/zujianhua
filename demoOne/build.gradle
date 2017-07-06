@@ -8,8 +8,26 @@ if (solidMode) {
 } else {
     apply plugin: 'com.android.library'
     apply from: '../global_config.gradle'
-    dependencies {
-        compile project(':tempmodule')
+
+    allprojects {
+        repositories {
+            mavenLocal()
+            jcenter()
+            maven {
+                url="http://maven.mbd.qiyi.domain/nexus/content/repositories/mbd-vertical/"
+            }
+            maven {
+                url = "http://maven.mbd.qiyi.domain/nexus/content/repositories/mcg-qos/"
+            }
+        }
     }
+    dependencies {
+        provided project(':basemodule')
+
+    }
+
+
+
+
 }
 
