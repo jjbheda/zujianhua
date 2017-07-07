@@ -294,16 +294,16 @@ task realign(dependsOn: 'resign') {
 /**
  * 恢复子模块 xml 文件
  */
-task ReReplace(dependsOn: 'realign') << {
-    def layoutFiles = files(file("$rootDir/chajiandemo/res/layout").listFiles())
-    println '重新替换文件' + "---------------------------------------------------------------------------------------------------"
-    layoutFiles.each { File file ->
-
-        def filePath = "$rootDir/chajiandemo/res/layout/" + file.name
-        println filePath
-        fileAppRReader(filePath)
-    }
-}
+//task ReReplace(dependsOn: 'realign') << {
+//    def layoutFiles = files(file("$rootDir/chajiandemo/res/layout").listFiles())
+//    println '重新替换文件' + "---------------------------------------------------------------------------------------------------"
+//    layoutFiles.each { File file ->
+//
+//        def filePath = "$rootDir/chajiandemo/res/layout/" + file.name
+//        println filePath
+//        fileAppRReader(filePath)
+//    }
+//}
 
 
 //task ReReplaceForDelete() << {
@@ -377,4 +377,4 @@ task concatMappings(type: ConcatFiles) {
     target = new File(rootDir, 'build-outputs/demo-mapping-final.txt')
 }
 
-task repackAll(dependsOn: ['reload', 'resign', 'repack', 'realign', 'concatMappings', 'ReReplace'])
+task repackAll(dependsOn: ['reload', 'resign', 'repack', 'realign', 'concatMappings'])

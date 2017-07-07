@@ -1,7 +1,6 @@
-
 buildscript {
     repositories {
-         mavenCentral()
+        mavenCentral()
     }
     dependencies {
         classpath 'net.sf.proguard:proguard-gradle:5.2.1'
@@ -10,6 +9,8 @@ buildscript {
 
 import org.apache.tools.ant.taskdefs.condition.Os
 
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipInputStream
@@ -20,23 +21,23 @@ project.ext {
     TARGET_SDK_VERSION = 23
 
     sdk = [:]
-    if(Os.isFamily(Os.FAMILY_WINDOWS)){
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         sdk.aapt = "${rootDir}/aapt_win.exe"
         sdk.dex = "$sdkDir/build-tools/$BUILD_TOOLS_VERSION/dx.bat"
-    }
-    else if (Os.isFamily(Os.FAMILY_MAC)){
+    } else if (Os.isFamily(Os.FAMILY_MAC)) {
         sdk.aapt = "${rootDir}/aapt_mac"
         sdk.dex = "$sdkDir/build-tools/$BUILD_TOOLS_VERSION/dx"
-    }
-    else if (Os.isFamily(Os.FAMILY_UNIX)){
+    } else if (Os.isFamily(Os.FAMILY_UNIX)) {
         sdk.aapt = "${rootDir}/aapt_linux"
         sdk.dex = "$sdkDir/build-tools/$BUILD_TOOLS_VERSION/dx"
     }
     sdk.androidJar = "$sdkDir/platforms/android-$TARGET_SDK_VERSION/android.jar"
-    if(TARGET_SDK_VERSION >= 23){
+    if (TARGET_SDK_VERSION >= 23) {
         sdk.apacheJar = "$sdkDir/platforms/android-23/optional/org.apache.http.legacy.jar";
     }
-    idList = new ArrayList<HashMap<String,String>>();       //定义主APP 全局列表
+    idList = new ArrayList<HashMap<String, String>>();       //定义主APP 全局列表
+    stringBuffer = new StringBuffer()
+    recoveryOriginSB = new StringBuffer()       //回写时使用
 }
 
 task init << {}
@@ -48,8 +49,8 @@ task copyFileToInputsDir(type: Copy) {
 }
 
 task copyJarFileToExportAar(type: Copy) {
-   from fileTree(new File(rootDir,'build-inputs')).include("*.jar")
-    into  "$buildDir/intermediates/explore-aar"
+    from fileTree(new File(rootDir, 'build-inputs')).include("*.jar")
+    into "$buildDir/intermediates/explore-aar"
 }
 
 task aarLibPrepare(type: UnZipTask) {
@@ -66,7 +67,7 @@ task cleanBuild(type: Delete) {
         delete "${rootDir}/build-outputs/${apkName}.so"
         delete "${rootDir}/build-outputs/jni"
         delete "${rootDir}/build-outputs/lint"
-    } catch (Exception e){
+    } catch (Exception e) {
 
     }
 
@@ -93,98 +94,163 @@ task initBuild {
     copyFileToInputsDir.execute()
 
     project.ext.aarFiles = new File(rootDir, 'build-inputs').list(new FilenameFilter() {
-            @Override
-            boolean accept(File dir, String name) {
-                return name.endsWith(".aar");
-            }
-        })
-        aarLibPrepare.execute()
-        copyJarFileToExportAar.execute()
+        @Override
+        boolean accept(File dir, String name) {
+            return name.endsWith(".aar");
+        }
+    })
+    aarLibPrepare.execute()
+    copyJarFileToExportAar.execute()
 }
 
-def getAppIdList(){
+def getAppIdList() {
     def appfilepath = "${rootDir}/app/build/generated/source/r/release/com/huanju/chajianhuatest/R.java"
-    def stringBuffer = new StringBuffer()
     def style
     new File(appfilepath).withReader('UTF-8') { reader ->
         reader.eachLine {
-            def idMap = new HashMap<String,String>()
+            def idMap = new HashMap<String, String>()
             if (it.contains(" public static final class") && it.contains("{")) {
-                style = it.substring(it.indexOf("class")+5,it.indexOf("{")).trim()
+                style = it.substring(it.indexOf("class") + 5, it.indexOf("{")).trim()
             }
             if (it.contains(" public static final int")) {
-                def name = it.substring(it.indexOf("final int")+9,it.indexOf("=")).trim()
-                idMap.put(style,name)
-                println  style+"，"+name
+                def name = it.substring(it.indexOf("final int") + 9, it.indexOf("=")).trim()
+                idMap.put(style, name)
+                println style + "，" + name
                 idList.add(idMap)
             }
         }
     }
 }
 
-def fileAppRReader(String bundlefilepath){
+
+def fileAppRReader(String bundlefilepath) {
     //读取
-    def stringBuffer = new StringBuffer()
     def isAppDiyResUsed     //是否用到主APP里面自定义控件属性
-    def bundleRenameMap = new HashMap<String,String>()
+    def bundleRenameMap = new HashMap<String, String>()
     new File(bundlefilepath).withReader('UTF-8') { reader ->
         reader.eachLine {
-            if (it.find("@attr/") || it.find("@color/") ||
-                    it.find("@dimen/") || it.find("@drawable/")
-                    ||it.find("@mipmap/") || it.find("@string/") || it.find("@style/") ) {
-                println it
-                def wiget_name = it.substring(it.indexOf("/")+1,it.length()-1).trim()
-                println wiget_name
-                def wiget_type = it.substring(it.indexOf("\"@")+2,it.indexOf("/")).trim()
-                println wiget_type
-                bundleRenameMap.put(wiget_type,wiget_name)
-                def temp_map = new HashMap<String,String>()
-                temp_map.put(wiget_type,wiget_name)
-                if(idList.contains(temp_map)){
-                    println wiget_name
-                    println "wiget_type =  "+wiget_type
-                    def lineStr = it.replace("@"+wiget_type,"@*com.huanju.chajianhuatest:"+wiget_type)
-                    println lineStr
-                    stringBuffer.append(lineStr+"\n")
-                }
-            } else if(it.trim().startsWith("app:") ){       //引用了主APP中的自定义控件属性
-                stringBuffer.append(it+"\n")
+            if (it.trim().startsWith("app:")) {       //引用了主APP中的自定义控件属性
                 isAppDiyResUsed = true
-
-            } else {
-                stringBuffer.append(it+"\n")
             }
+
+//            if (it.find("@attr/") || it.find("@color/") ||
+//                    it.find("@dimen/") || it.find("@drawable/")
+//                    ||it.find("@mipmap/") || it.find("@string/") || it.find("@style/") ) {
+//                println "原始it ="+ it
+//                def wiget_name = it.substring(it.indexOf("/")+1,it.lastIndexOf("\"")).trim()
+//                println "wiget_name ="+wiget_name
+//                def wiget_type = it.substring(it.indexOf("\"@")+2,it.indexOf("/")).trim()
+//                println "origin wiget_type = "+wiget_type
+//                bundleRenameMap.put(wiget_type,wiget_name)
+//                def temp_map = new HashMap<String,String>()
+//                temp_map.put(wiget_type,wiget_name)
+//                if(idList.contains(temp_map)){
+//                    println wiget_name
+//                    println "wiget_type =  "+wiget_type
+//                    def lineStr = it.replace("@"+wiget_type,"@*com.huanju.chajianhuatest:"+wiget_type)
+//                    println lineStr
+//                    stringBuffer.append(lineStr+"\n")
+//                }
+//            }else {
+//                stringBuffer.append(it+"\n")
+//            }
+
+            stringBuffer.append(it + "\n")
         }
-        def origin = "xmlns:app=\"http://schemas.android.com/apk/res-auto\""
-        def res_auto_line =  "xmlns:app=\"http://schemas.android.com/apk/res/com.huanju.chajianhuatest\""
-        if(isAppDiyResUsed && stringBuffer.toString().contains(origin)){
-            println "-----------------包含了origin"
-            println "-----------------begin=" +stringBuffer.indexOf(origin)
-            println "-----------------to=" +origin.length()
-            println "-----------------res_auto_line=" +res_auto_line.length()
-            stringBuffer.replace(stringBuffer.indexOf(origin),stringBuffer.indexOf(origin)+origin.length(),res_auto_line);
-        }
+//        def origin = "xmlns:app=\"http://schemas.android.com/apk/res-auto\""
+//        def res_auto_line = "xmlns:app=\"http://schemas.android.com/apk/res/com.huanju.chajianhuatest\"" + "\n"
+//        //如果定义了命名空间xmlns:app ，并且有实际引用
+//        if (isAppDiyResUsed && stringBuffer.toString().contains(origin)) {
+//            println "-----------------包含了origin"
+//            println "-----------------begin=" + stringBuffer.indexOf(origin)
+//            println "-----------------to=" + origin.length()
+//            println "-----------------res_auto_line=" + res_auto_line.length()
+//            stringBuffer.replace(stringBuffer.indexOf(origin), stringBuffer.indexOf(origin) + origin.length(), res_auto_line);
+//        }
+//        println "-----------------fileAppRReader ------>>stringBuffer=" + stringBuffer
+        getNameSpaceStr()
+        getPatternReplaceStr()
         new File(bundlefilepath).withWriter('UTF-8') {
             writer ->
                 writer.append(stringBuffer)
         }
+        //置位
+        stringBuffer = new StringBuffer()
     }
 }
 
+def getNameSpaceStr(){
+    String res_auto_line = "xmlns:app=\"http://schemas.android.com/apk/res/com.huanju.chajianhuatest\"";
+    //如果定义了命名空间xmlns:app ，并且有实际引用
+    String REGEX = "xmlns:app=\"http://schemas.android.com/apk/res-auto\"";
+    Pattern p = Pattern.compile(REGEX);
+    Matcher m = p.matcher(stringBuffer);
+    StringBuffer sb = new StringBuffer();
+    while(m.find()){
+        System.out.println("----------");
+        m.appendReplacement(sb,res_auto_line);
+    }
+    m.appendTail(sb);
+    stringBuffer = sb
+}
+
+def getPatternReplaceStr() {
+    String REGEX = "@attr/.+?\"|@color/.+?\"|@dimen/.+?\"|@drawable/.+?\"|@mipmap/.+?\"|@string/.+?\"|@style/.+?\""
+    Pattern p = Pattern.compile(REGEX);
+    Matcher m = p.matcher(stringBuffer);
+    StringBuffer sb = new StringBuffer();
+    while (m.find()) {
+        System.out.println("----------");
+        String ptgroup = m.group();
+        String[] ptStr = ptgroup.split("/");
+        def temp_map = new HashMap<String, String>()
+        temp_map.put(ptStr[0].replace("@",""), ptStr[1])
+        if (idList.contains(temp_map)) {
+            println ptStr[0].replace("@","")
+            println "wiget_type =  " + ptStr[1]
+        }
+
+        System.out.println(ptgroup.split("/")[0] + "----------" + ptgroup.split("/")[1]);
+        m.appendReplacement(sb, "@*com.huanju.chajianhuatest:" + ptStr[0].replace("@", "") + "/" + ptStr[1]);
+    }
+    m.appendTail(sb)
+    stringBuffer = sb
+}
+
+/**
+ * 定义正则表达式  增加主app全路径包名
+ * @param patternStr
+ * @return
+ */
+//def getPatternStr(String patternStr) {
+//    println "-----------------patternStr=" + patternStr
+//    String REGEX = "=\"@.*?/";
+//    String REPLACE = "=\"@*com.huanju.chajianhuatest:" + patternStr + "/";
+//    Pattern p = Pattern.compile(REGEX);
+//    // 获取 matcher 对象
+//    Matcher m = p.matcher(stringBuffer);
+//    StringBuffer sb = new StringBuffer();
+//    while (m.find()) {
+//        m.appendReplacement(sb, REPLACE);
+//    }
+//    m.appendTail(sb);
+//    println "-----------------getPatternStr ------>>stringBuffer=" + stringBuffer
+//    System.out.println("sb------------------------=" + sb.toString());
+//}
 
 //文件读取 循环替换资源文件中，用到主app部分的资源ID
-task listFileAndReplace <<{
+task listFileAndReplace << {
     getAppIdList()          //第一步读取主APP ID
     def layoutFiles = files(file("$projectDir/res/layout").listFiles())
 
     layoutFiles.each { File file ->
-        println 'The next file is: ' + "$projectDir/res/layout/"+file.name
-        def filePath = "$projectDir/res/layout/"+file.name
+        println 'The next file is: ' + "$projectDir/res/layout/" + file.name
+        def filePath = "$projectDir/res/layout/" + file.name
         fileAppRReader(filePath)
     }
 }
 
-task aaptRelease (type: Exec,dependsOn:['initBuild','listFileAndReplace']){
+task aaptRelease(type: Exec, dependsOn: ['initBuild', 'listFileAndReplace']) {
 //task aaptRelease (type: Exec,dependsOn:['initBuild']) {
     inputs.file "$sdk.androidJar"
     inputs.file "${rootDir}/build-outputs/demo-base-release.apk"
@@ -242,7 +308,7 @@ task aaptRelease (type: Exec,dependsOn:['initBuild','listFileAndReplace']){
 
 }
 
-task compileRelease(type: JavaCompile,dependsOn:'aaptRelease') {
+task compileRelease(type: JavaCompile, dependsOn: 'aaptRelease') {
     inputs.file "$sdk.androidJar"
     inputs.files fileTree("${projectDir}/libs").include('*.jar')
     inputs.file "${rootDir}/app/build/intermediates/classes-proguard/release/classes.jar"
@@ -253,22 +319,12 @@ task compileRelease(type: JavaCompile,dependsOn:'aaptRelease') {
     outputs.dir "$buildDir/intermediates/classes"
     sourceCompatibility = '1.7'
     targetCompatibility = '1.7'
-
     def inputJarfile = ''
-//    if (project.hasProperty('parentModuleName') && rootProject.hasProperty('TypeModuleSO')) {
-//        inputJarfile = "${rootDir}/build-inputs/${parentModuleName}-${parentDependency}-JAR.jar"
-//        inputs.file "${inputJarfile}"
-//    } else if (project.hasProperty('parentModuleName')) {
-//        def parentProject = project(":$parentModuleName");
-//        inputJarfile = "${parentProject.buildDir}/intermediates/classes-obfuscated/classes-obfuscated.jar"
-//        inputs.file "${inputJarfile}"
-//    }
     classpath = files(
             "${sdk.androidJar}",
             "${sdk.apacheJar}",
             fileTree("${projectDir}/libs").include('*.jar')
     )
-
     def aarFileTrees = new File(rootDir, 'build-inputs').list(new FilenameFilter() {
         @Override
         boolean accept(File dir, String name) {
@@ -282,9 +338,7 @@ task compileRelease(type: JavaCompile,dependsOn:'aaptRelease') {
     }
 
     destinationDir = file("$buildDir/intermediates/classes")
-
     dependencyCacheDir = file("${buildDir}/dependency-cache")
-
     source = files(fileTree("$projectDir/src").include('**/*.java'),
             fileTree("$buildDir/gen/r").include('**/*.java'))
     options.encoding = 'UTF-8'
@@ -319,7 +373,7 @@ task copySofileTask(dependsOn: 'compileRelease') {
     }
 }
 
-task obfuscateRelease(type:proguard.gradle.ProGuardTask, dependsOn:'copySofileTask') {
+task obfuscateRelease(type: proguard.gradle.ProGuardTask, dependsOn: 'copySofileTask') {
     inputs.file "$rootDir/sub-project-proguard-rules.pro"
     inputs.file "$buildDir/intermediates/res/aapt-rules.txt"
     inputs.dir "$buildDir/intermediates/classes"
@@ -330,7 +384,7 @@ task obfuscateRelease(type:proguard.gradle.ProGuardTask, dependsOn:'copySofileTa
     outputs.file "$buildDir/intermediates/classes-obfuscated/classes-obfuscated.jar"
     outputs.file "${rootDir}/build-outputs/${apkName}-mapping.txt"
     configuration file("$rootDir/sub-project-proguard-rules.pro")
-    configuration file ("$buildDir/intermediates/res/aapt-rules.txt")
+    configuration file("$buildDir/intermediates/res/aapt-rules.txt")
     injars file("$buildDir/intermediates/classes")
     injars fileTree("${projectDir}/libs").include('*.jar')
 
@@ -401,37 +455,31 @@ class UnZipTask extends DefaultTask {
 }
 
 /**
- * 回写 逻辑
+ *-----------------------------------回写 逻辑 开始--------------------
  */
+
 def replaceToOrigin(String bundlefilepath) {
-    //读取
-    def stringBuffer = new StringBuffer()
     println bundlefilepath + "开始回写逻辑"
     new File(bundlefilepath).withReader('UTF-8') { reader ->
         reader.eachLine {
-            if (it.find("@*com.huanju.chajianhuatest:")) {
-                println  "发现回写点 "+it
-                def lineStr = it.replace("@*com.huanju.chajianhuatest:", "@")
+//            if (it.find("@*com.huanju.chajianhuatest:")) {
+//                println "发现回写点 " + it
+//                def lineStr = it.replace("@*com.huanju.chajianhuatest:", "@")
+//
+//                println "回写后String = " + lineStr
+//                stringBuffer.append(lineStr + "\n")
+//            } else {
+            recoveryOriginSB.append(it + "\n")
 
-                println  "回写后String = "+lineStr
-                stringBuffer.append(lineStr + "\n")
-            } else {
-                stringBuffer.append(it + "\n")
-                println  "readline = "+it
             }
         }
-        def res_auto = "xmlns:app=\"http://schemas.android.com/apk/res/com.huanju.chajianhuatest\"";
-        def origin = "xmlns:app=\"http://schemas.android.com/apk/res-auto\"";
-
-        if (stringBuffer.toString().contains(res_auto)) {
-            stringBuffer.replace(stringBuffer.indexOf(res_auto), stringBuffer.indexOf(res_auto) + res_auto.length() + 4, origin);
-        }
-
+        recoveryNameSpaceStr()
+        recoveryPackageNameStr()
         new File(bundlefilepath).withWriter('UTF-8') {
             writer ->
-                writer.append(stringBuffer)
+                writer.append(recoveryOriginSB)
         }
-    }
+    recoveryOriginSB = new StringBuffer()
 }
 
 /**
@@ -439,7 +487,7 @@ def replaceToOrigin(String bundlefilepath) {
  */
 task ReReplace(dependsOn: 'dexRelease') <<{
     def layoutFiles = files(file("$projectDir/res/layout").listFiles())
-    println '重新替换文件' + "---------------------------------------------------------------------------------------------------"
+    println '重新替换文件' + "----------------"
     layoutFiles.each { File file ->
         def filePath = "$projectDir/res/layout/" + file.name
         println filePath
@@ -447,36 +495,51 @@ task ReReplace(dependsOn: 'dexRelease') <<{
     }
 }
 
+def recoveryNameSpaceStr(){
+    String regex = "xmlns:app=\"http://schemas.android.com/apk/res/com.huanju.chajianhuatest\""
+    //如果定义了命名空间xmlns:app ，并且有实际引用
+    String replaceStr = "xmlns:app=\"http://schemas.android.com/apk/res-auto\""
+    Pattern p = Pattern.compile(regex);
+    Matcher m = p.matcher(recoveryOriginSB);
+    StringBuffer sb = new StringBuffer();
+    while(m.find()){
+        System.out.println("----------------------");
+        m.appendReplacement(sb,replaceStr);
+    }
+    m.appendTail(sb)
+    println 'sb = ' + "----------------" +sb
+    recoveryOriginSB = sb
+}
+
+
+def recoveryPackageNameStr(){
+    String regex = "@\\*com.huanju.chajianhuatest:"
+    //如果定义了命名空间xmlns:app ，并且有实际引用
+    String replaceStr = "@"
+    Pattern p = Pattern.compile(regex)
+    Matcher m = p.matcher(recoveryOriginSB)
+    StringBuffer sb = new StringBuffer()
+    while(m.find()){
+        System.out.println("----------")
+        m.appendReplacement(sb,replaceStr)
+    }
+    m.appendTail(sb)
+    recoveryOriginSB = sb
+}
 
 /*
- * 回写 逻辑结束
+ *-----------------------------------回写 逻辑 结束--------------------
  */
 
-task bundleRelease (type:Zip,dependsOn:['obfuscateRelease', 'compileRelease', 'aaptRelease', 'dexRelease','ReReplace']){
+task bundleRelease(type: Zip, dependsOn: ['obfuscateRelease', 'compileRelease', 'aaptRelease', 'dexRelease','ReReplace']) {
     inputs.file "$buildDir/intermediates/dex/${project.name}_dex.zip"
     inputs.file "$buildDir/intermediates/res/resources.zip"
-
     outputs.file "${rootDir}/build-outputs/${apkName}.so"
-
     archiveName = "${apkName}.so"
     destinationDir = file("${rootDir}/build-outputs")
     duplicatesStrategy = 'fail'
     from zipTree("$buildDir/intermediates/dex/${project.name}_dex.zip")
     from zipTree("$buildDir/intermediates/res/resources.zip")
 }
-
-//task bundleRelease (type:Zip,dependsOn:['aaptRelease','compileRelease','dexRelease']){
-//    inputs.file "$buildDir/intermediates/dex/${project.name}_dex.zip"
-//    inputs.file "$buildDir/intermediates/res/resources.zip"
-//
-//    outputs.file "${rootDir}/build-outputs/${apkName}.so"
-//
-//    archiveName = "${apkName}.so"
-//    destinationDir = file("${rootDir}/build-outputs")
-//    duplicatesStrategy = 'fail'
-//    from zipTree("$buildDir/intermediates/dex/${project.name}_dex.zip")
-//    from zipTree("$buildDir/intermediates/res/resources.zip")
-//}
-
 
 

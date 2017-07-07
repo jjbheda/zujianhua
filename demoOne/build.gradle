@@ -21,7 +21,6 @@ if (solidMode) {
             }
         }
     }
-
     dependencies {
         provided project(':basemodule')
         compile project(':tempmodule')

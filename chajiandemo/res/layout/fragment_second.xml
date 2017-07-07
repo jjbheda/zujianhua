@@ -5,38 +5,35 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
 >
-<LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="#ffffff">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ffffff">
 
-    <ImageView
-
-        android:id="@+id/iv_chajian"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/baiyang"
-    />
-
-
-    <ImageView
-
-        android:id="@+id/iv_chajian_02"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/shizi"
+        <ImageView
+            android:id="@+id/iv_chajian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baiyang"
         />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:hint="替换后内容"/>
+        <ImageView
+            android:id="@+id/iv_chajian_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shizi"
+        />
 
-    <TextView
-        android:id="@+id/ratingBar1"
-        android:text="这是一段替换后的文字"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="替换后内容"/>
+
+        <TextView
+            android:id="@+id/ratingBar1"
+            android:text="这是一段替换后的文字"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </ScrollView>
