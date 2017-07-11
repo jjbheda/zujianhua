@@ -51,7 +51,8 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onClick(View v) {
                 String chajiandemoName = soNameFileSP.getString("soName", "");
-                if (!chajiandemoName.isEmpty() && chajiandemoName.equals("com_huanju_chajiandemo")) {
+//                if (!chajiandemoName.isEmpty() && chajiandemoName.equals("com_huanju_chajiandemo")) {
+                if (flag) {
                     try {
                         startActivity(new Intent(getApplicationContext(), Class.forName("com.huanju.chajiandemo.TestActivityTwo")));
                     } catch (Exception e) {
@@ -79,10 +80,6 @@ public class MainActivity extends FragmentActivity {
                 }
             }
         });
-
-
-
-
 
     }
 
@@ -168,7 +165,7 @@ public class MainActivity extends FragmentActivity {
         try {
             String files[] = getAssets().list("");
             for(String fName:files){
-                if (fName.endsWith(".so"))
+                if (fName.endsWith(".apk"))
                     apkList.add(fName);
             }
 
