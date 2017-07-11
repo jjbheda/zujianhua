@@ -1,0 +1,194 @@
+com.huanju.chajiandemo.ChajianCircleImageView -> com.huanju.chajiandemo.ChajianCircleImageView:
+    android.widget.ImageView$ScaleType SCALE_TYPE -> a
+    android.graphics.Bitmap$Config BITMAP_CONFIG -> b
+    android.graphics.RectF mDrawableRect -> c
+    android.graphics.RectF mBorderRect -> d
+    android.graphics.Matrix mShaderMatrix -> e
+    android.graphics.Paint mBitmapPaint -> f
+    android.graphics.Paint mBorderPaint -> g
+    android.graphics.Paint mFillPaint -> h
+    int mBorderColor -> i
+    int mBorderWidth -> j
+    int mFillColor -> k
+    android.graphics.Bitmap mBitmap -> l
+    android.graphics.BitmapShader mBitmapShader -> m
+    int mBitmapWidth -> n
+    int mBitmapHeight -> o
+    float mDrawableRadius -> p
+    float mBorderRadius -> q
+    android.graphics.ColorFilter mColorFilter -> r
+    boolean mReady -> s
+    boolean mSetupPending -> t
+    boolean mBorderOverlay -> u
+    boolean mDisableCircularTransformation -> v
+    void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
+    void init() -> a
+    android.widget.ImageView$ScaleType getScaleType() -> getScaleType
+    void setScaleType(android.widget.ImageView$ScaleType) -> setScaleType
+    void setAdjustViewBounds(boolean) -> setAdjustViewBounds
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void setPadding(int,int,int,int) -> setPadding
+    void setPaddingRelative(int,int,int,int) -> setPaddingRelative
+    void setImageBitmap(android.graphics.Bitmap) -> setImageBitmap
+    void setImageDrawable(android.graphics.drawable.Drawable) -> setImageDrawable
+    void setImageResource(int) -> setImageResource
+    void setImageURI(android.net.Uri) -> setImageURI
+    void setColorFilter(android.graphics.ColorFilter) -> setColorFilter
+    android.graphics.ColorFilter getColorFilter() -> getColorFilter
+    void applyColorFilter() -> b
+    android.graphics.Bitmap getBitmapFromDrawable(android.graphics.drawable.Drawable) -> a
+    void initializeBitmap() -> c
+    void setup() -> setup
+    android.graphics.RectF calculateBounds() -> d
+    void updateShaderMatrix() -> e
+    void <clinit>() -> <clinit>
+com.huanju.chajiandemo.MainActivity -> com.huanju.chajiandemo.MainActivity:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+com.huanju.chajiandemo.MainActivity$1 -> com.huanju.chajiandemo.a:
+    com.huanju.chajiandemo.MainActivity this$0 -> w
+    void <init>(com.huanju.chajiandemo.MainActivity) -> <init>
+    void onClick(android.view.View) -> onClick
+com.huanju.chajiandemo.R -> com.huanju.chajiandemo.R:
+    void <init>() -> <init>
+com.huanju.chajiandemo.R$attr -> com.huanju.chajiandemo.R$attr:
+    int chajianciv_border_color -> chajianciv_border_color
+    int chajianciv_border_overlay -> chajianciv_border_overlay
+    int chajianciv_border_width -> chajianciv_border_width
+    int chajianciv_fill_color -> chajianciv_fill_color
+    void <init>() -> <init>
+com.huanju.chajiandemo.R$drawable -> com.huanju.chajiandemo.R$drawable:
+    int baiyang -> baiyang
+    int child -> child
+    int chongshan -> chongshan
+    int fenghuang -> fenghuang
+    int shanshui2 -> shanshui2
+    int shizi -> shizi
+    int shuangzi -> shuangzi
+    void <init>() -> <init>
+com.huanju.chajiandemo.R$id -> com.huanju.chajiandemo.R$id:
+    int bb -> bb
+    int change_fragment -> change_fragment
+    int fragment_lt -> fragment_lt
+    int go_demo3 -> go_demo3
+    int iv -> iv
+    int iv_01 -> iv_01
+    int iv_03 -> iv_03
+    int ratingBar1 -> ratingBar1
+    int to_demo1 -> to_demo1
+    int tv -> tv
+    int zuhe -> zuhe
+    void <init>() -> <init>
+com.huanju.chajiandemo.R$layout -> com.huanju.chajiandemo.R$layout:
+    int basebundle -> basebundle
+    int bundle_main -> bundle_main
+    int fragment_hello -> fragment_hello
+    int fragment_second -> fragment_second
+    int second -> second
+    int test -> test
+    void <init>() -> <init>
+com.huanju.chajiandemo.R$string -> com.huanju.chajiandemo.R$string:
+    int app_name -> app_name
+    int app_name_chajian -> app_name_chajian
+    int bundle_tv -> bundle_tv
+    void <init>() -> <init>
+com.huanju.chajiandemo.R$style -> com.huanju.chajiandemo.R$style:
+    int AppTheme_chajian -> AppTheme_chajian
+    void <init>() -> <init>
+com.huanju.chajiandemo.R$styleable -> com.huanju.chajiandemo.R$styleable:
+    int[] ChajianCircleImageView -> ChajianCircleImageView
+    int ChajianCircleImageView_chajianciv_border_color -> ChajianCircleImageView_chajianciv_border_color
+    int ChajianCircleImageView_chajianciv_border_overlay -> ChajianCircleImageView_chajianciv_border_overlay
+    int ChajianCircleImageView_chajianciv_border_width -> ChajianCircleImageView_chajianciv_border_width
+    int ChajianCircleImageView_chajianciv_fill_color -> ChajianCircleImageView_chajianciv_fill_color
+    void <init>() -> <init>
+    void <clinit>() -> <clinit>
+com.huanju.chajiandemo.TestActivity -> com.huanju.chajiandemo.TestActivity:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+    void onResume() -> onResume
+    void onDestroy() -> onDestroy
+com.huanju.chajiandemo.TestActivity$1 -> com.huanju.chajiandemo.b:
+    com.huanju.chajiandemo.TestActivity this$0 -> x
+    void <init>(com.huanju.chajiandemo.TestActivity) -> <init>
+    void onClick(android.view.View) -> onClick
+com.huanju.chajiandemo.TestActivityTwo -> com.huanju.chajiandemo.TestActivityTwo:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+    android.content.res.Resources getResources() -> getResources
+    android.content.res.AssetManager getAssets() -> getAssets
+    android.content.res.Resources$Theme getTheme() -> getTheme
+com.huanju.chajiandemo.TestActivityTwo$1 -> com.huanju.chajiandemo.c:
+    com.huanju.chajiandemo.TestActivityTwo this$0 -> y
+    void <init>(com.huanju.chajiandemo.TestActivityTwo) -> <init>
+    void onClick(android.view.View) -> onClick
+com.huanju.chajiandemo.TestActivityTwo$2 -> com.huanju.chajiandemo.d:
+    com.huanju.chajiandemo.TestActivityTwo this$0 -> y
+    void <init>(com.huanju.chajiandemo.TestActivityTwo) -> <init>
+    void onClick(android.view.View) -> onClick
+com.huanju.chajiandemo.fragment.HelloFragment -> com.huanju.chajiandemo.fragment.HelloFragment:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    void onPause() -> onPause
+com.huanju.chajiandemo.fragment.SecondFragment -> com.huanju.chajiandemo.fragment.SecondFragment:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    void onPause() -> onPause
+qiyi.basemodule.R -> qiyi.basemodule.R:
+    void <init>() -> <init>
+qiyi.basemodule.R$attr -> qiyi.basemodule.R$attr:
+    int chajianciv_border_color -> chajianciv_border_color
+    int chajianciv_border_overlay -> chajianciv_border_overlay
+    int chajianciv_border_width -> chajianciv_border_width
+    int chajianciv_fill_color -> chajianciv_fill_color
+    void <init>() -> <init>
+qiyi.basemodule.R$drawable -> qiyi.basemodule.R$drawable:
+    int baiyang -> baiyang
+    int child -> child
+    int chongshan -> chongshan
+    int fenghuang -> fenghuang
+    int shanshui2 -> shanshui2
+    int shizi -> shizi
+    int shuangzi -> shuangzi
+    void <init>() -> <init>
+qiyi.basemodule.R$id -> qiyi.basemodule.R$id:
+    int bb -> bb
+    int change_fragment -> change_fragment
+    int fragment_lt -> fragment_lt
+    int go_demo3 -> go_demo3
+    int iv -> iv
+    int iv_01 -> iv_01
+    int iv_03 -> iv_03
+    int ratingBar1 -> ratingBar1
+    int to_demo1 -> to_demo1
+    int tv -> tv
+    int zuhe -> zuhe
+    void <init>() -> <init>
+qiyi.basemodule.R$layout -> qiyi.basemodule.R$layout:
+    int basebundle -> basebundle
+    int bundle_main -> bundle_main
+    int fragment_hello -> fragment_hello
+    int fragment_second -> fragment_second
+    int second -> second
+    int test -> test
+    void <init>() -> <init>
+qiyi.basemodule.R$string -> qiyi.basemodule.R$string:
+    int app_name -> app_name
+    int app_name_chajian -> app_name_chajian
+    int bundle_tv -> bundle_tv
+    void <init>() -> <init>
+qiyi.basemodule.R$style -> qiyi.basemodule.R$style:
+    int AppTheme_chajian -> AppTheme_chajian
+    void <init>() -> <init>
+qiyi.basemodule.R$styleable -> qiyi.basemodule.R$styleable:
+    int[] ChajianCircleImageView -> ChajianCircleImageView
+    int ChajianCircleImageView_chajianciv_border_color -> ChajianCircleImageView_chajianciv_border_color
+    int ChajianCircleImageView_chajianciv_border_overlay -> ChajianCircleImageView_chajianciv_border_overlay
+    int ChajianCircleImageView_chajianciv_border_width -> ChajianCircleImageView_chajianciv_border_width
+    int ChajianCircleImageView_chajianciv_fill_color -> ChajianCircleImageView_chajianciv_fill_color
+    void <init>() -> <init>
+    void <clinit>() -> <clinit>

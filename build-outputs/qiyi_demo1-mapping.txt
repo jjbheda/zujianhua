@@ -1,0 +1,31 @@
+qiyi.demo1.MainAc -> qiyi.demo1.MainAc:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+qiyi.demo1.R -> qiyi.demo1.R:
+    void <init>() -> <init>
+qiyi.demo1.R$attr -> qiyi.demo1.R$attr:
+    void <init>() -> <init>
+qiyi.demo1.R$id -> qiyi.demo1.R$id:
+    int demo1_textView1 -> demo1_textView1
+    int lt -> lt
+    void <init>() -> <init>
+qiyi.demo1.R$layout -> qiyi.demo1.R$layout:
+    int demo1_activity_main -> demo1_activity_main
+    void <init>() -> <init>
+qiyi.demo1.R$string -> qiyi.demo1.R$string:
+    int app_name_demo1 -> app_name_demo1
+    void <init>() -> <init>
+qiyi.demo1.ScanLineView -> qiyi.demo1.ScanLineView:
+    android.content.Context mContext -> mContext
+    android.graphics.Bitmap mScanLine -> a
+    android.graphics.Rect mRect -> b
+    void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
+    void init(android.content.Context) -> a
+    void onDraw(android.graphics.Canvas) -> onDraw
+qiyi.demo1.SoBaseActivity -> qiyi.demo1.SoBaseActivity:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+    android.content.res.Resources getResources() -> getResources
+    android.content.res.AssetManager getAssets() -> getAssets
+    android.content.res.Resources$Theme getTheme() -> getTheme

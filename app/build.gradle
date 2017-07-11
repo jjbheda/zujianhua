@@ -55,10 +55,11 @@ dependencies {
     compile project(':basemodule')
     if (!solidMode) {
         compile project(':chajiandemo')
-//        compile project(':demoOne')
+        compile project(':demoOne')
     }
 //    compile "com.qiyi.hotfix:tinker-patch-gradle-plugin:1.7.4.9beta"
 //    compile project(':chajiandemo')
+    compile 'org.greenrobot:eventbus:3.0.0'
 
 }
 
@@ -173,11 +174,6 @@ task copyReleaseOutputs(type: Copy) {
 }
 
 afterEvaluate {
-
-//    tasks['assembleRelease'].doFirst{
-//      clean.execute()
-//    }
-
     tasks['assembleRelease'].doLast {
         copyReleaseOutputs.execute()
     }

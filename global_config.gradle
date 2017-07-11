@@ -1,8 +1,6 @@
 //所有工程都要用的公共配置，由各个子模块直接apply from
-
-
 android {
-	compileSdkVersion 23
+	compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
     useLibrary 'org.apache.http.legacy'

@@ -38,9 +38,6 @@ project.ext {
     idList = new ArrayList<HashMap<String,String>>();       //定义主APP 全局列表
 }
 
-task init << {}
-task clean {}
-
 task copyFileToInputsDir(type: Copy) {
     from configurations.needBuildFile
     into "${rootDir}/build-inputs/"
