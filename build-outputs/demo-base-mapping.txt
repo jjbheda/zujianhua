@@ -95,10 +95,13 @@ android.support.graphics.drawable.AndroidResources -> android.support.graphics.d
     int[] styleable_AnimatedVectorDrawable -> f
     int[] styleable_AnimatedVectorDrawableTarget -> g
     void <clinit>() -> <clinit>
+android.support.graphics.drawable.Animatable2Compat -> android.support.graphics.drawable.b:
 android.support.graphics.drawable.AnimatedVectorDrawableCompat -> android.support.graphics.drawable.AnimatedVectorDrawableCompat:
     android.support.graphics.drawable.AnimatedVectorDrawableCompat$AnimatedVectorDrawableCompatState mAnimatedVectorState -> h
     android.content.Context mContext -> mContext
     android.animation.ArgbEvaluator mArgbEvaluator -> i
+    android.animation.Animator$AnimatorListener mAnimatorListener -> j
+    java.util.ArrayList mAnimationCallbacks -> k
     android.graphics.drawable.Drawable$Callback mCallback -> mCallback
     void <init>() -> <init>
     void <init>(android.content.Context) -> <init>
@@ -122,7 +125,8 @@ android.support.graphics.drawable.AnimatedVectorDrawableCompat -> android.suppor
     int getOpacity() -> getOpacity
     int getIntrinsicWidth() -> getIntrinsicWidth
     int getIntrinsicHeight() -> getIntrinsicHeight
-    android.content.res.TypedArray obtainAttributes(android.content.res.Resources,android.content.res.Resources$Theme,android.util.AttributeSet,int[]) -> obtainAttributes
+    boolean isAutoMirrored() -> isAutoMirrored
+    void setAutoMirrored(boolean) -> setAutoMirrored
     void inflate(android.content.res.Resources,org.xmlpull.v1.XmlPullParser,android.util.AttributeSet,android.content.res.Resources$Theme) -> inflate
     void inflate(android.content.res.Resources,org.xmlpull.v1.XmlPullParser,android.util.AttributeSet) -> inflate
     void applyTheme(android.content.res.Resources$Theme) -> applyTheme
@@ -130,7 +134,6 @@ android.support.graphics.drawable.AnimatedVectorDrawableCompat -> android.suppor
     void setupColorAnimator(android.animation.Animator) -> a
     void setupAnimatorsForTarget(java.lang.String,android.animation.Animator) -> a
     boolean isRunning() -> isRunning
-    boolean isStarted() -> isStarted
     void start() -> start
     void stop() -> stop
     boolean setState(int[]) -> setState
@@ -142,41 +145,40 @@ android.support.graphics.drawable.AnimatedVectorDrawableCompat -> android.suppor
     int getMinimumWidth() -> getMinimumWidth
     android.graphics.drawable.Drawable getCurrent() -> getCurrent
     void clearColorFilter() -> clearColorFilter
-    int getLayoutDirection() -> getLayoutDirection
-    boolean isAutoMirrored() -> isAutoMirrored
-    void setAutoMirrored(boolean) -> setAutoMirrored
     void jumpToCurrentState() -> jumpToCurrentState
     void setFilterBitmap(boolean) -> setFilterBitmap
     void setHotspotBounds(int,int,int,int) -> setHotspotBounds
     void setHotspot(float,float) -> setHotspot
     android.graphics.ColorFilter getColorFilter() -> getColorFilter
     void setColorFilter(int,android.graphics.PorterDuff$Mode) -> setColorFilter
-    void <init>(android.support.graphics.drawable.AnimatedVectorDrawableCompat$1) -> <init>
-    android.graphics.drawable.Drawable$Callback access$100(android.support.graphics.drawable.AnimatedVectorDrawableCompat) -> a
 android.support.graphics.drawable.AnimatedVectorDrawableCompat$1 -> android.support.graphics.drawable.AnimatedVectorDrawableCompat$1:
-    android.support.graphics.drawable.AnimatedVectorDrawableCompat this$0 -> j
+    android.support.graphics.drawable.AnimatedVectorDrawableCompat this$0 -> l
     void <init>(android.support.graphics.drawable.AnimatedVectorDrawableCompat) -> <init>
     void invalidateDrawable(android.graphics.drawable.Drawable) -> invalidateDrawable
     void scheduleDrawable(android.graphics.drawable.Drawable,java.lang.Runnable,long) -> scheduleDrawable
     void unscheduleDrawable(android.graphics.drawable.Drawable,java.lang.Runnable) -> unscheduleDrawable
 android.support.graphics.drawable.AnimatedVectorDrawableCompat$AnimatedVectorDrawableCompatState -> android.support.graphics.drawable.AnimatedVectorDrawableCompat$a:
     int mChangingConfigurations -> mChangingConfigurations
-    android.support.graphics.drawable.VectorDrawableCompat mVectorDrawable -> k
+    android.support.graphics.drawable.VectorDrawableCompat mVectorDrawable -> m
+    android.animation.AnimatorSet mAnimatorSet -> n
     java.util.ArrayList mAnimators -> mAnimators
-    android.support.v4.util.ArrayMap mTargetNameMap -> l
+    android.support.v4.util.ArrayMap mTargetNameMap -> o
     void <init>(android.content.Context,android.support.graphics.drawable.AnimatedVectorDrawableCompat$AnimatedVectorDrawableCompatState,android.graphics.drawable.Drawable$Callback,android.content.res.Resources) -> <init>
     android.graphics.drawable.Drawable newDrawable() -> newDrawable
     android.graphics.drawable.Drawable newDrawable(android.content.res.Resources) -> newDrawable
     int getChangingConfigurations() -> getChangingConfigurations
+    void setupAnimatorSet() -> a
+    java.util.ArrayList access$000(android.support.graphics.drawable.AnimatedVectorDrawableCompat$AnimatedVectorDrawableCompatState) -> a
+    java.util.ArrayList access$002(android.support.graphics.drawable.AnimatedVectorDrawableCompat$AnimatedVectorDrawableCompatState,java.util.ArrayList) -> a
 android.support.graphics.drawable.AnimatedVectorDrawableCompat$AnimatedVectorDrawableDelegateState -> android.support.graphics.drawable.AnimatedVectorDrawableCompat$b:
-    android.graphics.drawable.Drawable$ConstantState mDelegateState -> m
+    android.graphics.drawable.Drawable$ConstantState mDelegateState -> p
     void <init>(android.graphics.drawable.Drawable$ConstantState) -> <init>
     android.graphics.drawable.Drawable newDrawable() -> newDrawable
     android.graphics.drawable.Drawable newDrawable(android.content.res.Resources) -> newDrawable
     android.graphics.drawable.Drawable newDrawable(android.content.res.Resources,android.content.res.Resources$Theme) -> newDrawable
     boolean canApplyTheme() -> canApplyTheme
     int getChangingConfigurations() -> getChangingConfigurations
-android.support.graphics.drawable.PathParser -> android.support.graphics.drawable.b:
+android.support.graphics.drawable.PathParser -> android.support.graphics.drawable.c:
     float[] copyOfRange(float[],int,int) -> copyOfRange
     android.support.graphics.drawable.PathParser$PathDataNode[] createNodesFromPathData(java.lang.String) -> a
     android.support.graphics.drawable.PathParser$PathDataNode[] deepCopyNodes(android.support.graphics.drawable.PathParser$PathDataNode[]) -> a
@@ -184,32 +186,27 @@ android.support.graphics.drawable.PathParser -> android.support.graphics.drawabl
     void addNode(java.util.ArrayList,char,float[]) -> a
     float[] getFloats(java.lang.String) -> b
     void extract(java.lang.String,int,android.support.graphics.drawable.PathParser$ExtractFloatResult) -> a
-    float[] access$300(float[],int,int) -> a
-android.support.graphics.drawable.PathParser$1 -> android.support.graphics.drawable.b$1:
-android.support.graphics.drawable.PathParser$ExtractFloatResult -> android.support.graphics.drawable.b$a:
-    int mEndPosition -> n
-    boolean mEndWithNegOrDot -> o
+android.support.graphics.drawable.PathParser$ExtractFloatResult -> android.support.graphics.drawable.c$a:
+    int mEndPosition -> q
+    boolean mEndWithNegOrDot -> r
     void <init>() -> <init>
-    void <init>(android.support.graphics.drawable.PathParser$1) -> <init>
-android.support.graphics.drawable.PathParser$PathDataNode -> android.support.graphics.drawable.b$b:
-    char type -> p
-    float[] params -> q
+android.support.graphics.drawable.PathParser$PathDataNode -> android.support.graphics.drawable.c$b:
+    char type -> s
+    float[] params -> t
     void <init>(char,float[]) -> <init>
     void <init>(android.support.graphics.drawable.PathParser$PathDataNode) -> <init>
     void nodesToPath(android.support.graphics.drawable.PathParser$PathDataNode[],android.graphics.Path) -> a
     void addCommand(android.graphics.Path,float[],char,char,float[]) -> a
     void drawArc(android.graphics.Path,float,float,float,float,float,float,float,boolean,boolean) -> a
     void arcToBezier(android.graphics.Path,double,double,double,double,double,double,double,double,double) -> a
-    void <init>(android.support.graphics.drawable.PathParser$PathDataNode,android.support.graphics.drawable.PathParser$1) -> <init>
-    void <init>(char,float[],android.support.graphics.drawable.PathParser$1) -> <init>
-android.support.graphics.drawable.TypedArrayUtils -> android.support.graphics.drawable.c:
+android.support.graphics.drawable.TypedArrayUtils -> android.support.graphics.drawable.d:
     boolean hasAttribute(org.xmlpull.v1.XmlPullParser,java.lang.String) -> a
     float getNamedFloat(android.content.res.TypedArray,org.xmlpull.v1.XmlPullParser,java.lang.String,int,float) -> a
     boolean getNamedBoolean(android.content.res.TypedArray,org.xmlpull.v1.XmlPullParser,java.lang.String,int,boolean) -> a
     int getNamedInt(android.content.res.TypedArray,org.xmlpull.v1.XmlPullParser,java.lang.String,int,int) -> a
     int getNamedColor(android.content.res.TypedArray,org.xmlpull.v1.XmlPullParser,java.lang.String,int,int) -> b
-android.support.graphics.drawable.VectorDrawableCommon -> android.support.graphics.drawable.d:
-    android.graphics.drawable.Drawable mDelegateDrawable -> r
+android.support.graphics.drawable.VectorDrawableCommon -> android.support.graphics.drawable.e:
+    android.graphics.drawable.Drawable mDelegateDrawable -> u
     void <init>() -> <init>
     android.content.res.TypedArray obtainAttributes(android.content.res.Resources,android.content.res.Resources$Theme,android.util.AttributeSet,int[]) -> obtainAttributes
     void setColorFilter(int,android.graphics.PorterDuff$Mode) -> setColorFilter
@@ -220,10 +217,7 @@ android.support.graphics.drawable.VectorDrawableCommon -> android.support.graphi
     void setHotspotBounds(int,int,int,int) -> setHotspotBounds
     void setFilterBitmap(boolean) -> setFilterBitmap
     void jumpToCurrentState() -> jumpToCurrentState
-    void setAutoMirrored(boolean) -> setAutoMirrored
-    boolean isAutoMirrored() -> isAutoMirrored
     void applyTheme(android.content.res.Resources$Theme) -> applyTheme
-    int getLayoutDirection() -> getLayoutDirection
     void clearColorFilter() -> clearColorFilter
     android.graphics.drawable.Drawable getCurrent() -> getCurrent
     int getMinimumWidth() -> getMinimumWidth
@@ -235,15 +229,15 @@ android.support.graphics.drawable.VectorDrawableCommon -> android.support.graphi
     boolean setState(int[]) -> setState
 android.support.graphics.drawable.VectorDrawableCompat -> android.support.graphics.drawable.VectorDrawableCompat:
     android.graphics.PorterDuff$Mode DEFAULT_TINT_MODE -> DEFAULT_TINT_MODE
-    android.support.graphics.drawable.VectorDrawableCompat$VectorDrawableCompatState mVectorState -> s
-    android.graphics.PorterDuffColorFilter mTintFilter -> t
-    android.graphics.ColorFilter mColorFilter -> u
+    android.support.graphics.drawable.VectorDrawableCompat$VectorDrawableCompatState mVectorState -> v
+    android.graphics.PorterDuffColorFilter mTintFilter -> w
+    android.graphics.ColorFilter mColorFilter -> z
     boolean mMutated -> mMutated
-    boolean mAllowCaching -> v
-    android.graphics.drawable.Drawable$ConstantState mCachedConstantStateDelegate -> w
-    float[] mTmpFloats -> z
-    android.graphics.Matrix mTmpMatrix -> A
-    android.graphics.Rect mTmpBounds -> B
+    boolean mAllowCaching -> A
+    android.graphics.drawable.Drawable$ConstantState mCachedConstantStateDelegate -> B
+    float[] mTmpFloats -> C
+    android.graphics.Matrix mTmpMatrix -> D
+    android.graphics.Rect mTmpBounds -> E
     void <init>() -> <init>
     void <init>(android.support.graphics.drawable.VectorDrawableCompat$VectorDrawableCompatState) -> <init>
     android.graphics.drawable.Drawable mutate() -> mutate
@@ -263,6 +257,8 @@ android.support.graphics.drawable.VectorDrawableCompat -> android.support.graphi
     int getIntrinsicWidth() -> getIntrinsicWidth
     int getIntrinsicHeight() -> getIntrinsicHeight
     boolean canApplyTheme() -> canApplyTheme
+    boolean isAutoMirrored() -> isAutoMirrored
+    void setAutoMirrored(boolean) -> setAutoMirrored
     android.support.graphics.drawable.VectorDrawableCompat create(android.content.res.Resources,int,android.content.res.Resources$Theme) -> a
     android.support.graphics.drawable.VectorDrawableCompat createFromXmlInner(android.content.res.Resources,org.xmlpull.v1.XmlPullParser,android.util.AttributeSet,android.content.res.Resources$Theme) -> a
     int applyAlpha(int,float) -> a
@@ -272,7 +268,7 @@ android.support.graphics.drawable.VectorDrawableCompat -> android.support.graphi
     void updateStateFromTypedArray(android.content.res.TypedArray,org.xmlpull.v1.XmlPullParser) -> a
     void inflateInternal(android.content.res.Resources,org.xmlpull.v1.XmlPullParser,android.util.AttributeSet,android.content.res.Resources$Theme) -> b
     void setAllowCaching(boolean) -> a
-    boolean needMirroring() -> a
+    boolean needMirroring() -> b
     void onBoundsChange(android.graphics.Rect) -> onBoundsChange
     int getChangingConfigurations() -> getChangingConfigurations
     void invalidateSelf() -> invalidateSelf
@@ -288,41 +284,34 @@ android.support.graphics.drawable.VectorDrawableCompat -> android.support.graphi
     int getMinimumWidth() -> getMinimumWidth
     android.graphics.drawable.Drawable getCurrent() -> getCurrent
     void clearColorFilter() -> clearColorFilter
-    int getLayoutDirection() -> getLayoutDirection
     void applyTheme(android.content.res.Resources$Theme) -> applyTheme
-    boolean isAutoMirrored() -> isAutoMirrored
-    void setAutoMirrored(boolean) -> setAutoMirrored
     void jumpToCurrentState() -> jumpToCurrentState
     void setFilterBitmap(boolean) -> setFilterBitmap
     void setHotspotBounds(int,int,int,int) -> setHotspotBounds
     void setHotspot(float,float) -> setHotspot
     android.graphics.ColorFilter getColorFilter() -> getColorFilter
     void setColorFilter(int,android.graphics.PorterDuff$Mode) -> setColorFilter
-    void <init>(android.support.graphics.drawable.VectorDrawableCompat$1) -> <init>
-    void <init>(android.support.graphics.drawable.VectorDrawableCompat$VectorDrawableCompatState,android.support.graphics.drawable.VectorDrawableCompat$1) -> <init>
-    int access$900(int,float) -> b
     void <clinit>() -> <clinit>
-android.support.graphics.drawable.VectorDrawableCompat$1 -> android.support.graphics.drawable.VectorDrawableCompat$1:
 android.support.graphics.drawable.VectorDrawableCompat$VClipPath -> android.support.graphics.drawable.VectorDrawableCompat$a:
     void <init>() -> <init>
     void <init>(android.support.graphics.drawable.VectorDrawableCompat$VClipPath) -> <init>
     void inflate(android.content.res.Resources,android.util.AttributeSet,android.content.res.Resources$Theme,org.xmlpull.v1.XmlPullParser) -> a
     void updateStateFromTypedArray(android.content.res.TypedArray) -> a
-    boolean isClipPath() -> b
+    boolean isClipPath() -> c
 android.support.graphics.drawable.VectorDrawableCompat$VFullPath -> android.support.graphics.drawable.VectorDrawableCompat$b:
-    int[] mThemeAttrs -> C
-    int mStrokeColor -> D
+    int[] mThemeAttrs -> F
+    int mStrokeColor -> G
     float mStrokeWidth -> mStrokeWidth
-    int mFillColor -> E
-    float mStrokeAlpha -> F
-    int mFillRule -> G
-    float mFillAlpha -> H
-    float mTrimPathStart -> I
-    float mTrimPathEnd -> J
-    float mTrimPathOffset -> K
-    android.graphics.Paint$Cap mStrokeLineCap -> L
-    android.graphics.Paint$Join mStrokeLineJoin -> M
-    float mStrokeMiterlimit -> N
+    int mFillColor -> H
+    float mStrokeAlpha -> I
+    int mFillRule -> J
+    float mFillAlpha -> K
+    float mTrimPathStart -> L
+    float mTrimPathEnd -> M
+    float mTrimPathOffset -> N
+    android.graphics.Paint$Cap mStrokeLineCap -> O
+    android.graphics.Paint$Join mStrokeLineJoin -> Q
+    float mStrokeMiterlimit -> R
     void <init>() -> <init>
     void <init>(android.support.graphics.drawable.VectorDrawableCompat$VFullPath) -> <init>
     android.graphics.Paint$Cap getStrokeLineCap(int,android.graphics.Paint$Cap) -> a
@@ -330,57 +319,56 @@ android.support.graphics.drawable.VectorDrawableCompat$VFullPath -> android.supp
     void inflate(android.content.res.Resources,android.util.AttributeSet,android.content.res.Resources$Theme,org.xmlpull.v1.XmlPullParser) -> a
     void updateStateFromTypedArray(android.content.res.TypedArray,org.xmlpull.v1.XmlPullParser) -> a
 android.support.graphics.drawable.VectorDrawableCompat$VGroup -> android.support.graphics.drawable.VectorDrawableCompat$c:
-    android.graphics.Matrix mStackedMatrix -> O
-    java.util.ArrayList mChildren -> Q
-    float mRotate -> R
-    float mPivotX -> S
-    float mPivotY -> T
-    float mScaleX -> U
-    float mScaleY -> V
-    float mTranslateX -> W
-    float mTranslateY -> X
-    android.graphics.Matrix mLocalMatrix -> Y
+    android.graphics.Matrix mStackedMatrix -> S
+    java.util.ArrayList mChildren -> T
+    float mRotate -> U
+    float mPivotX -> V
+    float mPivotY -> W
+    float mScaleX -> X
+    float mScaleY -> Y
+    float mTranslateX -> Z
+    float mTranslateY -> aa
+    android.graphics.Matrix mLocalMatrix -> ab
     int mChangingConfigurations -> mChangingConfigurations
-    int[] mThemeAttrs -> C
-    java.lang.String mGroupName -> Z
+    int[] mThemeAttrs -> F
+    java.lang.String mGroupName -> ac
     void <init>(android.support.graphics.drawable.VectorDrawableCompat$VGroup,android.support.v4.util.ArrayMap) -> <init>
     void <init>() -> <init>
-    java.lang.String getGroupName() -> c
+    java.lang.String getGroupName() -> d
     void inflate(android.content.res.Resources,android.util.AttributeSet,android.content.res.Resources$Theme,org.xmlpull.v1.XmlPullParser) -> a
     void updateStateFromTypedArray(android.content.res.TypedArray,org.xmlpull.v1.XmlPullParser) -> a
-    void updateLocalMatrix() -> d
-    int access$100(android.support.graphics.drawable.VectorDrawableCompat$VGroup) -> a
-    android.graphics.Matrix access$700(android.support.graphics.drawable.VectorDrawableCompat$VGroup) -> b
-    android.graphics.Matrix access$800(android.support.graphics.drawable.VectorDrawableCompat$VGroup) -> c
+    void updateLocalMatrix() -> e
+    android.graphics.Matrix access$200(android.support.graphics.drawable.VectorDrawableCompat$VGroup) -> a
+    android.graphics.Matrix access$300(android.support.graphics.drawable.VectorDrawableCompat$VGroup) -> b
 android.support.graphics.drawable.VectorDrawableCompat$VPath -> android.support.graphics.drawable.VectorDrawableCompat$d:
-    android.support.graphics.drawable.PathParser$PathDataNode[] mNodes -> aa
-    java.lang.String mPathName -> ab
+    android.support.graphics.drawable.PathParser$PathDataNode[] mNodes -> ad
+    java.lang.String mPathName -> ae
     int mChangingConfigurations -> mChangingConfigurations
     void <init>() -> <init>
     void <init>(android.support.graphics.drawable.VectorDrawableCompat$VPath) -> <init>
     void toPath(android.graphics.Path) -> a
-    java.lang.String getPathName() -> e
-    boolean isClipPath() -> b
+    java.lang.String getPathName() -> f
+    boolean isClipPath() -> c
 android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer -> android.support.graphics.drawable.VectorDrawableCompat$e:
     android.graphics.Path mPath -> mPath
-    android.graphics.Path mRenderPath -> ac
-    android.graphics.Matrix IDENTITY_MATRIX -> ad
-    android.graphics.Matrix mFinalPathMatrix -> ae
-    android.graphics.Paint mStrokePaint -> af
-    android.graphics.Paint mFillPaint -> ag
-    android.graphics.PathMeasure mPathMeasure -> ah
+    android.graphics.Path mRenderPath -> af
+    android.graphics.Matrix IDENTITY_MATRIX -> ag
+    android.graphics.Matrix mFinalPathMatrix -> ah
+    android.graphics.Paint mStrokePaint -> ai
+    android.graphics.Paint mFillPaint -> aj
+    android.graphics.PathMeasure mPathMeasure -> ak
     int mChangingConfigurations -> mChangingConfigurations
-    android.support.graphics.drawable.VectorDrawableCompat$VGroup mRootGroup -> ai
-    float mBaseWidth -> aj
-    float mBaseHeight -> ak
-    float mViewportWidth -> al
-    float mViewportHeight -> am
-    int mRootAlpha -> an
-    java.lang.String mRootName -> ao
-    android.support.v4.util.ArrayMap mVGTargetsMap -> ap
+    android.support.graphics.drawable.VectorDrawableCompat$VGroup mRootGroup -> al
+    float mBaseWidth -> am
+    float mBaseHeight -> an
+    float mViewportWidth -> ao
+    float mViewportHeight -> ap
+    int mRootAlpha -> aq
+    java.lang.String mRootName -> ar
+    android.support.v4.util.ArrayMap mVGTargetsMap -> as
     void <init>() -> <init>
     void setRootAlpha(int) -> a
-    int getRootAlpha() -> f
+    int getRootAlpha() -> g
     void setAlpha(float) -> setAlpha
     float getAlpha() -> getAlpha
     void <init>(android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer) -> <init>
@@ -389,40 +377,39 @@ android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer -> android.
     void drawPath(android.support.graphics.drawable.VectorDrawableCompat$VGroup,android.support.graphics.drawable.VectorDrawableCompat$VPath,android.graphics.Canvas,int,int,android.graphics.ColorFilter) -> a
     float cross(float,float,float,float) -> a
     float getMatrixScale(android.graphics.Matrix) -> a
-    android.support.graphics.drawable.VectorDrawableCompat$VGroup access$000(android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer) -> a
-    android.graphics.Paint access$400(android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer) -> b
-    android.graphics.Paint access$402(android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer,android.graphics.Paint) -> a
-    android.graphics.Paint access$500(android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer) -> c
-    android.graphics.Paint access$502(android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer,android.graphics.Paint) -> b
+    android.graphics.Paint access$000(android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer) -> a
+    android.graphics.Paint access$002(android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer,android.graphics.Paint) -> a
+    android.graphics.Paint access$100(android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer) -> b
+    android.graphics.Paint access$102(android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer,android.graphics.Paint) -> b
     void <clinit>() -> <clinit>
 android.support.graphics.drawable.VectorDrawableCompat$VectorDrawableCompatState -> android.support.graphics.drawable.VectorDrawableCompat$f:
     int mChangingConfigurations -> mChangingConfigurations
-    android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer mVPathRenderer -> aq
+    android.support.graphics.drawable.VectorDrawableCompat$VPathRenderer mVPathRenderer -> at
     android.content.res.ColorStateList mTint -> mTint
     android.graphics.PorterDuff$Mode mTintMode -> mTintMode
-    boolean mAutoMirrored -> ar
-    android.graphics.Bitmap mCachedBitmap -> as
-    android.content.res.ColorStateList mCachedTint -> at
-    android.graphics.PorterDuff$Mode mCachedTintMode -> au
-    int mCachedRootAlpha -> av
-    boolean mCachedAutoMirrored -> aw
-    boolean mCacheDirty -> ax
-    android.graphics.Paint mTempPaint -> ay
+    boolean mAutoMirrored -> au
+    android.graphics.Bitmap mCachedBitmap -> av
+    android.content.res.ColorStateList mCachedTint -> aw
+    android.graphics.PorterDuff$Mode mCachedTintMode -> ax
+    int mCachedRootAlpha -> ay
+    boolean mCachedAutoMirrored -> az
+    boolean mCacheDirty -> aA
+    android.graphics.Paint mTempPaint -> aB
     void <init>(android.support.graphics.drawable.VectorDrawableCompat$VectorDrawableCompatState) -> <init>
     void drawCachedBitmapWithRootAlpha(android.graphics.Canvas,android.graphics.ColorFilter,android.graphics.Rect) -> a
-    boolean hasTranslucentRoot() -> g
+    boolean hasTranslucentRoot() -> h
     android.graphics.Paint getPaint(android.graphics.ColorFilter) -> a
     void updateCachedBitmap(int,int) -> a
     void createCachedBitmapIfNeeded(int,int) -> b
     boolean canReuseBitmap(int,int) -> c
-    boolean canReuseCache() -> h
-    void updateCacheStates() -> i
+    boolean canReuseCache() -> i
+    void updateCacheStates() -> j
     void <init>() -> <init>
     android.graphics.drawable.Drawable newDrawable() -> newDrawable
     android.graphics.drawable.Drawable newDrawable(android.content.res.Resources) -> newDrawable
     int getChangingConfigurations() -> getChangingConfigurations
 android.support.graphics.drawable.VectorDrawableCompat$VectorDrawableDelegateState -> android.support.graphics.drawable.VectorDrawableCompat$g:
-    android.graphics.drawable.Drawable$ConstantState mDelegateState -> m
+    android.graphics.drawable.Drawable$ConstantState mDelegateState -> p
     void <init>(android.graphics.drawable.Drawable$ConstantState) -> <init>
     android.graphics.drawable.Drawable newDrawable() -> newDrawable
     android.graphics.drawable.Drawable newDrawable(android.content.res.Resources) -> newDrawable
@@ -14320,6 +14307,7 @@ android.support.v7.app.ActionBarDrawerToggle -> android.support.v7.app.ActionBar
     android.support.v7.app.ActionBarDrawerToggle$Delegate mActivityImpl -> mActivityImpl
     android.support.v4.widget.DrawerLayout mDrawerLayout -> mDrawerLayout
     android.support.v7.graphics.drawable.DrawerArrowDrawable mSlider -> mSlider
+    boolean mDrawerSlideAnimationEnabled -> mDrawerSlideAnimationEnabled
     android.graphics.drawable.Drawable mHomeAsUpIndicator -> mHomeAsUpIndicator
     boolean mDrawerIndicatorEnabled -> mDrawerIndicatorEnabled
     boolean mHasCustomUpIndicator -> mHasCustomUpIndicator
@@ -14340,6 +14328,8 @@ android.support.v7.app.ActionBarDrawerToggle -> android.support.v7.app.ActionBar
     void setDrawerIndicatorEnabled(boolean) -> setDrawerIndicatorEnabled
     android.support.v7.graphics.drawable.DrawerArrowDrawable getDrawerArrowDrawable() -> getDrawerArrowDrawable
     void setDrawerArrowDrawable(android.support.v7.graphics.drawable.DrawerArrowDrawable) -> setDrawerArrowDrawable
+    void setDrawerSlideAnimationEnabled(boolean) -> setDrawerSlideAnimationEnabled
+    boolean isDrawerSlideAnimationEnabled() -> isDrawerSlideAnimationEnabled
     void onDrawerSlide(android.view.View,float) -> onDrawerSlide
     void onDrawerOpened(android.view.View) -> onDrawerOpened
     void onDrawerClosed(android.view.View) -> onDrawerClosed
@@ -14350,9 +14340,6 @@ android.support.v7.app.ActionBarDrawerToggle -> android.support.v7.app.ActionBar
     void setActionBarDescription(int) -> setActionBarDescription
     android.graphics.drawable.Drawable getThemeUpIndicator() -> getThemeUpIndicator
     void setPosition(float) -> setPosition
-    boolean access$000(android.support.v7.app.ActionBarDrawerToggle) -> access$000
-    void access$100(android.support.v7.app.ActionBarDrawerToggle) -> access$100
-    android.view.View$OnClickListener access$200(android.support.v7.app.ActionBarDrawerToggle) -> access$200
 android.support.v7.app.ActionBarDrawerToggle$1 -> android.support.v7.app.ActionBarDrawerToggle$1:
     android.support.v7.app.ActionBarDrawerToggle this$0 -> this$0
     void <init>(android.support.v7.app.ActionBarDrawerToggle) -> <init>
@@ -14382,7 +14369,9 @@ android.support.v7.app.ActionBarDrawerToggle$HoneycombDelegate -> android.suppor
     boolean isNavigationVisible() -> isNavigationVisible
     void setActionBarUpIndicator(android.graphics.drawable.Drawable,int) -> setActionBarUpIndicator
     void setActionBarDescription(int) -> setActionBarDescription
-    void <init>(android.app.Activity,android.support.v7.app.ActionBarDrawerToggle$1) -> <init>
+android.support.v7.app.ActionBarDrawerToggle$IcsDelegate -> android.support.v7.app.ActionBarDrawerToggle$IcsDelegate:
+    void <init>(android.app.Activity) -> <init>
+    android.content.Context getActionBarThemedContext() -> getActionBarThemedContext
 android.support.v7.app.ActionBarDrawerToggle$JellybeanMr2Delegate -> android.support.v7.app.ActionBarDrawerToggle$JellybeanMr2Delegate:
     android.app.Activity mActivity -> mActivity
     void <init>(android.app.Activity) -> <init>
@@ -14391,7 +14380,6 @@ android.support.v7.app.ActionBarDrawerToggle$JellybeanMr2Delegate -> android.sup
     boolean isNavigationVisible() -> isNavigationVisible
     void setActionBarUpIndicator(android.graphics.drawable.Drawable,int) -> setActionBarUpIndicator
     void setActionBarDescription(int) -> setActionBarDescription
-    void <init>(android.app.Activity,android.support.v7.app.ActionBarDrawerToggle$1) -> <init>
 android.support.v7.app.ActionBarDrawerToggle$ToolbarCompatDelegate -> android.support.v7.app.ActionBarDrawerToggle$ToolbarCompatDelegate:
     android.support.v7.widget.Toolbar mToolbar -> mToolbar
     android.graphics.drawable.Drawable mDefaultUpIndicator -> mDefaultUpIndicator
@@ -14453,9 +14441,11 @@ android.support.v7.app.AlertController -> android.support.v7.app.AlertController
     int mMultiChoiceItemLayout -> mMultiChoiceItemLayout
     int mSingleChoiceItemLayout -> mSingleChoiceItemLayout
     int mListItemLayout -> mListItemLayout
+    boolean mShowTitle -> mShowTitle
     int mButtonPanelLayoutHint -> mButtonPanelLayoutHint
     android.os.Handler mHandler -> mHandler
     android.view.View$OnClickListener mButtonHandler -> mButtonHandler
+    boolean shouldCenterSingleButton(android.content.Context) -> shouldCenterSingleButton
     void <init>(android.content.Context,android.support.v7.app.AppCompatDialog,android.view.Window) -> <init>
     boolean canTextInput(android.view.View) -> canTextInput
     void installContent() -> installContent
@@ -14483,24 +14473,7 @@ android.support.v7.app.AlertController -> android.support.v7.app.AlertController
     void setupContent(android.view.ViewGroup) -> setupContent
     void manageScrollIndicators(android.view.View,android.view.View,android.view.View) -> manageScrollIndicators
     void setupButtons(android.view.ViewGroup) -> setupButtons
-    android.widget.Button access$000(android.support.v7.app.AlertController) -> access$000
-    android.os.Message access$100(android.support.v7.app.AlertController) -> access$100
-    android.widget.Button access$200(android.support.v7.app.AlertController) -> access$200
-    android.os.Message access$300(android.support.v7.app.AlertController) -> access$300
-    android.widget.Button access$400(android.support.v7.app.AlertController) -> access$400
-    android.os.Message access$500(android.support.v7.app.AlertController) -> access$500
-    android.support.v7.app.AppCompatDialog access$600(android.support.v7.app.AlertController) -> access$600
-    android.os.Handler access$700(android.support.v7.app.AlertController) -> access$700
-    void access$800(android.view.View,android.view.View,android.view.View) -> access$800
-    android.support.v4.widget.NestedScrollView access$900(android.support.v7.app.AlertController) -> access$900
-    android.widget.ListView access$1000(android.support.v7.app.AlertController) -> access$1000
-    int access$1100(android.support.v7.app.AlertController) -> access$1100
-    int access$1200(android.support.v7.app.AlertController) -> access$1200
-    int access$1300(android.support.v7.app.AlertController) -> access$1300
-    int access$1400(android.support.v7.app.AlertController) -> access$1400
-    android.widget.ListAdapter access$1502(android.support.v7.app.AlertController,android.widget.ListAdapter) -> access$1502
-    int access$1602(android.support.v7.app.AlertController,int) -> access$1602
-    android.widget.ListView access$1002(android.support.v7.app.AlertController,android.widget.ListView) -> access$1002
+    void centerButton(android.widget.Button) -> centerButton
 android.support.v7.app.AlertController$1 -> android.support.v7.app.AlertController$1:
     android.support.v7.app.AlertController this$0 -> this$0
     void <init>(android.support.v7.app.AlertController) -> <init>
@@ -14575,17 +14548,17 @@ android.support.v7.app.AlertController$AlertParams -> android.support.v7.app.Ale
     void apply(android.support.v7.app.AlertController) -> apply
     void createListView(android.support.v7.app.AlertController) -> createListView
 android.support.v7.app.AlertController$AlertParams$1 -> android.support.v7.app.AlertController$AlertParams$1:
-    android.widget.ListView val$listView -> val$listView
+    android.support.v7.app.AlertController$RecycleListView val$listView -> val$listView
     android.support.v7.app.AlertController$AlertParams this$0 -> this$0
-    void <init>(android.support.v7.app.AlertController$AlertParams,android.content.Context,int,int,java.lang.CharSequence[],android.widget.ListView) -> <init>
+    void <init>(android.support.v7.app.AlertController$AlertParams,android.content.Context,int,int,java.lang.CharSequence[],android.support.v7.app.AlertController$RecycleListView) -> <init>
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
 android.support.v7.app.AlertController$AlertParams$2 -> android.support.v7.app.AlertController$AlertParams$2:
     int mLabelIndex -> mLabelIndex
     int mIsCheckedIndex -> mIsCheckedIndex
-    android.widget.ListView val$listView -> val$listView
+    android.support.v7.app.AlertController$RecycleListView val$listView -> val$listView
     android.support.v7.app.AlertController val$dialog -> val$dialog
     android.support.v7.app.AlertController$AlertParams this$0 -> this$0
-    void <init>(android.support.v7.app.AlertController$AlertParams,android.content.Context,android.database.Cursor,boolean,android.widget.ListView,android.support.v7.app.AlertController) -> <init>
+    void <init>(android.support.v7.app.AlertController$AlertParams,android.content.Context,android.database.Cursor,boolean,android.support.v7.app.AlertController$RecycleListView,android.support.v7.app.AlertController) -> <init>
     void bindView(android.view.View,android.content.Context,android.database.Cursor) -> bindView
     android.view.View newView(android.content.Context,android.database.Cursor,android.view.ViewGroup) -> newView
 android.support.v7.app.AlertController$AlertParams$3 -> android.support.v7.app.AlertController$AlertParams$3:
@@ -14594,10 +14567,10 @@ android.support.v7.app.AlertController$AlertParams$3 -> android.support.v7.app.A
     void <init>(android.support.v7.app.AlertController$AlertParams,android.support.v7.app.AlertController) -> <init>
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 android.support.v7.app.AlertController$AlertParams$4 -> android.support.v7.app.AlertController$AlertParams$4:
-    android.widget.ListView val$listView -> val$listView
+    android.support.v7.app.AlertController$RecycleListView val$listView -> val$listView
     android.support.v7.app.AlertController val$dialog -> val$dialog
     android.support.v7.app.AlertController$AlertParams this$0 -> this$0
-    void <init>(android.support.v7.app.AlertController$AlertParams,android.widget.ListView,android.support.v7.app.AlertController) -> <init>
+    void <init>(android.support.v7.app.AlertController$AlertParams,android.support.v7.app.AlertController$RecycleListView,android.support.v7.app.AlertController) -> <init>
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 android.support.v7.app.AlertController$AlertParams$OnPrepareListViewListener -> android.support.v7.app.AlertController$AlertParams$OnPrepareListViewListener:
     void onPrepareListView(android.widget.ListView) -> onPrepareListView
@@ -14610,6 +14583,12 @@ android.support.v7.app.AlertController$CheckedItemAdapter -> android.support.v7.
     void <init>(android.content.Context,int,int,java.lang.CharSequence[]) -> <init>
     boolean hasStableIds() -> hasStableIds
     long getItemId(int) -> getItemId
+android.support.v7.app.AlertController$RecycleListView -> android.support.v7.app.AlertController$RecycleListView:
+    int mPaddingTopNoTitle -> mPaddingTopNoTitle
+    int mPaddingBottomNoButtons -> mPaddingBottomNoButtons
+    void <init>(android.content.Context) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    void setHasDecor(boolean,boolean) -> setHasDecor
 android.support.v7.app.AlertDialog -> android.support.v7.app.AlertDialog:
     android.support.v7.app.AlertController mAlert -> mAlert
     int LAYOUT_HINT_NONE -> LAYOUT_HINT_NONE
@@ -14634,8 +14613,6 @@ android.support.v7.app.AlertDialog -> android.support.v7.app.AlertDialog:
     void onCreate(android.os.Bundle) -> onCreate
     boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
     boolean onKeyUp(int,android.view.KeyEvent) -> onKeyUp
-    int access$000(android.content.Context,int) -> access$000
-    android.support.v7.app.AlertController access$100(android.support.v7.app.AlertDialog) -> access$100
 android.support.v7.app.AlertDialog$Builder -> android.support.v7.app.AlertDialog$Builder:
     android.support.v7.app.AlertController$AlertParams P -> P
     int mTheme -> mTheme
@@ -14845,7 +14822,6 @@ android.support.v7.app.AppCompatDelegateImplBase$ActionBarDrawableToggleImpl -> 
     boolean isNavigationVisible() -> isNavigationVisible
     void setActionBarUpIndicator(android.graphics.drawable.Drawable,int) -> setActionBarUpIndicator
     void setActionBarDescription(int) -> setActionBarDescription
-    void <init>(android.support.v7.app.AppCompatDelegateImplBase,android.support.v7.app.AppCompatDelegateImplBase$1) -> <init>
 android.support.v7.app.AppCompatDelegateImplBase$AppCompatWindowCallbackBase -> android.support.v7.app.AppCompatDelegateImplBase$AppCompatWindowCallbackBase:
     android.support.v7.app.AppCompatDelegateImplBase this$0 -> this$0
     void <init>(android.support.v7.app.AppCompatDelegateImplBase,android.view.Window$Callback) -> <init>
@@ -14865,6 +14841,7 @@ android.support.v7.app.AppCompatDelegateImplN$AppCompatWindowCallbackN -> androi
     void onProvideKeyboardShortcuts(java.util.List,android.view.Menu,int) -> onProvideKeyboardShortcuts
 android.support.v7.app.AppCompatDelegateImplV11 -> android.support.v7.app.AppCompatDelegateImplV11:
     void <init>(android.content.Context,android.view.Window,android.support.v7.app.AppCompatCallback) -> <init>
+    boolean hasWindowFeature(int) -> hasWindowFeature
     android.view.View callActivityOnCreateView(android.view.View,java.lang.String,android.content.Context,android.util.AttributeSet) -> callActivityOnCreateView
 android.support.v7.app.AppCompatDelegateImplV14 -> android.support.v7.app.AppCompatDelegateImplV14:
     java.lang.String KEY_LOCAL_NIGHT_MODE -> KEY_LOCAL_NIGHT_MODE
@@ -14920,6 +14897,7 @@ android.support.v7.app.AppCompatDelegateImplV23$AppCompatWindowCallbackV23 -> an
     android.view.ActionMode onWindowStartingActionMode(android.view.ActionMode$Callback,int) -> onWindowStartingActionMode
     android.view.ActionMode onWindowStartingActionMode(android.view.ActionMode$Callback) -> onWindowStartingActionMode
 android.support.v7.app.AppCompatDelegateImplV9 -> android.support.v7.app.AppCompatDelegateImplV9:
+    boolean IS_PRE_LOLLIPOP -> IS_PRE_LOLLIPOP
     android.support.v7.widget.DecorContentParent mDecorContentParent -> mDecorContentParent
     android.support.v7.app.AppCompatDelegateImplV9$ActionMenuPresenterCallback mActionMenuPresenterCallback -> mActionMenuPresenterCallback
     android.support.v7.app.AppCompatDelegateImplV9$PanelMenuPresenterCallback mPanelMenuPresenterCallback -> mPanelMenuPresenterCallback
@@ -15007,18 +14985,7 @@ android.support.v7.app.AppCompatDelegateImplV9 -> android.support.v7.app.AppComp
     int sanitizeWindowFeatureId(int) -> sanitizeWindowFeatureId
     android.view.ViewGroup getSubDecor() -> getSubDecor
     void dismissPopups() -> dismissPopups
-    int access$000(android.support.v7.app.AppCompatDelegateImplV9) -> access$000
-    void access$100(android.support.v7.app.AppCompatDelegateImplV9,int) -> access$100
-    boolean access$202(android.support.v7.app.AppCompatDelegateImplV9,boolean) -> access$202
-    int access$002(android.support.v7.app.AppCompatDelegateImplV9,int) -> access$002
-    int access$300(android.support.v7.app.AppCompatDelegateImplV9,int) -> access$300
-    void access$400(android.support.v7.app.AppCompatDelegateImplV9) -> access$400
-    void access$500(android.support.v7.app.AppCompatDelegateImplV9) -> access$500
-    android.support.v7.app.AppCompatDelegateImplV9$PanelFeatureState access$800(android.support.v7.app.AppCompatDelegateImplV9,android.view.Menu) -> access$800
-    void access$900(android.support.v7.app.AppCompatDelegateImplV9,int,android.support.v7.app.AppCompatDelegateImplV9$PanelFeatureState,android.view.Menu) -> access$900
-    void access$1000(android.support.v7.app.AppCompatDelegateImplV9,android.support.v7.app.AppCompatDelegateImplV9$PanelFeatureState,boolean) -> access$1000
-    void access$1100(android.support.v7.app.AppCompatDelegateImplV9,android.support.v7.view.menu.MenuBuilder) -> access$1100
-    void access$1400(android.support.v7.app.AppCompatDelegateImplV9,int) -> access$1400
+    void <clinit>() -> <clinit>
 android.support.v7.app.AppCompatDelegateImplV9$1 -> android.support.v7.app.AppCompatDelegateImplV9$1:
     android.support.v7.app.AppCompatDelegateImplV9 this$0 -> this$0
     void <init>(android.support.v7.app.AppCompatDelegateImplV9) -> <init>
@@ -15055,7 +15022,6 @@ android.support.v7.app.AppCompatDelegateImplV9$ActionMenuPresenterCallback -> an
     void <init>(android.support.v7.app.AppCompatDelegateImplV9) -> <init>
     boolean onOpenSubMenu(android.support.v7.view.menu.MenuBuilder) -> onOpenSubMenu
     void onCloseMenu(android.support.v7.view.menu.MenuBuilder,boolean) -> onCloseMenu
-    void <init>(android.support.v7.app.AppCompatDelegateImplV9,android.support.v7.app.AppCompatDelegateImplV9$1) -> <init>
 android.support.v7.app.AppCompatDelegateImplV9$ActionModeCallbackWrapperV9 -> android.support.v7.app.AppCompatDelegateImplV9$ActionModeCallbackWrapperV9:
     android.support.v7.view.ActionMode$Callback mWrapped -> mWrapped
     android.support.v7.app.AppCompatDelegateImplV9 this$0 -> this$0
@@ -15115,8 +15081,6 @@ android.support.v7.app.AppCompatDelegateImplV9$PanelFeatureState$SavedState -> a
     int describeContents() -> describeContents
     void writeToParcel(android.os.Parcel,int) -> writeToParcel
     android.support.v7.app.AppCompatDelegateImplV9$PanelFeatureState$SavedState readFromParcel(android.os.Parcel,java.lang.ClassLoader) -> readFromParcel
-    void <init>(android.support.v7.app.AppCompatDelegateImplV9$1) -> <init>
-    android.support.v7.app.AppCompatDelegateImplV9$PanelFeatureState$SavedState access$1300(android.os.Parcel,java.lang.ClassLoader) -> access$1300
     void <clinit>() -> <clinit>
 android.support.v7.app.AppCompatDelegateImplV9$PanelFeatureState$SavedState$1 -> android.support.v7.app.AppCompatDelegateImplV9$PanelFeatureState$SavedState$1:
     void <init>() -> <init>
@@ -15129,7 +15093,6 @@ android.support.v7.app.AppCompatDelegateImplV9$PanelMenuPresenterCallback -> and
     void <init>(android.support.v7.app.AppCompatDelegateImplV9) -> <init>
     void onCloseMenu(android.support.v7.view.menu.MenuBuilder,boolean) -> onCloseMenu
     boolean onOpenSubMenu(android.support.v7.view.menu.MenuBuilder) -> onOpenSubMenu
-    void <init>(android.support.v7.app.AppCompatDelegateImplV9,android.support.v7.app.AppCompatDelegateImplV9$1) -> <init>
 android.support.v7.app.AppCompatDialog -> android.support.v7.app.AppCompatDialog:
     android.support.v7.app.AppCompatDelegate mDelegate -> mDelegate
     void <init>(android.content.Context) -> <init>
@@ -15186,28 +15149,54 @@ android.support.v7.app.NavItemSelectedListener -> android.support.v7.app.NavItem
 android.support.v7.app.NotificationCompat -> android.support.v7.app.NotificationCompat:
     void <init>() -> <init>
     android.support.v4.media.session.MediaSessionCompat$Token getMediaSession(android.app.Notification) -> getMediaSession
-    void addMediaStyleToBuilderLollipop(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Style) -> addMediaStyleToBuilderLollipop
-    void addMediaStyleToBuilderIcs(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> addMediaStyleToBuilderIcs
-    void addBigMediaStyleToBuilderJellybean(android.app.Notification,android.support.v4.app.NotificationCompat$Builder) -> addBigMediaStyleToBuilderJellybean
-    void access$300(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> access$300
-    void access$400(android.app.Notification,android.support.v4.app.NotificationCompat$Builder) -> access$400
-    void access$500(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Style) -> access$500
+    void addStyleToBuilderApi24(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> addStyleToBuilderApi24
+    android.widget.RemoteViews addStyleGetContentViewLollipop(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> addStyleGetContentViewLollipop
+    android.widget.RemoteViews addStyleGetContentViewJellybean(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> addStyleGetContentViewJellybean
+    android.support.v4.app.NotificationCompat$MessagingStyle$Message findLatestIncomingMessage(android.support.v4.app.NotificationCompat$MessagingStyle) -> findLatestIncomingMessage
+    java.lang.CharSequence makeMessageLine(android.support.v4.app.NotificationCompat$Builder,android.support.v4.app.NotificationCompat$MessagingStyle,android.support.v4.app.NotificationCompat$MessagingStyle$Message) -> makeMessageLine
+    android.text.style.TextAppearanceSpan makeFontColorSpan(int) -> makeFontColorSpan
+    void addMessagingFallBackStyle(android.support.v4.app.NotificationCompat$MessagingStyle,android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> addMessagingFallBackStyle
+    boolean hasMessagesWithoutSender(java.util.List) -> hasMessagesWithoutSender
+    android.widget.RemoteViews addStyleGetContentViewIcs(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> addStyleGetContentViewIcs
+    void addBigStyleToBuilderJellybean(android.app.Notification,android.support.v4.app.NotificationCompat$Builder) -> addBigStyleToBuilderJellybean
+    android.widget.RemoteViews getDecoratedContentView(android.support.v4.app.NotificationCompat$Builder) -> getDecoratedContentView
+    void addDecoratedBigStyleToBuilderJellybean(android.app.Notification,android.support.v4.app.NotificationCompat$Builder) -> addDecoratedBigStyleToBuilderJellybean
+    void addDecoratedHeadsUpToBuilderLollipop(android.app.Notification,android.support.v4.app.NotificationCompat$Builder) -> addDecoratedHeadsUpToBuilderLollipop
+    void addBigStyleToBuilderLollipop(android.app.Notification,android.support.v4.app.NotificationCompat$Builder) -> addBigStyleToBuilderLollipop
+    void setBackgroundColor(android.content.Context,android.widget.RemoteViews,int) -> setBackgroundColor
+    void addHeadsUpToBuilderLollipop(android.app.Notification,android.support.v4.app.NotificationCompat$Builder) -> addHeadsUpToBuilderLollipop
+    android.support.v4.app.NotificationCompat$MessagingStyle$Message access$000(android.support.v4.app.NotificationCompat$MessagingStyle) -> access$000
+    java.lang.CharSequence access$100(android.support.v4.app.NotificationCompat$Builder,android.support.v4.app.NotificationCompat$MessagingStyle,android.support.v4.app.NotificationCompat$MessagingStyle$Message) -> access$100
+    android.widget.RemoteViews access$300(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> access$300
+    android.widget.RemoteViews access$400(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> access$400
+    void access$500(android.app.Notification,android.support.v4.app.NotificationCompat$Builder) -> access$500
+    android.widget.RemoteViews access$600(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> access$600
+    void access$700(android.app.Notification,android.support.v4.app.NotificationCompat$Builder) -> access$700
+    void access$800(android.app.Notification,android.support.v4.app.NotificationCompat$Builder) -> access$800
+    void access$900(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.support.v4.app.NotificationCompat$Builder) -> access$900
 android.support.v7.app.NotificationCompat$1 -> android.support.v7.app.NotificationCompat$1:
+android.support.v7.app.NotificationCompat$Api24Extender -> android.support.v7.app.NotificationCompat$Api24Extender:
+    void <init>() -> <init>
+    android.app.Notification build(android.support.v4.app.NotificationCompat$Builder,android.support.v4.app.NotificationBuilderWithBuilderAccessor) -> build
+    void <init>(android.support.v7.app.NotificationCompat$1) -> <init>
 android.support.v7.app.NotificationCompat$Builder -> android.support.v7.app.NotificationCompat$Builder:
     void <init>(android.content.Context) -> <init>
+    java.lang.CharSequence resolveText() -> resolveText
+    java.lang.CharSequence resolveTitle() -> resolveTitle
     android.support.v4.app.NotificationCompat$BuilderExtender getExtender() -> getExtender
+android.support.v7.app.NotificationCompat$DecoratedCustomViewStyle -> android.support.v7.app.NotificationCompat$DecoratedCustomViewStyle:
+    void <init>() -> <init>
+android.support.v7.app.NotificationCompat$DecoratedMediaCustomViewStyle -> android.support.v7.app.NotificationCompat$DecoratedMediaCustomViewStyle:
+    void <init>() -> <init>
 android.support.v7.app.NotificationCompat$IceCreamSandwichExtender -> android.support.v7.app.NotificationCompat$IceCreamSandwichExtender:
     void <init>() -> <init>
     android.app.Notification build(android.support.v4.app.NotificationCompat$Builder,android.support.v4.app.NotificationBuilderWithBuilderAccessor) -> build
-    void <init>(android.support.v7.app.NotificationCompat$1) -> <init>
 android.support.v7.app.NotificationCompat$JellybeanExtender -> android.support.v7.app.NotificationCompat$JellybeanExtender:
     void <init>() -> <init>
     android.app.Notification build(android.support.v4.app.NotificationCompat$Builder,android.support.v4.app.NotificationBuilderWithBuilderAccessor) -> build
-    void <init>(android.support.v7.app.NotificationCompat$1) -> <init>
 android.support.v7.app.NotificationCompat$LollipopExtender -> android.support.v7.app.NotificationCompat$LollipopExtender:
     void <init>() -> <init>
     android.app.Notification build(android.support.v4.app.NotificationCompat$Builder,android.support.v4.app.NotificationBuilderWithBuilderAccessor) -> build
-    void <init>(android.support.v7.app.NotificationCompat$1) -> <init>
 android.support.v7.app.NotificationCompat$MediaStyle -> android.support.v7.app.NotificationCompat$MediaStyle:
     int[] mActionsToShowInCompact -> mActionsToShowInCompact
     android.support.v4.media.session.MediaSessionCompat$Token mToken -> mToken
@@ -15222,17 +15211,52 @@ android.support.v7.app.NotificationCompat$MediaStyle -> android.support.v7.app.N
 android.support.v7.app.NotificationCompatImpl21 -> android.support.v7.app.NotificationCompatImpl21:
     void <init>() -> <init>
     void addMediaStyle(android.support.v4.app.NotificationBuilderWithBuilderAccessor,int[],java.lang.Object) -> addMediaStyle
+android.support.v7.app.NotificationCompatImpl24 -> android.support.v7.app.NotificationCompatImpl24:
+    void <init>() -> <init>
+    void addDecoratedCustomViewStyle(android.support.v4.app.NotificationBuilderWithBuilderAccessor) -> addDecoratedCustomViewStyle
+    void addDecoratedMediaCustomViewStyle(android.support.v4.app.NotificationBuilderWithBuilderAccessor) -> addDecoratedMediaCustomViewStyle
 android.support.v7.app.NotificationCompatImplBase -> android.support.v7.app.NotificationCompatImplBase:
     int MAX_MEDIA_BUTTONS_IN_COMPACT -> MAX_MEDIA_BUTTONS_IN_COMPACT
     int MAX_MEDIA_BUTTONS -> MAX_MEDIA_BUTTONS
+    int MAX_ACTION_BUTTONS -> MAX_ACTION_BUTTONS
     void <init>() -> <init>
-    void overrideContentView(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,java.util.List,int[],boolean,android.app.PendingIntent) -> overrideContentView
-    android.widget.RemoteViews generateContentView(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,java.util.List,int[],boolean,android.app.PendingIntent) -> generateContentView
-    void overrideBigContentView(android.app.Notification,android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,java.util.List,boolean,android.app.PendingIntent) -> overrideBigContentView
-    android.widget.RemoteViews generateBigContentView(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,java.util.List,boolean,android.app.PendingIntent) -> generateBigContentView
+    android.widget.RemoteViews overrideContentViewMedia(android.support.v4.app.NotificationBuilderWithBuilderAccessor,android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,int,java.util.List,int[],boolean,android.app.PendingIntent,boolean) -> overrideContentViewMedia
+    android.widget.RemoteViews generateContentViewMedia(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,int,java.util.List,int[],boolean,android.app.PendingIntent,boolean) -> generateContentViewMedia
+    void overrideMediaBigContentView(android.app.Notification,android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,int,int,java.util.List,boolean,android.app.PendingIntent,boolean) -> overrideMediaBigContentView
+    android.widget.RemoteViews generateMediaBigView(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,int,int,java.util.List,boolean,android.app.PendingIntent,boolean) -> generateMediaBigView
     android.widget.RemoteViews generateMediaActionButton(android.content.Context,android.support.v4.app.NotificationCompatBase$Action) -> generateMediaActionButton
-    int getBigLayoutResource(org.qiyi.pluginlibrary.utils.ResourcesToolForPlugin,int) -> getBigLayoutResource
-    android.widget.RemoteViews applyStandardTemplate(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,int,boolean) -> applyStandardTemplate
+    int getBigMediaLayoutResource(boolean,int) -> getBigMediaLayoutResource
+    android.widget.RemoteViews applyStandardTemplateWithActions(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,int,int,int,boolean,java.util.ArrayList) -> applyStandardTemplateWithActions
+    android.widget.RemoteViews generateActionButton(android.content.Context,android.support.v4.app.NotificationCompat$Action) -> generateActionButton
+    android.graphics.Bitmap createColoredBitmap(android.content.Context,int,int) -> createColoredBitmap
+    android.graphics.Bitmap createColoredBitmap(android.content.Context,int,int,int) -> createColoredBitmap
+    int getActionLayoutResource() -> getActionLayoutResource
+    int getActionTombstoneLayoutResource() -> getActionTombstoneLayoutResource
+    android.widget.RemoteViews applyStandardTemplate(android.content.Context,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,int,android.graphics.Bitmap,java.lang.CharSequence,boolean,long,int,int,int,boolean) -> applyStandardTemplate
+    android.graphics.Bitmap createIconWithBackground(android.content.Context,int,int,int,int) -> createIconWithBackground
+    void buildIntoRemoteViews(android.content.Context,android.widget.RemoteViews,android.widget.RemoteViews) -> buildIntoRemoteViews
+    void hideNormalContent(android.widget.RemoteViews) -> hideNormalContent
+    int calculateTopPadding(android.content.Context) -> calculateTopPadding
+    float constrain(float,float,float) -> constrain
+android.support.v7.app.NotificationCompatImplJellybean -> android.support.v7.app.NotificationCompatImplJellybean:
+    void <init>() -> <init>
+    void addBigTextStyle(android.support.v4.app.NotificationBuilderWithBuilderAccessor,java.lang.CharSequence) -> addBigTextStyle
+android.support.v7.app.ResourcesFlusher -> android.support.v7.app.ResourcesFlusher:
+    java.lang.String TAG -> TAG
+    java.lang.reflect.Field sDrawableCacheField -> sDrawableCacheField
+    boolean sDrawableCacheFieldFetched -> sDrawableCacheFieldFetched
+    java.lang.Class sThemedResourceCacheClazz -> sThemedResourceCacheClazz
+    boolean sThemedResourceCacheClazzFetched -> sThemedResourceCacheClazzFetched
+    java.lang.reflect.Field sThemedResourceCache_mUnthemedEntriesField -> sThemedResourceCache_mUnthemedEntriesField
+    boolean sThemedResourceCache_mUnthemedEntriesFieldFetched -> sThemedResourceCache_mUnthemedEntriesFieldFetched
+    java.lang.reflect.Field sResourcesImplField -> sResourcesImplField
+    boolean sResourcesImplFieldFetched -> sResourcesImplFieldFetched
+    void <init>() -> <init>
+    boolean flush(android.content.res.Resources) -> flush
+    boolean flushLollipops(android.content.res.Resources) -> flushLollipops
+    boolean flushMarshmallows(android.content.res.Resources) -> flushMarshmallows
+    boolean flushNougats(android.content.res.Resources) -> flushNougats
+    boolean flushThemedResourcesCache(java.lang.Object) -> flushThemedResourcesCache
 android.support.v7.app.ToolbarActionBar -> android.support.v7.app.ToolbarActionBar:
     android.support.v7.widget.DecorToolbar mDecorToolbar -> mDecorToolbar
     boolean mToolbarMenuPrepared -> mToolbarMenuPrepared
@@ -15319,11 +15343,6 @@ android.support.v7.app.ToolbarActionBar -> android.support.v7.app.ToolbarActionB
     android.view.View getListMenuView(android.view.Menu) -> getListMenuView
     void ensureListMenuPresenter(android.view.Menu) -> ensureListMenuPresenter
     android.view.Menu getMenu() -> getMenu
-    android.view.Window$Callback access$000(android.support.v7.app.ToolbarActionBar) -> access$000
-    boolean access$200(android.support.v7.app.ToolbarActionBar) -> access$200
-    android.support.v7.widget.DecorToolbar access$300(android.support.v7.app.ToolbarActionBar) -> access$300
-    boolean access$202(android.support.v7.app.ToolbarActionBar,boolean) -> access$202
-    android.view.View access$400(android.support.v7.app.ToolbarActionBar,android.view.Menu) -> access$400
 android.support.v7.app.ToolbarActionBar$1 -> android.support.v7.app.ToolbarActionBar$1:
     android.support.v7.app.ToolbarActionBar this$0 -> this$0
     void <init>(android.support.v7.app.ToolbarActionBar) -> <init>
@@ -15338,19 +15357,16 @@ android.support.v7.app.ToolbarActionBar$ActionMenuPresenterCallback -> android.s
     void <init>(android.support.v7.app.ToolbarActionBar) -> <init>
     boolean onOpenSubMenu(android.support.v7.view.menu.MenuBuilder) -> onOpenSubMenu
     void onCloseMenu(android.support.v7.view.menu.MenuBuilder,boolean) -> onCloseMenu
-    void <init>(android.support.v7.app.ToolbarActionBar,android.support.v7.app.ToolbarActionBar$1) -> <init>
 android.support.v7.app.ToolbarActionBar$MenuBuilderCallback -> android.support.v7.app.ToolbarActionBar$MenuBuilderCallback:
     android.support.v7.app.ToolbarActionBar this$0 -> this$0
     void <init>(android.support.v7.app.ToolbarActionBar) -> <init>
     boolean onMenuItemSelected(android.support.v7.view.menu.MenuBuilder,android.view.MenuItem) -> onMenuItemSelected
     void onMenuModeChange(android.support.v7.view.menu.MenuBuilder) -> onMenuModeChange
-    void <init>(android.support.v7.app.ToolbarActionBar,android.support.v7.app.ToolbarActionBar$1) -> <init>
 android.support.v7.app.ToolbarActionBar$PanelMenuPresenterCallback -> android.support.v7.app.ToolbarActionBar$PanelMenuPresenterCallback:
     android.support.v7.app.ToolbarActionBar this$0 -> this$0
     void <init>(android.support.v7.app.ToolbarActionBar) -> <init>
     void onCloseMenu(android.support.v7.view.menu.MenuBuilder,boolean) -> onCloseMenu
     boolean onOpenSubMenu(android.support.v7.view.menu.MenuBuilder) -> onOpenSubMenu
-    void <init>(android.support.v7.app.ToolbarActionBar,android.support.v7.app.ToolbarActionBar$1) -> <init>
 android.support.v7.app.ToolbarActionBar$ToolbarCallbackWrapper -> android.support.v7.app.ToolbarActionBar$ToolbarCallbackWrapper:
     android.support.v7.app.ToolbarActionBar this$0 -> this$0
     void <init>(android.support.v7.app.ToolbarActionBar,android.view.Window$Callback) -> <init>
@@ -15390,7 +15406,6 @@ android.support.v7.app.TwilightManager -> android.support.v7.app.TwilightManager
     android.location.Location getLastKnownLocationForProvider(java.lang.String) -> getLastKnownLocationForProvider
     boolean isStateValid() -> isStateValid
     void updateState(android.location.Location) -> updateState
-android.support.v7.app.TwilightManager$1 -> android.support.v7.app.TwilightManager$1:
 android.support.v7.app.TwilightManager$TwilightState -> android.support.v7.app.TwilightManager$TwilightState:
     boolean isNight -> isNight
     long yesterdaySunset -> yesterdaySunset
@@ -15399,7 +15414,6 @@ android.support.v7.app.TwilightManager$TwilightState -> android.support.v7.app.T
     long tomorrowSunrise -> tomorrowSunrise
     long nextUpdate -> nextUpdate
     void <init>() -> <init>
-    void <init>(android.support.v7.app.TwilightManager$1) -> <init>
 android.support.v7.app.WindowDecorActionBar -> android.support.v7.app.WindowDecorActionBar:
     java.lang.String TAG -> TAG
     android.view.animation.Interpolator sHideInterpolator -> sHideInterpolator
@@ -15537,18 +15551,6 @@ android.support.v7.app.WindowDecorActionBar -> android.support.v7.app.WindowDeco
     void setLogo(android.graphics.drawable.Drawable) -> setLogo
     boolean hasLogo() -> hasLogo
     void setDefaultDisplayHomeAsUpEnabled(boolean) -> setDefaultDisplayHomeAsUpEnabled
-    boolean access$000(android.support.v7.app.WindowDecorActionBar) -> access$000
-    android.view.View access$100(android.support.v7.app.WindowDecorActionBar) -> access$100
-    android.support.v7.widget.ActionBarContainer access$200(android.support.v7.app.WindowDecorActionBar) -> access$200
-    android.support.v7.view.ViewPropertyAnimatorCompatSet access$302(android.support.v7.app.WindowDecorActionBar,android.support.v7.view.ViewPropertyAnimatorCompatSet) -> access$302
-    android.support.v7.widget.ActionBarOverlayLayout access$400(android.support.v7.app.WindowDecorActionBar) -> access$400
-    boolean access$500(android.support.v7.app.WindowDecorActionBar) -> access$500
-    boolean access$600(android.support.v7.app.WindowDecorActionBar) -> access$600
-    boolean access$700(boolean,boolean,boolean) -> access$700
-    android.support.v7.widget.ActionBarContextView access$800(android.support.v7.app.WindowDecorActionBar) -> access$800
-    android.support.v7.widget.DecorToolbar access$900(android.support.v7.app.WindowDecorActionBar) -> access$900
-    android.content.Context access$1000(android.support.v7.app.WindowDecorActionBar) -> access$1000
-    android.support.v7.widget.ScrollingTabContainerView access$1100(android.support.v7.app.WindowDecorActionBar) -> access$1100
     void <clinit>() -> <clinit>
 android.support.v7.app.WindowDecorActionBar$1 -> android.support.v7.app.WindowDecorActionBar$1:
     android.support.v7.app.WindowDecorActionBar this$0 -> this$0
@@ -15626,13 +15628,12 @@ android.support.v7.appcompat.BuildConfig -> android.support.v7.appcompat.BuildCo
     int VERSION_CODE -> VERSION_CODE
     java.lang.String VERSION_NAME -> VERSION_NAME
     void <init>() -> <init>
-    void <clinit>() -> <clinit>
 android.support.v7.content.res.AppCompatColorStateListInflater -> android.support.v7.content.res.AppCompatColorStateListInflater:
     int DEFAULT_COLOR -> DEFAULT_COLOR
     void <init>() -> <init>
-    android.content.res.ColorStateList createFromXml(android.content.Context,android.content.res.Resources,org.xmlpull.v1.XmlPullParser,android.content.res.Resources$Theme) -> createFromXml
-    android.content.res.ColorStateList createFromXmlInner(org.qiyi.pluginlibrary.utils.ResourcesToolForPlugin,android.content.res.Resources,org.xmlpull.v1.XmlPullParser,android.util.AttributeSet,android.content.res.Resources$Theme) -> createFromXmlInner
-    android.content.res.ColorStateList inflate(org.qiyi.pluginlibrary.utils.ResourcesToolForPlugin,android.content.res.Resources,org.xmlpull.v1.XmlPullParser,android.util.AttributeSet,android.content.res.Resources$Theme) -> inflate
+    android.content.res.ColorStateList createFromXml(android.content.res.Resources,org.xmlpull.v1.XmlPullParser,android.content.res.Resources$Theme) -> createFromXml
+    android.content.res.ColorStateList createFromXmlInner(android.content.res.Resources,org.xmlpull.v1.XmlPullParser,android.util.AttributeSet,android.content.res.Resources$Theme) -> createFromXmlInner
+    android.content.res.ColorStateList inflate(android.content.res.Resources,org.xmlpull.v1.XmlPullParser,android.util.AttributeSet,android.content.res.Resources$Theme) -> inflate
     android.content.res.TypedArray obtainAttributes(android.content.res.Resources,android.content.res.Resources$Theme,android.util.AttributeSet,int[]) -> obtainAttributes
     int modulateColorAlpha(int,float) -> modulateColorAlpha
 android.support.v7.content.res.AppCompatResources -> android.support.v7.content.res.AppCompatResources:
@@ -16152,6 +16153,7 @@ android.support.v7.view.ContextThemeWrapper -> android.support.v7.view.ContextTh
     java.lang.Object getSystemService(java.lang.String) -> getSystemService
     void onApplyThemeResource(android.content.res.Resources$Theme,int,boolean) -> onApplyThemeResource
     void initializeTheme() -> initializeTheme
+    android.content.res.AssetManager getAssets() -> getAssets
 android.support.v7.view.StandaloneActionMode -> android.support.v7.view.StandaloneActionMode:
     android.content.Context mContext -> mContext
     android.support.v7.widget.ActionBarContextView mContextView -> mContextView
@@ -16231,12 +16233,6 @@ android.support.v7.view.SupportMenuInflater -> android.support.v7.view.SupportMe
     void parseMenu(org.xmlpull.v1.XmlPullParser,android.util.AttributeSet,android.view.Menu) -> parseMenu
     java.lang.Object getRealOwner() -> getRealOwner
     java.lang.Object findRealOwner(java.lang.Object) -> findRealOwner
-    android.content.Context access$100(android.support.v7.view.SupportMenuInflater) -> access$100
-    java.lang.Class[] access$200() -> access$200
-    java.lang.Object[] access$300(android.support.v7.view.SupportMenuInflater) -> access$300
-    java.lang.Object access$400(android.support.v7.view.SupportMenuInflater) -> access$400
-    java.lang.Class[] access$500() -> access$500
-    java.lang.Object[] access$600(android.support.v7.view.SupportMenuInflater) -> access$600
     void <clinit>() -> <clinit>
 android.support.v7.view.SupportMenuInflater$InflatedOnMenuItemClickListener -> android.support.v7.view.SupportMenuInflater$InflatedOnMenuItemClickListener:
     java.lang.Class[] PARAM_TYPES -> PARAM_TYPES
@@ -16290,7 +16286,6 @@ android.support.v7.view.SupportMenuInflater$MenuState -> android.support.v7.view
     android.view.SubMenu addSubMenuItem() -> addSubMenuItem
     boolean hasAddedItem() -> hasAddedItem
     java.lang.Object newInstance(java.lang.String,java.lang.Class[],java.lang.Object[]) -> newInstance
-    android.support.v4.view.ActionProvider access$000(android.support.v7.view.SupportMenuInflater$MenuState) -> access$000
 android.support.v7.view.ViewPropertyAnimatorCompatSet -> android.support.v7.view.ViewPropertyAnimatorCompatSet:
     java.util.ArrayList mAnimators -> mAnimators
     long mDuration -> mDuration
@@ -16307,9 +16302,6 @@ android.support.v7.view.ViewPropertyAnimatorCompatSet -> android.support.v7.view
     android.support.v7.view.ViewPropertyAnimatorCompatSet setDuration(long) -> setDuration
     android.support.v7.view.ViewPropertyAnimatorCompatSet setInterpolator(android.view.animation.Interpolator) -> setInterpolator
     android.support.v7.view.ViewPropertyAnimatorCompatSet setListener(android.support.v4.view.ViewPropertyAnimatorListener) -> setListener
-    android.support.v4.view.ViewPropertyAnimatorListener access$000(android.support.v7.view.ViewPropertyAnimatorCompatSet) -> access$000
-    void access$100(android.support.v7.view.ViewPropertyAnimatorCompatSet) -> access$100
-    java.util.ArrayList access$200(android.support.v7.view.ViewPropertyAnimatorCompatSet) -> access$200
 android.support.v7.view.ViewPropertyAnimatorCompatSet$1 -> android.support.v7.view.ViewPropertyAnimatorCompatSet$1:
     boolean mProxyStarted -> mProxyStarted
     int mProxyEndCount -> mProxyEndCount
@@ -16457,9 +16449,6 @@ android.support.v7.view.menu.ActionMenuItemView -> android.support.v7.view.menu.
     boolean onLongClick(android.view.View) -> onLongClick
     void onMeasure(int,int) -> onMeasure
     void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
-    android.support.v7.view.menu.ActionMenuItemView$PopupCallback access$000(android.support.v7.view.menu.ActionMenuItemView) -> access$000
-    android.support.v7.view.menu.MenuBuilder$ItemInvoker access$100(android.support.v7.view.menu.ActionMenuItemView) -> access$100
-    android.support.v7.view.menu.MenuItemImpl access$200(android.support.v7.view.menu.ActionMenuItemView) -> access$200
 android.support.v7.view.menu.ActionMenuItemView$ActionMenuItemForwardingListener -> android.support.v7.view.menu.ActionMenuItemView$ActionMenuItemForwardingListener:
     android.support.v7.view.menu.ActionMenuItemView this$0 -> this$0
     void <init>(android.support.v7.view.menu.ActionMenuItemView) -> <init>
@@ -16571,10 +16560,6 @@ android.support.v7.view.menu.CascadingMenuPopup -> android.support.v7.view.menu.
     void setVerticalOffset(int) -> setVerticalOffset
     void setShowTitle(boolean) -> setShowTitle
     boolean closeMenuOnSubMenuOpened() -> closeMenuOnSubMenuOpened
-    java.util.List access$000(android.support.v7.view.menu.CascadingMenuPopup) -> access$000
-    android.view.View access$100(android.support.v7.view.menu.CascadingMenuPopup) -> access$100
-    android.os.Handler access$200(android.support.v7.view.menu.CascadingMenuPopup) -> access$200
-    boolean access$302(android.support.v7.view.menu.CascadingMenuPopup,boolean) -> access$302
 android.support.v7.view.menu.CascadingMenuPopup$1 -> android.support.v7.view.menu.CascadingMenuPopup$1:
     android.support.v7.view.menu.CascadingMenuPopup this$0 -> this$0
     void <init>(android.support.v7.view.menu.CascadingMenuPopup) -> <init>
@@ -16680,7 +16665,6 @@ android.support.v7.view.menu.ListMenuPresenter -> android.support.v7.view.menu.L
     int getId() -> getId
     android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
     void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
-    int access$000(android.support.v7.view.menu.ListMenuPresenter) -> access$000
 android.support.v7.view.menu.ListMenuPresenter$MenuAdapter -> android.support.v7.view.menu.ListMenuPresenter$MenuAdapter:
     int mExpandedIndex -> mExpandedIndex
     android.support.v7.view.menu.ListMenuPresenter this$0 -> this$0
@@ -16699,7 +16683,7 @@ android.support.v7.view.menu.MenuAdapter -> android.support.v7.view.menu.MenuAda
     boolean mForceShowIcon -> mForceShowIcon
     boolean mOverflowOnly -> mOverflowOnly
     android.view.LayoutInflater mInflater -> mInflater
-    void <init>(android.content.Context,android.support.v7.view.menu.MenuBuilder,android.view.LayoutInflater,boolean) -> <init>
+    void <init>(android.support.v7.view.menu.MenuBuilder,android.view.LayoutInflater,boolean) -> <init>
     boolean getForceShowIcon() -> getForceShowIcon
     void setForceShowIcon(boolean) -> setForceShowIcon
     int getCount() -> getCount
@@ -16710,6 +16694,7 @@ android.support.v7.view.menu.MenuAdapter -> android.support.v7.view.menu.MenuAda
     void findExpandedIndex() -> findExpandedIndex
     void notifyDataSetChanged() -> notifyDataSetChanged
     java.lang.Object getItem(int) -> getItem
+    void <clinit>() -> <clinit>
 android.support.v7.view.menu.MenuBuilder -> android.support.v7.view.menu.MenuBuilder:
     java.lang.String TAG -> TAG
     java.lang.String PRESENTER_KEY -> PRESENTER_KEY
@@ -16735,6 +16720,7 @@ android.support.v7.view.menu.MenuBuilder -> android.support.v7.view.menu.MenuBui
     android.util.SparseArray mFrozenViewStates -> mFrozenViewStates
     boolean mPreventDispatchingItemsChanged -> mPreventDispatchingItemsChanged
     boolean mItemsChangedWhileDispatchPrevented -> mItemsChangedWhileDispatchPrevented
+    boolean mStructureChangedWhileDispatchPrevented -> mStructureChangedWhileDispatchPrevented
     boolean mOptionalIconsVisible -> mOptionalIconsVisible
     boolean mIsClosing -> mIsClosing
     java.util.ArrayList mTempShortcutItemList -> mTempShortcutItemList
@@ -16962,7 +16948,6 @@ android.support.v7.view.menu.MenuItemImpl -> android.support.v7.view.menu.MenuIt
     android.view.MenuItem setActionView(int) -> setActionView
     android.view.MenuItem setActionView(android.view.View) -> setActionView
     android.view.MenuItem setShowAsActionFlags(int) -> setShowAsActionFlags
-    android.support.v7.view.menu.MenuBuilder access$000(android.support.v7.view.menu.MenuItemImpl) -> access$000
 android.support.v7.view.menu.MenuItemImpl$1 -> android.support.v7.view.menu.MenuItemImpl$1:
     android.support.v7.view.menu.MenuItemImpl this$0 -> this$0
     void <init>(android.support.v7.view.menu.MenuItemImpl) -> <init>
@@ -17220,8 +17205,6 @@ android.support.v7.view.menu.StandardMenuPopup -> android.support.v7.view.menu.S
     void setHorizontalOffset(int) -> setHorizontalOffset
     void setVerticalOffset(int) -> setVerticalOffset
     void setShowTitle(boolean) -> setShowTitle
-    android.support.v7.widget.MenuPopupWindow access$000(android.support.v7.view.menu.StandardMenuPopup) -> access$000
-    android.view.View access$100(android.support.v7.view.menu.StandardMenuPopup) -> access$100
 android.support.v7.view.menu.StandardMenuPopup$1 -> android.support.v7.view.menu.StandardMenuPopup$1:
     android.support.v7.view.menu.StandardMenuPopup this$0 -> this$0
     void <init>(android.support.v7.view.menu.StandardMenuPopup) -> <init>
@@ -17501,11 +17484,6 @@ android.support.v7.widget.ActionBarOverlayLayout -> android.support.v7.widget.Ac
     void dismissPopups() -> dismissPopups
     android.view.ViewGroup$LayoutParams generateDefaultLayoutParams() -> generateDefaultLayoutParams
     android.view.ViewGroup$LayoutParams generateLayoutParams(android.util.AttributeSet) -> generateLayoutParams
-    android.support.v4.view.ViewPropertyAnimatorCompat access$002(android.support.v7.widget.ActionBarOverlayLayout,android.support.v4.view.ViewPropertyAnimatorCompat) -> access$002
-    boolean access$102(android.support.v7.widget.ActionBarOverlayLayout,boolean) -> access$102
-    void access$200(android.support.v7.widget.ActionBarOverlayLayout) -> access$200
-    android.support.v4.view.ViewPropertyAnimatorListener access$300(android.support.v7.widget.ActionBarOverlayLayout) -> access$300
-    android.support.v7.widget.ActionBarContainer access$400(android.support.v7.widget.ActionBarOverlayLayout) -> access$400
     void <clinit>() -> <clinit>
 android.support.v7.widget.ActionBarOverlayLayout$1 -> android.support.v7.widget.ActionBarOverlayLayout$1:
     android.support.v7.widget.ActionBarOverlayLayout this$0 -> this$0
@@ -17555,7 +17533,7 @@ android.support.v7.widget.ActionMenuPresenter -> android.support.v7.widget.Actio
     android.support.v7.widget.ActionMenuPresenter$ActionMenuPopupCallback mPopupCallback -> mPopupCallback
     android.support.v7.widget.ActionMenuPresenter$PopupPresenterCallback mPopupPresenterCallback -> mPopupPresenterCallback
     int mOpenSubMenuId -> mOpenSubMenuId
-    void <init>(android.content.Context,int,int) -> <init>
+    void <init>(android.content.Context) -> <init>
     void initForMenu(android.content.Context,android.support.v7.view.menu.MenuBuilder) -> initForMenu
     void onConfigurationChanged(android.content.res.Configuration) -> onConfigurationChanged
     void setWidthLimit(int,boolean) -> setWidthLimit
@@ -17585,29 +17563,20 @@ android.support.v7.widget.ActionMenuPresenter -> android.support.v7.widget.Actio
     void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
     void onSubUiVisibilityChanged(boolean) -> onSubUiVisibilityChanged
     void setMenuView(android.support.v7.widget.ActionMenuView) -> setMenuView
-    android.support.v7.widget.ActionMenuPresenter$OverflowPopup access$200(android.support.v7.widget.ActionMenuPresenter) -> access$200
-    android.support.v7.widget.ActionMenuPresenter$OpenOverflowRunnable access$300(android.support.v7.widget.ActionMenuPresenter) -> access$300
+    android.support.v7.view.menu.MenuBuilder access$000(android.support.v7.widget.ActionMenuPresenter) -> access$000
+    android.support.v7.view.menu.MenuBuilder access$100(android.support.v7.widget.ActionMenuPresenter) -> access$100
+    android.support.v7.view.menu.MenuView access$200(android.support.v7.widget.ActionMenuPresenter) -> access$200
+    android.support.v7.view.menu.MenuBuilder access$300(android.support.v7.widget.ActionMenuPresenter) -> access$300
     android.support.v7.view.menu.MenuBuilder access$400(android.support.v7.widget.ActionMenuPresenter) -> access$400
-    android.support.v7.view.menu.MenuBuilder access$500(android.support.v7.widget.ActionMenuPresenter) -> access$500
-    android.support.v7.widget.ActionMenuPresenter$OverflowPopup access$202(android.support.v7.widget.ActionMenuPresenter,android.support.v7.widget.ActionMenuPresenter$OverflowPopup) -> access$202
-    android.support.v7.widget.ActionMenuPresenter$OverflowMenuButton access$600(android.support.v7.widget.ActionMenuPresenter) -> access$600
-    android.support.v7.view.menu.MenuView access$700(android.support.v7.widget.ActionMenuPresenter) -> access$700
-    android.support.v7.widget.ActionMenuPresenter$ActionButtonSubmenu access$802(android.support.v7.widget.ActionMenuPresenter,android.support.v7.widget.ActionMenuPresenter$ActionButtonSubmenu) -> access$802
-    android.support.v7.view.menu.MenuBuilder access$900(android.support.v7.widget.ActionMenuPresenter) -> access$900
-    android.support.v7.view.menu.MenuBuilder access$1000(android.support.v7.widget.ActionMenuPresenter) -> access$1000
-    android.support.v7.view.menu.MenuView access$1100(android.support.v7.widget.ActionMenuPresenter) -> access$1100
-    android.support.v7.widget.ActionMenuPresenter$OpenOverflowRunnable access$302(android.support.v7.widget.ActionMenuPresenter,android.support.v7.widget.ActionMenuPresenter$OpenOverflowRunnable) -> access$302
-    android.support.v7.widget.ActionMenuPresenter$ActionButtonSubmenu access$800(android.support.v7.widget.ActionMenuPresenter) -> access$800
-android.support.v7.widget.ActionMenuPresenter$1 -> android.support.v7.widget.ActionMenuPresenter$1:
+    android.support.v7.view.menu.MenuView access$500(android.support.v7.widget.ActionMenuPresenter) -> access$500
 android.support.v7.widget.ActionMenuPresenter$ActionButtonSubmenu -> android.support.v7.widget.ActionMenuPresenter$ActionButtonSubmenu:
     android.support.v7.widget.ActionMenuPresenter this$0 -> this$0
-    void <init>(android.support.v7.widget.ActionMenuPresenter,android.content.Context,android.support.v7.view.menu.SubMenuBuilder,android.view.View,int) -> <init>
+    void <init>(android.support.v7.widget.ActionMenuPresenter,android.content.Context,android.support.v7.view.menu.SubMenuBuilder,android.view.View) -> <init>
     void onDismiss() -> onDismiss
 android.support.v7.widget.ActionMenuPresenter$ActionMenuPopupCallback -> android.support.v7.widget.ActionMenuPresenter$ActionMenuPopupCallback:
     android.support.v7.widget.ActionMenuPresenter this$0 -> this$0
     void <init>(android.support.v7.widget.ActionMenuPresenter) -> <init>
     android.support.v7.view.menu.ShowableListMenu getPopup() -> getPopup
-    void <init>(android.support.v7.widget.ActionMenuPresenter,android.support.v7.widget.ActionMenuPresenter$1) -> <init>
 android.support.v7.widget.ActionMenuPresenter$OpenOverflowRunnable -> android.support.v7.widget.ActionMenuPresenter$OpenOverflowRunnable:
     android.support.v7.widget.ActionMenuPresenter$OverflowPopup mPopup -> mPopup
     android.support.v7.widget.ActionMenuPresenter this$0 -> this$0
@@ -17616,7 +17585,7 @@ android.support.v7.widget.ActionMenuPresenter$OpenOverflowRunnable -> android.su
 android.support.v7.widget.ActionMenuPresenter$OverflowMenuButton -> android.support.v7.widget.ActionMenuPresenter$OverflowMenuButton:
     float[] mTempPts -> mTempPts
     android.support.v7.widget.ActionMenuPresenter this$0 -> this$0
-    void <init>(android.support.v7.widget.ActionMenuPresenter,android.content.Context,int) -> <init>
+    void <init>(android.support.v7.widget.ActionMenuPresenter,android.content.Context) -> <init>
     boolean performClick() -> performClick
     boolean needsDividerBefore() -> needsDividerBefore
     boolean needsDividerAfter() -> needsDividerAfter
@@ -17630,14 +17599,13 @@ android.support.v7.widget.ActionMenuPresenter$OverflowMenuButton$1 -> android.su
     boolean onForwardingStopped() -> onForwardingStopped
 android.support.v7.widget.ActionMenuPresenter$OverflowPopup -> android.support.v7.widget.ActionMenuPresenter$OverflowPopup:
     android.support.v7.widget.ActionMenuPresenter this$0 -> this$0
-    void <init>(android.support.v7.widget.ActionMenuPresenter,android.content.Context,android.support.v7.view.menu.MenuBuilder,android.view.View,boolean,int) -> <init>
+    void <init>(android.support.v7.widget.ActionMenuPresenter,android.content.Context,android.support.v7.view.menu.MenuBuilder,android.view.View,boolean) -> <init>
     void onDismiss() -> onDismiss
 android.support.v7.widget.ActionMenuPresenter$PopupPresenterCallback -> android.support.v7.widget.ActionMenuPresenter$PopupPresenterCallback:
     android.support.v7.widget.ActionMenuPresenter this$0 -> this$0
     void <init>(android.support.v7.widget.ActionMenuPresenter) -> <init>
     boolean onOpenSubMenu(android.support.v7.view.menu.MenuBuilder) -> onOpenSubMenu
     void onCloseMenu(android.support.v7.view.menu.MenuBuilder,boolean) -> onCloseMenu
-    void <init>(android.support.v7.widget.ActionMenuPresenter,android.support.v7.widget.ActionMenuPresenter$1) -> <init>
 android.support.v7.widget.ActionMenuPresenter$SavedState -> android.support.v7.widget.ActionMenuPresenter$SavedState:
     int openSubMenuId -> openSubMenuId
     android.os.Parcelable$Creator CREATOR -> CREATOR
@@ -17709,9 +17677,6 @@ android.support.v7.widget.ActionMenuView -> android.support.v7.widget.ActionMenu
     android.view.ViewGroup$LayoutParams generateDefaultLayoutParams() -> generateDefaultLayoutParams
     android.view.ViewGroup$LayoutParams generateLayoutParams(android.view.ViewGroup$LayoutParams) -> generateLayoutParams
     android.view.ViewGroup$LayoutParams generateLayoutParams(android.util.AttributeSet) -> generateLayoutParams
-    android.support.v7.widget.ActionMenuView$OnMenuItemClickListener access$200(android.support.v7.widget.ActionMenuView) -> access$200
-    android.support.v7.view.menu.MenuBuilder$Callback access$300(android.support.v7.widget.ActionMenuView) -> access$300
-android.support.v7.widget.ActionMenuView$1 -> android.support.v7.widget.ActionMenuView$1:
 android.support.v7.widget.ActionMenuView$ActionMenuChildView -> android.support.v7.widget.ActionMenuView$ActionMenuChildView:
     boolean needsDividerBefore() -> needsDividerBefore
     boolean needsDividerAfter() -> needsDividerAfter
@@ -17720,7 +17685,6 @@ android.support.v7.widget.ActionMenuView$ActionMenuPresenterCallback -> android.
     void <init>(android.support.v7.widget.ActionMenuView) -> <init>
     void onCloseMenu(android.support.v7.view.menu.MenuBuilder,boolean) -> onCloseMenu
     boolean onOpenSubMenu(android.support.v7.view.menu.MenuBuilder) -> onOpenSubMenu
-    void <init>(android.support.v7.widget.ActionMenuView,android.support.v7.widget.ActionMenuView$1) -> <init>
 android.support.v7.widget.ActionMenuView$LayoutParams -> android.support.v7.widget.ActionMenuView$LayoutParams:
     boolean isOverflowButton -> isOverflowButton
     int cellsUsed -> cellsUsed
@@ -17738,7 +17702,6 @@ android.support.v7.widget.ActionMenuView$MenuBuilderCallback -> android.support.
     void <init>(android.support.v7.widget.ActionMenuView) -> <init>
     boolean onMenuItemSelected(android.support.v7.view.menu.MenuBuilder,android.view.MenuItem) -> onMenuItemSelected
     void onMenuModeChange(android.support.v7.view.menu.MenuBuilder) -> onMenuModeChange
-    void <init>(android.support.v7.widget.ActionMenuView,android.support.v7.widget.ActionMenuView$1) -> <init>
 android.support.v7.widget.ActionMenuView$OnMenuItemClickListener -> android.support.v7.widget.ActionMenuView$OnMenuItemClickListener:
     boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
 android.support.v7.widget.ActivityChooserModel -> android.support.v7.widget.ActivityChooserModel:
@@ -17793,12 +17756,7 @@ android.support.v7.widget.ActivityChooserModel -> android.support.v7.widget.Acti
     boolean addHistoricalRecord(android.support.v7.widget.ActivityChooserModel$HistoricalRecord) -> addHistoricalRecord
     void pruneExcessiveHistoricalRecordsIfNeeded() -> pruneExcessiveHistoricalRecordsIfNeeded
     void readHistoricalDataImpl() -> readHistoricalDataImpl
-    android.content.Context access$200(android.support.v7.widget.ActivityChooserModel) -> access$200
-    java.lang.String access$300() -> access$300
-    java.lang.String access$400(android.support.v7.widget.ActivityChooserModel) -> access$400
-    boolean access$502(android.support.v7.widget.ActivityChooserModel,boolean) -> access$502
     void <clinit>() -> <clinit>
-android.support.v7.widget.ActivityChooserModel$1 -> android.support.v7.widget.ActivityChooserModel$1:
 android.support.v7.widget.ActivityChooserModel$ActivityChooserModelClient -> android.support.v7.widget.ActivityChooserModel$ActivityChooserModelClient:
     void setActivityChooserModel(android.support.v7.widget.ActivityChooserModel) -> setActivityChooserModel
 android.support.v7.widget.ActivityChooserModel$ActivityResolveInfo -> android.support.v7.widget.ActivityChooserModel$ActivityResolveInfo:
@@ -17819,7 +17777,6 @@ android.support.v7.widget.ActivityChooserModel$DefaultSorter -> android.support.
     android.support.v7.widget.ActivityChooserModel this$0 -> this$0
     void <init>(android.support.v7.widget.ActivityChooserModel) -> <init>
     void sort(android.content.Intent,java.util.List,java.util.List) -> sort
-    void <init>(android.support.v7.widget.ActivityChooserModel,android.support.v7.widget.ActivityChooserModel$1) -> <init>
 android.support.v7.widget.ActivityChooserModel$HistoricalRecord -> android.support.v7.widget.ActivityChooserModel$HistoricalRecord:
     android.content.ComponentName activity -> activity
     long time -> time
@@ -17836,7 +17793,6 @@ android.support.v7.widget.ActivityChooserModel$PersistHistoryAsyncTask -> androi
     void <init>(android.support.v7.widget.ActivityChooserModel) -> <init>
     java.lang.Void doInBackground(java.lang.Object[]) -> doInBackground
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-    void <init>(android.support.v7.widget.ActivityChooserModel,android.support.v7.widget.ActivityChooserModel$1) -> <init>
 android.support.v7.widget.ActivityChooserView -> android.support.v7.widget.ActivityChooserView:
     java.lang.String LOG_TAG -> LOG_TAG
     android.support.v7.widget.ActivityChooserView$ActivityChooserViewAdapter mAdapter -> mAdapter
@@ -17878,17 +17834,6 @@ android.support.v7.widget.ActivityChooserView -> android.support.v7.widget.Activ
     void setDefaultActionButtonContentDescription(int) -> setDefaultActionButtonContentDescription
     android.support.v7.widget.ListPopupWindow getListPopupWindow() -> getListPopupWindow
     void updateAppearance() -> updateAppearance
-    android.support.v7.widget.ActivityChooserView$ActivityChooserViewAdapter access$000(android.support.v7.widget.ActivityChooserView) -> access$000
-    android.support.v7.widget.ListPopupWindow access$100(android.support.v7.widget.ActivityChooserView) -> access$100
-    void access$300(android.support.v7.widget.ActivityChooserView) -> access$300
-    void access$400(android.support.v7.widget.ActivityChooserView,int) -> access$400
-    boolean access$500(android.support.v7.widget.ActivityChooserView) -> access$500
-    android.widget.FrameLayout access$600(android.support.v7.widget.ActivityChooserView) -> access$600
-    android.widget.FrameLayout access$700(android.support.v7.widget.ActivityChooserView) -> access$700
-    boolean access$502(android.support.v7.widget.ActivityChooserView,boolean) -> access$502
-    int access$800(android.support.v7.widget.ActivityChooserView) -> access$800
-    android.widget.PopupWindow$OnDismissListener access$900(android.support.v7.widget.ActivityChooserView) -> access$900
-    android.database.DataSetObserver access$1000(android.support.v7.widget.ActivityChooserView) -> access$1000
 android.support.v7.widget.ActivityChooserView$1 -> android.support.v7.widget.ActivityChooserView$1:
     android.support.v7.widget.ActivityChooserView this$0 -> this$0
     void <init>(android.support.v7.widget.ActivityChooserView) -> <init>
@@ -17919,9 +17864,8 @@ android.support.v7.widget.ActivityChooserView$ActivityChooserViewAdapter -> andr
     boolean mShowDefaultActivity -> mShowDefaultActivity
     boolean mHighlightDefaultActivity -> mHighlightDefaultActivity
     boolean mShowFooterView -> mShowFooterView
-    android.content.Context context -> context
     android.support.v7.widget.ActivityChooserView this$0 -> this$0
-    void <init>(android.support.v7.widget.ActivityChooserView,android.content.Context) -> <init>
+    void <init>(android.support.v7.widget.ActivityChooserView) -> <init>
     void setDataModel(android.support.v7.widget.ActivityChooserModel) -> setDataModel
     int getItemViewType(int) -> getItemViewType
     int getViewTypeCount() -> getViewTypeCount
@@ -17946,7 +17890,6 @@ android.support.v7.widget.ActivityChooserView$Callbacks -> android.support.v7.wi
     boolean onLongClick(android.view.View) -> onLongClick
     void onDismiss() -> onDismiss
     void notifyOnDismissListener() -> notifyOnDismissListener
-    void <init>(android.support.v7.widget.ActivityChooserView,android.support.v7.widget.ActivityChooserView$1) -> <init>
 android.support.v7.widget.ActivityChooserView$InnerLayout -> android.support.v7.widget.ActivityChooserView$InnerLayout:
     int[] TINT_ATTRS -> TINT_ATTRS
     void <init>(android.content.Context,android.util.AttributeSet) -> <init>
@@ -18017,6 +17960,15 @@ android.support.v7.widget.AdapterHelper$UpdateOp -> android.support.v7.widget.Ad
     java.lang.String toString() -> toString
     boolean equals(java.lang.Object) -> equals
     int hashCode() -> hashCode
+android.support.v7.widget.AlertDialogLayout -> android.support.v7.widget.AlertDialogLayout:
+    void <init>(android.content.Context) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    void onMeasure(int,int) -> onMeasure
+    boolean tryOnMeasure(int,int) -> tryOnMeasure
+    void forceUniformWidth(int,int) -> forceUniformWidth
+    int resolveMinimumHeight(android.view.View) -> resolveMinimumHeight
+    void onLayout(boolean,int,int,int,int) -> onLayout
+    void setChildFrame(android.view.View,int,int,int,int) -> setChildFrame
 android.support.v7.widget.AppCompatAutoCompleteTextView -> android.support.v7.widget.AppCompatAutoCompleteTextView:
     int[] TINT_ATTRS -> TINT_ATTRS
     android.support.v7.widget.AppCompatBackgroundHelper mBackgroundTintHelper -> mBackgroundTintHelper
@@ -18038,27 +17990,21 @@ android.support.v7.widget.AppCompatBackgroundHelper -> android.support.v7.widget
     android.view.View mView -> mView
     android.support.v7.widget.AppCompatDrawableManager mDrawableManager -> mDrawableManager
     int mBackgroundResId -> mBackgroundResId
-    android.support.v7.widget.AppCompatBackgroundHelper$BackgroundTintInfo mInternalBackgroundTint -> mInternalBackgroundTint
-    android.support.v7.widget.AppCompatBackgroundHelper$BackgroundTintInfo mBackgroundTint -> mBackgroundTint
-    android.support.v7.widget.AppCompatBackgroundHelper$BackgroundTintInfo mTmpInfo -> mTmpInfo
+    android.support.v7.widget.TintInfo mInternalBackgroundTint -> mInternalBackgroundTint
+    android.support.v7.widget.TintInfo mBackgroundTint -> mBackgroundTint
+    android.support.v7.widget.TintInfo mTmpInfo -> mTmpInfo
     void <init>(android.view.View) -> <init>
     void loadFromAttributes(android.util.AttributeSet,int) -> loadFromAttributes
     void onSetBackgroundResource(int) -> onSetBackgroundResource
     void onSetBackgroundDrawable(android.graphics.drawable.Drawable) -> onSetBackgroundDrawable
     void setSupportBackgroundTintList(android.content.res.ColorStateList) -> setSupportBackgroundTintList
-    boolean updateBackgroundTint() -> updateBackgroundTint
     android.content.res.ColorStateList getSupportBackgroundTintList() -> getSupportBackgroundTintList
     void setSupportBackgroundTintMode(android.graphics.PorterDuff$Mode) -> setSupportBackgroundTintMode
     android.graphics.PorterDuff$Mode getSupportBackgroundTintMode() -> getSupportBackgroundTintMode
     void applySupportBackgroundTint() -> applySupportBackgroundTint
     void setInternalBackgroundTint(android.content.res.ColorStateList) -> setInternalBackgroundTint
+    boolean shouldApplyFrameworkTintUsingColorFilter() -> shouldApplyFrameworkTintUsingColorFilter
     boolean applyFrameworkTintUsingColorFilter(android.graphics.drawable.Drawable) -> applyFrameworkTintUsingColorFilter
-android.support.v7.widget.AppCompatBackgroundHelper$1 -> android.support.v7.widget.AppCompatBackgroundHelper$1:
-android.support.v7.widget.AppCompatBackgroundHelper$BackgroundTintInfo -> android.support.v7.widget.AppCompatBackgroundHelper$BackgroundTintInfo:
-    android.content.res.ColorStateList mOriginalTintList -> mOriginalTintList
-    void <init>() -> <init>
-    void clear() -> clear
-    void <init>(android.support.v7.widget.AppCompatBackgroundHelper$1) -> <init>
 android.support.v7.widget.AppCompatButton -> android.support.v7.widget.AppCompatButton:
     android.support.v7.widget.AppCompatBackgroundHelper mBackgroundTintHelper -> mBackgroundTintHelper
     android.support.v7.widget.AppCompatTextHelper mTextHelper -> mTextHelper
@@ -18132,7 +18078,7 @@ android.support.v7.widget.AppCompatDrawableManager -> android.support.v7.widget.
     int[] TINT_CHECKABLE_BUTTON_LIST -> TINT_CHECKABLE_BUTTON_LIST
     java.util.WeakHashMap mTintLists -> mTintLists
     android.support.v4.util.ArrayMap mDelegates -> mDelegates
-    android.util.SparseArray mKnownDrawableIdTags -> mKnownDrawableIdTags
+    android.support.v4.util.SparseArrayCompat mKnownDrawableIdTags -> mKnownDrawableIdTags
     java.lang.Object mDrawableCacheLock -> mDrawableCacheLock
     java.util.WeakHashMap mDrawableCaches -> mDrawableCaches
     android.util.TypedValue mTypedValue -> mTypedValue
@@ -18140,12 +18086,6 @@ android.support.v7.widget.AppCompatDrawableManager -> android.support.v7.widget.
     void <init>() -> <init>
     android.support.v7.widget.AppCompatDrawableManager get() -> get
     void installDefaultInflateDelegates(android.support.v7.widget.AppCompatDrawableManager) -> installDefaultInflateDelegates
-    void initColorFilterTintColorControlNormal(android.content.Context) -> initColorFilterTintColorControlNormal
-    void initTintColorControlNormal(android.content.Context) -> initTintColorControlNormal
-    void initColorFilterColorControlActivated(android.content.Context) -> initColorFilterColorControlActivated
-    void initColorFilterColorBackgroundMuliply(android.content.Context) -> initColorFilterColorBackgroundMuliply
-    void initTintColorControlStateList(android.content.Context) -> initTintColorControlStateList
-    void initTintCheckableButtonList(android.content.Context) -> initTintCheckableButtonList
     android.graphics.drawable.Drawable getDrawable(android.content.Context,int) -> getDrawable
     android.graphics.drawable.Drawable getDrawable(android.content.Context,int,boolean) -> getDrawable
     void onConfigurationChanged(android.content.Context) -> onConfigurationChanged
@@ -18160,15 +18100,14 @@ android.support.v7.widget.AppCompatDrawableManager -> android.support.v7.widget.
     void addDelegate(java.lang.String,android.support.v7.widget.AppCompatDrawableManager$InflateDelegate) -> addDelegate
     void removeDelegate(java.lang.String,android.support.v7.widget.AppCompatDrawableManager$InflateDelegate) -> removeDelegate
     boolean arrayContains(int[],int) -> arrayContains
-    android.graphics.PorterDuff$Mode getTintMode(android.content.Context,int) -> getTintMode
+    android.graphics.PorterDuff$Mode getTintMode(int) -> getTintMode
     android.content.res.ColorStateList getTintList(android.content.Context,int) -> getTintList
-    android.content.res.ColorStateList getTintList(android.content.Context,int,android.content.res.ColorStateList) -> getTintList
     android.content.res.ColorStateList getTintListFromCache(android.content.Context,int) -> getTintListFromCache
     void addTintListToCache(android.content.Context,int,android.content.res.ColorStateList) -> addTintListToCache
-    android.content.res.ColorStateList createDefaultButtonColorStateList(android.content.Context,android.content.res.ColorStateList) -> createDefaultButtonColorStateList
-    android.content.res.ColorStateList createBorderlessButtonColorStateList(android.content.Context,android.content.res.ColorStateList) -> createBorderlessButtonColorStateList
-    android.content.res.ColorStateList createColoredButtonColorStateList(android.content.Context,android.content.res.ColorStateList) -> createColoredButtonColorStateList
-    android.content.res.ColorStateList createButtonColorStateList(android.content.Context,int,android.content.res.ColorStateList) -> createButtonColorStateList
+    android.content.res.ColorStateList createDefaultButtonColorStateList(android.content.Context) -> createDefaultButtonColorStateList
+    android.content.res.ColorStateList createBorderlessButtonColorStateList(android.content.Context) -> createBorderlessButtonColorStateList
+    android.content.res.ColorStateList createColoredButtonColorStateList(android.content.Context) -> createColoredButtonColorStateList
+    android.content.res.ColorStateList createButtonColorStateList(android.content.Context,int) -> createButtonColorStateList
     void tintDrawable(android.graphics.drawable.Drawable,android.support.v7.widget.TintInfo,int[]) -> tintDrawable
     android.graphics.PorterDuffColorFilter createTintFilter(android.content.res.ColorStateList,android.graphics.PorterDuff$Mode,int[]) -> createTintFilter
     android.graphics.PorterDuffColorFilter getPorterDuffColorFilter(int,android.graphics.PorterDuff$Mode) -> getPorterDuffColorFilter
@@ -18176,11 +18115,9 @@ android.support.v7.widget.AppCompatDrawableManager -> android.support.v7.widget.
     void checkVectorDrawableSetup(android.content.Context) -> checkVectorDrawableSetup
     boolean isVectorDrawable(android.graphics.drawable.Drawable) -> isVectorDrawable
     void <clinit>() -> <clinit>
-android.support.v7.widget.AppCompatDrawableManager$1 -> android.support.v7.widget.AppCompatDrawableManager$1:
 android.support.v7.widget.AppCompatDrawableManager$AvdcInflateDelegate -> android.support.v7.widget.AppCompatDrawableManager$AvdcInflateDelegate:
     void <init>() -> <init>
     android.graphics.drawable.Drawable createFromXmlInner(android.content.Context,org.xmlpull.v1.XmlPullParser,android.util.AttributeSet,android.content.res.Resources$Theme) -> createFromXmlInner
-    void <init>(android.support.v7.widget.AppCompatDrawableManager$1) -> <init>
 android.support.v7.widget.AppCompatDrawableManager$ColorFilterLruCache -> android.support.v7.widget.AppCompatDrawableManager$ColorFilterLruCache:
     void <init>(int) -> <init>
     android.graphics.PorterDuffColorFilter get(int,android.graphics.PorterDuff$Mode) -> get
@@ -18191,7 +18128,6 @@ android.support.v7.widget.AppCompatDrawableManager$InflateDelegate -> android.su
 android.support.v7.widget.AppCompatDrawableManager$VdcInflateDelegate -> android.support.v7.widget.AppCompatDrawableManager$VdcInflateDelegate:
     void <init>() -> <init>
     android.graphics.drawable.Drawable createFromXmlInner(android.content.Context,org.xmlpull.v1.XmlPullParser,android.util.AttributeSet,android.content.res.Resources$Theme) -> createFromXmlInner
-    void <init>(android.support.v7.widget.AppCompatDrawableManager$1) -> <init>
 android.support.v7.widget.AppCompatEditText -> android.support.v7.widget.AppCompatEditText:
     android.support.v7.widget.AppCompatBackgroundHelper mBackgroundTintHelper -> mBackgroundTintHelper
     android.support.v7.widget.AppCompatTextHelper mTextHelper -> mTextHelper
@@ -18336,8 +18272,6 @@ android.support.v7.widget.AppCompatSeekBarHelper -> android.support.v7.widget.Ap
     void drawableStateChanged() -> drawableStateChanged
     void drawTickMarks(android.graphics.Canvas) -> drawTickMarks
 android.support.v7.widget.AppCompatSpinner -> android.support.v7.widget.AppCompatSpinner:
-    boolean IS_AT_LEAST_M -> IS_AT_LEAST_M
-    boolean IS_AT_LEAST_JB -> IS_AT_LEAST_JB
     int[] ATTRS_ANDROID_SPINNERMODE -> ATTRS_ANDROID_SPINNERMODE
     int MAX_ITEMS_MEASURED -> MAX_ITEMS_MEASURED
     java.lang.String TAG -> TAG
@@ -18384,11 +18318,6 @@ android.support.v7.widget.AppCompatSpinner -> android.support.v7.widget.AppCompa
     void drawableStateChanged() -> drawableStateChanged
     int compatMeasureContentWidth(android.widget.SpinnerAdapter,android.graphics.drawable.Drawable) -> compatMeasureContentWidth
     void setAdapter(android.widget.Adapter) -> setAdapter
-    android.support.v7.widget.AppCompatSpinner$DropdownPopup access$000(android.support.v7.widget.AppCompatSpinner) -> access$000
-    boolean access$100() -> access$100
-    android.graphics.Rect access$300(android.support.v7.widget.AppCompatSpinner) -> access$300
-    int access$400(android.support.v7.widget.AppCompatSpinner) -> access$400
-    int access$500(android.support.v7.widget.AppCompatSpinner,android.widget.SpinnerAdapter,android.graphics.drawable.Drawable) -> access$500
     void <clinit>() -> <clinit>
 android.support.v7.widget.AppCompatSpinner$1 -> android.support.v7.widget.AppCompatSpinner$1:
     android.support.v7.widget.AppCompatSpinner$DropdownPopup val$popup -> val$popup
@@ -18425,9 +18354,7 @@ android.support.v7.widget.AppCompatSpinner$DropdownPopup -> android.support.v7.w
     void computeContentWidth() -> computeContentWidth
     void show() -> show
     boolean isVisibleToUser(android.view.View) -> isVisibleToUser
-    android.widget.ListAdapter access$200(android.support.v7.widget.AppCompatSpinner$DropdownPopup) -> access$200
-    boolean access$600(android.support.v7.widget.AppCompatSpinner$DropdownPopup,android.view.View) -> access$600
-    void access$701(android.support.v7.widget.AppCompatSpinner$DropdownPopup) -> access$701
+    void access$001(android.support.v7.widget.AppCompatSpinner$DropdownPopup) -> access$001
 android.support.v7.widget.AppCompatSpinner$DropdownPopup$1 -> android.support.v7.widget.AppCompatSpinner$DropdownPopup$1:
     android.support.v7.widget.AppCompatSpinner val$this$0 -> val$this$0
     android.support.v7.widget.AppCompatSpinner$DropdownPopup this$1 -> this$1
@@ -18478,11 +18405,13 @@ android.support.v7.widget.AppCompatTextView -> android.support.v7.widget.AppComp
     void drawableStateChanged() -> drawableStateChanged
 android.support.v7.widget.ButtonBarLayout -> android.support.v7.widget.ButtonBarLayout:
     int ALLOW_STACKING_MIN_HEIGHT_DP -> ALLOW_STACKING_MIN_HEIGHT_DP
+    int PEEK_BUTTON_DP -> PEEK_BUTTON_DP
     boolean mAllowStacking -> mAllowStacking
     int mLastWidthSize -> mLastWidthSize
     void <init>(android.content.Context,android.util.AttributeSet) -> <init>
     void setAllowStacking(boolean) -> setAllowStacking
     void onMeasure(int,int) -> onMeasure
+    int getNextVisibleChildIndex(int) -> getNextVisibleChildIndex
     void setStacked(boolean) -> setStacked
     boolean isStacked() -> isStacked
 android.support.v7.widget.ChildHelper -> android.support.v7.widget.ChildHelper:
@@ -18832,8 +18761,11 @@ android.support.v7.widget.ForwardingListener -> android.support.v7.widget.Forwar
     int mActivePointerId -> mActivePointerId
     int[] mTmpLocation -> mTmpLocation
     void <init>(android.view.View) -> <init>
+    void addDetachListenerApi12(android.view.View) -> addDetachListenerApi12
+    void addDetachListenerBase(android.view.View) -> addDetachListenerBase
     android.support.v7.view.menu.ShowableListMenu getPopup() -> getPopup
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    void onDetachedFromWindow() -> onDetachedFromWindow
     boolean onForwardingStarted() -> onForwardingStarted
     boolean onForwardingStopped() -> onForwardingStopped
     boolean onTouchObserved(android.view.MotionEvent) -> onTouchObserved
@@ -18843,19 +18775,25 @@ android.support.v7.widget.ForwardingListener -> android.support.v7.widget.Forwar
     boolean pointInView(android.view.View,float,float,float) -> pointInView
     boolean toLocalMotionEvent(android.view.View,android.view.MotionEvent) -> toLocalMotionEvent
     boolean toGlobalMotionEvent(android.view.View,android.view.MotionEvent) -> toGlobalMotionEvent
-    android.view.View access$200(android.support.v7.widget.ForwardingListener) -> access$200
-    void access$300(android.support.v7.widget.ForwardingListener) -> access$300
+    void access$000(android.support.v7.widget.ForwardingListener) -> access$000
 android.support.v7.widget.ForwardingListener$1 -> android.support.v7.widget.ForwardingListener$1:
+    android.support.v7.widget.ForwardingListener this$0 -> this$0
+    void <init>(android.support.v7.widget.ForwardingListener) -> <init>
+    void onViewAttachedToWindow(android.view.View) -> onViewAttachedToWindow
+    void onViewDetachedFromWindow(android.view.View) -> onViewDetachedFromWindow
+android.support.v7.widget.ForwardingListener$2 -> android.support.v7.widget.ForwardingListener$2:
+    boolean mIsAttached -> mIsAttached
+    android.support.v7.widget.ForwardingListener this$0 -> this$0
+    void <init>(android.support.v7.widget.ForwardingListener) -> <init>
+    void onGlobalLayout() -> onGlobalLayout
 android.support.v7.widget.ForwardingListener$DisallowIntercept -> android.support.v7.widget.ForwardingListener$DisallowIntercept:
     android.support.v7.widget.ForwardingListener this$0 -> this$0
     void <init>(android.support.v7.widget.ForwardingListener) -> <init>
     void run() -> run
-    void <init>(android.support.v7.widget.ForwardingListener,android.support.v7.widget.ForwardingListener$1) -> <init>
 android.support.v7.widget.ForwardingListener$TriggerLongPress -> android.support.v7.widget.ForwardingListener$TriggerLongPress:
     android.support.v7.widget.ForwardingListener this$0 -> this$0
     void <init>(android.support.v7.widget.ForwardingListener) -> <init>
     void run() -> run
-    void <init>(android.support.v7.widget.ForwardingListener,android.support.v7.widget.ForwardingListener$1) -> <init>
 android.support.v7.widget.GapWorker -> android.support.v7.widget.GapWorker:
     java.lang.ThreadLocal sGapWorker -> sGapWorker
     java.util.ArrayList mRecyclerViews -> mRecyclerViews
@@ -19076,6 +19014,7 @@ android.support.v7.widget.LinearLayoutCompat -> android.support.v7.widget.Linear
     void setOrientation(int) -> setOrientation
     int getOrientation() -> getOrientation
     void setGravity(int) -> setGravity
+    int getGravity() -> getGravity
     void setHorizontalGravity(int) -> setHorizontalGravity
     void setVerticalGravity(int) -> setVerticalGravity
     android.support.v7.widget.LinearLayoutCompat$LayoutParams generateLayoutParams(android.util.AttributeSet) -> generateLayoutParams
@@ -19436,9 +19375,6 @@ android.support.v7.widget.ListPopupWindow -> android.support.v7.widget.ListPopup
     boolean isConfirmKey(int) -> isConfirmKey
     void setPopupClipToScreenEnabled(boolean) -> setPopupClipToScreenEnabled
     int getMaxAvailableHeight(android.view.View,int,boolean) -> getMaxAvailableHeight
-    android.support.v7.widget.DropDownListView access$500(android.support.v7.widget.ListPopupWindow) -> access$500
-    android.support.v7.widget.ListPopupWindow$ResizePopupRunnable access$600(android.support.v7.widget.ListPopupWindow) -> access$600
-    android.os.Handler access$700(android.support.v7.widget.ListPopupWindow) -> access$700
     void <clinit>() -> <clinit>
 android.support.v7.widget.ListPopupWindow$1 -> android.support.v7.widget.ListPopupWindow$1:
     android.support.v7.widget.ListPopupWindow this$0 -> this$0
@@ -19458,29 +19394,24 @@ android.support.v7.widget.ListPopupWindow$ListSelectorHider -> android.support.v
     android.support.v7.widget.ListPopupWindow this$0 -> this$0
     void <init>(android.support.v7.widget.ListPopupWindow) -> <init>
     void run() -> run
-    void <init>(android.support.v7.widget.ListPopupWindow,android.support.v7.widget.ListPopupWindow$1) -> <init>
 android.support.v7.widget.ListPopupWindow$PopupDataSetObserver -> android.support.v7.widget.ListPopupWindow$PopupDataSetObserver:
     android.support.v7.widget.ListPopupWindow this$0 -> this$0
     void <init>(android.support.v7.widget.ListPopupWindow) -> <init>
     void onChanged() -> onChanged
     void onInvalidated() -> onInvalidated
-    void <init>(android.support.v7.widget.ListPopupWindow,android.support.v7.widget.ListPopupWindow$1) -> <init>
 android.support.v7.widget.ListPopupWindow$PopupScrollListener -> android.support.v7.widget.ListPopupWindow$PopupScrollListener:
     android.support.v7.widget.ListPopupWindow this$0 -> this$0
     void <init>(android.support.v7.widget.ListPopupWindow) -> <init>
     void onScroll(android.widget.AbsListView,int,int,int) -> onScroll
     void onScrollStateChanged(android.widget.AbsListView,int) -> onScrollStateChanged
-    void <init>(android.support.v7.widget.ListPopupWindow,android.support.v7.widget.ListPopupWindow$1) -> <init>
 android.support.v7.widget.ListPopupWindow$PopupTouchInterceptor -> android.support.v7.widget.ListPopupWindow$PopupTouchInterceptor:
     android.support.v7.widget.ListPopupWindow this$0 -> this$0
     void <init>(android.support.v7.widget.ListPopupWindow) -> <init>
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-    void <init>(android.support.v7.widget.ListPopupWindow,android.support.v7.widget.ListPopupWindow$1) -> <init>
 android.support.v7.widget.ListPopupWindow$ResizePopupRunnable -> android.support.v7.widget.ListPopupWindow$ResizePopupRunnable:
     android.support.v7.widget.ListPopupWindow this$0 -> this$0
     void <init>(android.support.v7.widget.ListPopupWindow) -> <init>
     void run() -> run
-    void <init>(android.support.v7.widget.ListPopupWindow,android.support.v7.widget.ListPopupWindow$1) -> <init>
 android.support.v7.widget.ListViewCompat -> android.support.v7.widget.ListViewCompat:
     int INVALID_POSITION -> INVALID_POSITION
     int NO_POSITION -> NO_POSITION
@@ -19667,9 +19598,6 @@ android.support.v7.widget.PopupMenu -> android.support.v7.widget.PopupMenu:
     void dismiss() -> dismiss
     void setOnMenuItemClickListener(android.support.v7.widget.PopupMenu$OnMenuItemClickListener) -> setOnMenuItemClickListener
     void setOnDismissListener(android.support.v7.widget.PopupMenu$OnDismissListener) -> setOnDismissListener
-    android.support.v7.widget.PopupMenu$OnMenuItemClickListener access$000(android.support.v7.widget.PopupMenu) -> access$000
-    android.support.v7.widget.PopupMenu$OnDismissListener access$100(android.support.v7.widget.PopupMenu) -> access$100
-    android.support.v7.view.menu.MenuPopupHelper access$200(android.support.v7.widget.PopupMenu) -> access$200
 android.support.v7.widget.PopupMenu$1 -> android.support.v7.widget.PopupMenu$1:
     android.support.v7.widget.PopupMenu this$0 -> this$0
     void <init>(android.support.v7.widget.PopupMenu) -> <init>
@@ -20895,8 +20823,6 @@ android.support.v7.widget.ScrollingTabContainerView -> android.support.v7.widget
     void removeAllTabs() -> removeAllTabs
     void onItemSelected(android.widget.AdapterView,android.view.View,int,long) -> onItemSelected
     void onNothingSelected(android.widget.AdapterView) -> onNothingSelected
-    android.support.v7.widget.LinearLayoutCompat access$200(android.support.v7.widget.ScrollingTabContainerView) -> access$200
-    android.support.v7.widget.ScrollingTabContainerView$TabView access$300(android.support.v7.widget.ScrollingTabContainerView,android.support.v7.app.ActionBar$Tab,boolean) -> access$300
     void <clinit>() -> <clinit>
 android.support.v7.widget.ScrollingTabContainerView$1 -> android.support.v7.widget.ScrollingTabContainerView$1:
     android.view.View val$tabView -> val$tabView
@@ -20910,12 +20836,10 @@ android.support.v7.widget.ScrollingTabContainerView$TabAdapter -> android.suppor
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    void <init>(android.support.v7.widget.ScrollingTabContainerView,android.support.v7.widget.ScrollingTabContainerView$1) -> <init>
 android.support.v7.widget.ScrollingTabContainerView$TabClickListener -> android.support.v7.widget.ScrollingTabContainerView$TabClickListener:
     android.support.v7.widget.ScrollingTabContainerView this$0 -> this$0
     void <init>(android.support.v7.widget.ScrollingTabContainerView) -> <init>
     void onClick(android.view.View) -> onClick
-    void <init>(android.support.v7.widget.ScrollingTabContainerView,android.support.v7.widget.ScrollingTabContainerView$1) -> <init>
 android.support.v7.widget.ScrollingTabContainerView$TabView -> android.support.v7.widget.ScrollingTabContainerView$TabView:
     int[] BG_ATTRS -> BG_ATTRS
     android.support.v7.app.ActionBar$Tab mTab -> mTab
@@ -20923,7 +20847,7 @@ android.support.v7.widget.ScrollingTabContainerView$TabView -> android.support.v
     android.widget.ImageView mIconView -> mIconView
     android.view.View mCustomView -> mCustomView
     android.support.v7.widget.ScrollingTabContainerView this$0 -> this$0
-    void <init>(android.support.v7.widget.ScrollingTabContainerView,android.content.Context,android.support.v7.app.ActionBar$Tab,boolean,int) -> <init>
+    void <init>(android.support.v7.widget.ScrollingTabContainerView,android.content.Context,android.support.v7.app.ActionBar$Tab,boolean) -> <init>
     void bindTab(android.support.v7.app.ActionBar$Tab) -> bindTab
     void setSelected(boolean) -> setSelected
     void onInitializeAccessibilityEvent(android.view.accessibility.AccessibilityEvent) -> onInitializeAccessibilityEvent
@@ -21080,27 +21004,6 @@ android.support.v7.widget.SearchView -> android.support.v7.widget.SearchView:
     android.content.Intent createIntentFromSuggestion(android.database.Cursor,int,java.lang.String) -> createIntentFromSuggestion
     void forceSuggestionQuery() -> forceSuggestionQuery
     boolean isLandscapeMode(android.content.Context) -> isLandscapeMode
-    void access$000(android.support.v7.widget.SearchView) -> access$000
-    android.support.v4.widget.CursorAdapter access$100(android.support.v7.widget.SearchView) -> access$100
-    android.view.View$OnFocusChangeListener access$200(android.support.v7.widget.SearchView) -> access$200
-    void access$300(android.support.v7.widget.SearchView) -> access$300
-    android.widget.ImageView access$400(android.support.v7.widget.SearchView) -> access$400
-    void access$500(android.support.v7.widget.SearchView) -> access$500
-    android.widget.ImageView access$600(android.support.v7.widget.SearchView) -> access$600
-    void access$700(android.support.v7.widget.SearchView) -> access$700
-    android.widget.ImageView access$800(android.support.v7.widget.SearchView) -> access$800
-    void access$900(android.support.v7.widget.SearchView) -> access$900
-    android.widget.ImageView access$1000(android.support.v7.widget.SearchView) -> access$1000
-    void access$1100(android.support.v7.widget.SearchView) -> access$1100
-    android.support.v7.widget.SearchView$SearchAutoComplete access$1200(android.support.v7.widget.SearchView) -> access$1200
-    void access$1300(android.support.v7.widget.SearchView) -> access$1300
-    android.app.SearchableInfo access$1400(android.support.v7.widget.SearchView) -> access$1400
-    boolean access$1500(android.support.v7.widget.SearchView,android.view.View,int,android.view.KeyEvent) -> access$1500
-    void access$1700(android.support.v7.widget.SearchView,int,java.lang.String,java.lang.String) -> access$1700
-    boolean access$1800(android.support.v7.widget.SearchView,int,int,java.lang.String) -> access$1800
-    boolean access$1900(android.support.v7.widget.SearchView,int) -> access$1900
-    void access$2000(android.support.v7.widget.SearchView,java.lang.CharSequence) -> access$2000
-    void access$2100(android.support.v7.widget.SearchView,boolean) -> access$2100
     void <clinit>() -> <clinit>
 android.support.v7.widget.SearchView$1 -> android.support.v7.widget.SearchView$1:
     android.support.v7.widget.SearchView this$0 -> this$0
@@ -21202,7 +21105,7 @@ android.support.v7.widget.SearchView$SearchAutoComplete -> android.support.v7.wi
     boolean enoughToFilter() -> enoughToFilter
     boolean onKeyPreIme(int,android.view.KeyEvent) -> onKeyPreIme
     int getSearchViewTextMinWidthDp() -> getSearchViewTextMinWidthDp
-    boolean access$1600(android.support.v7.widget.SearchView$SearchAutoComplete) -> access$1600
+    boolean access$000(android.support.v7.widget.SearchView$SearchAutoComplete) -> access$000
 android.support.v7.widget.SearchView$UpdatableTouchDelegate -> android.support.v7.widget.SearchView$UpdatableTouchDelegate:
     android.view.View mDelegateView -> mDelegateView
     android.graphics.Rect mTargetBounds -> mTargetBounds
@@ -21231,23 +21134,16 @@ android.support.v7.widget.ShareActionProvider -> android.support.v7.widget.Share
     void setShareIntent(android.content.Intent) -> setShareIntent
     void setActivityChooserPolicyIfNeeded() -> setActivityChooserPolicyIfNeeded
     void updateIntent(android.content.Intent) -> updateIntent
-    android.content.Context access$100(android.support.v7.widget.ShareActionProvider) -> access$100
-    java.lang.String access$200(android.support.v7.widget.ShareActionProvider) -> access$200
-    void access$300(android.support.v7.widget.ShareActionProvider,android.content.Intent) -> access$300
-    android.support.v7.widget.ShareActionProvider$OnShareTargetSelectedListener access$500(android.support.v7.widget.ShareActionProvider) -> access$500
-android.support.v7.widget.ShareActionProvider$1 -> android.support.v7.widget.ShareActionProvider$1:
 android.support.v7.widget.ShareActionProvider$OnShareTargetSelectedListener -> android.support.v7.widget.ShareActionProvider$OnShareTargetSelectedListener:
     boolean onShareTargetSelected(android.support.v7.widget.ShareActionProvider,android.content.Intent) -> onShareTargetSelected
 android.support.v7.widget.ShareActionProvider$ShareActivityChooserModelPolicy -> android.support.v7.widget.ShareActionProvider$ShareActivityChooserModelPolicy:
     android.support.v7.widget.ShareActionProvider this$0 -> this$0
     void <init>(android.support.v7.widget.ShareActionProvider) -> <init>
     boolean onChooseActivity(android.support.v7.widget.ActivityChooserModel,android.content.Intent) -> onChooseActivity
-    void <init>(android.support.v7.widget.ShareActionProvider,android.support.v7.widget.ShareActionProvider$1) -> <init>
 android.support.v7.widget.ShareActionProvider$ShareMenuItemOnMenuItemClickListener -> android.support.v7.widget.ShareActionProvider$ShareMenuItemOnMenuItemClickListener:
     android.support.v7.widget.ShareActionProvider this$0 -> this$0
     void <init>(android.support.v7.widget.ShareActionProvider) -> <init>
     boolean onMenuItemClick(android.view.MenuItem) -> onMenuItemClick
-    void <init>(android.support.v7.widget.ShareActionProvider,android.support.v7.widget.ShareActionProvider$1) -> <init>
 android.support.v7.widget.SimpleItemAnimator -> android.support.v7.widget.SimpleItemAnimator:
     boolean DEBUG -> DEBUG
     java.lang.String TAG -> TAG
@@ -21755,9 +21651,6 @@ android.support.v7.widget.SwitchCompat -> android.support.v7.widget.SwitchCompat
     void onInitializeAccessibilityEvent(android.view.accessibility.AccessibilityEvent) -> onInitializeAccessibilityEvent
     void onInitializeAccessibilityNodeInfo(android.view.accessibility.AccessibilityNodeInfo) -> onInitializeAccessibilityNodeInfo
     float constrain(float,float,float) -> constrain
-    android.support.v7.widget.SwitchCompat$ThumbAnimation access$100(android.support.v7.widget.SwitchCompat) -> access$100
-    void access$200(android.support.v7.widget.SwitchCompat,float) -> access$200
-    android.support.v7.widget.SwitchCompat$ThumbAnimation access$102(android.support.v7.widget.SwitchCompat,android.support.v7.widget.SwitchCompat$ThumbAnimation) -> access$102
     void <clinit>() -> <clinit>
 android.support.v7.widget.SwitchCompat$1 -> android.support.v7.widget.SwitchCompat$1:
     boolean val$newCheckedState -> val$newCheckedState
@@ -21773,7 +21666,6 @@ android.support.v7.widget.SwitchCompat$ThumbAnimation -> android.support.v7.widg
     android.support.v7.widget.SwitchCompat this$0 -> this$0
     void <init>(android.support.v7.widget.SwitchCompat,float,float) -> <init>
     void applyTransformation(float,android.view.animation.Transformation) -> applyTransformation
-    void <init>(android.support.v7.widget.SwitchCompat,float,float,android.support.v7.widget.SwitchCompat$1) -> <init>
 android.support.v7.widget.ThemeUtils -> android.support.v7.widget.ThemeUtils:
     java.lang.ThreadLocal TL_TYPED_VALUE -> TL_TYPED_VALUE
     int[] DISABLED_STATE_SET -> DISABLED_STATE_SET
@@ -21805,6 +21697,7 @@ android.support.v7.widget.ThemedSpinnerAdapter$Helper -> android.support.v7.widg
     android.content.res.Resources$Theme getDropDownViewTheme() -> getDropDownViewTheme
     android.view.LayoutInflater getDropDownViewInflater() -> getDropDownViewInflater
 android.support.v7.widget.TintContextWrapper -> android.support.v7.widget.TintContextWrapper:
+    java.lang.Object CACHE_LOCK -> CACHE_LOCK
     java.util.ArrayList sCache -> sCache
     android.content.res.Resources mResources -> mResources
     android.content.res.Resources$Theme mTheme -> mTheme
@@ -21814,6 +21707,7 @@ android.support.v7.widget.TintContextWrapper -> android.support.v7.widget.TintCo
     android.content.res.Resources$Theme getTheme() -> getTheme
     void setTheme(int) -> setTheme
     android.content.res.Resources getResources() -> getResources
+    android.content.res.AssetManager getAssets() -> getAssets
     void <clinit>() -> <clinit>
 android.support.v7.widget.TintInfo -> android.support.v7.widget.TintInfo:
     android.content.res.ColorStateList mTintList -> mTintList
@@ -22017,10 +21911,6 @@ android.support.v7.widget.Toolbar -> android.support.v7.widget.Toolbar:
     android.view.ViewGroup$LayoutParams generateDefaultLayoutParams() -> generateDefaultLayoutParams
     android.view.ViewGroup$LayoutParams generateLayoutParams(android.view.ViewGroup$LayoutParams) -> generateLayoutParams
     android.view.ViewGroup$LayoutParams generateLayoutParams(android.util.AttributeSet) -> generateLayoutParams
-    android.support.v7.widget.Toolbar$OnMenuItemClickListener access$000(android.support.v7.widget.Toolbar) -> access$000
-    void access$200(android.support.v7.widget.Toolbar) -> access$200
-    android.widget.ImageButton access$300(android.support.v7.widget.Toolbar) -> access$300
-    int access$400(android.support.v7.widget.Toolbar) -> access$400
 android.support.v7.widget.Toolbar$1 -> android.support.v7.widget.Toolbar$1:
     android.support.v7.widget.Toolbar this$0 -> this$0
     void <init>(android.support.v7.widget.Toolbar) -> <init>
@@ -22050,7 +21940,6 @@ android.support.v7.widget.Toolbar$ExpandedActionViewMenuPresenter -> android.sup
     int getId() -> getId
     android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
     void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
-    void <init>(android.support.v7.widget.Toolbar,android.support.v7.widget.Toolbar$1) -> <init>
 android.support.v7.widget.Toolbar$LayoutParams -> android.support.v7.widget.Toolbar$LayoutParams:
     int CUSTOM -> CUSTOM
     int SYSTEM -> SYSTEM
@@ -22169,10 +22058,6 @@ android.support.v7.widget.ToolbarWidgetWrapper -> android.support.v7.widget.Tool
     int getVisibility() -> getVisibility
     void setMenuCallbacks(android.support.v7.view.menu.MenuPresenter$Callback,android.support.v7.view.menu.MenuBuilder$Callback) -> setMenuCallbacks
     android.view.Menu getMenu() -> getMenu
-    android.support.v7.widget.Toolbar access$000(android.support.v7.widget.ToolbarWidgetWrapper) -> access$000
-    java.lang.CharSequence access$100(android.support.v7.widget.ToolbarWidgetWrapper) -> access$100
-    android.view.Window$Callback access$200(android.support.v7.widget.ToolbarWidgetWrapper) -> access$200
-    boolean access$300(android.support.v7.widget.ToolbarWidgetWrapper) -> access$300
 android.support.v7.widget.ToolbarWidgetWrapper$1 -> android.support.v7.widget.ToolbarWidgetWrapper$1:
     android.support.v7.view.menu.ActionMenuItem mNavItem -> mNavItem
     android.support.v7.widget.ToolbarWidgetWrapper this$0 -> this$0
@@ -22559,32 +22444,32 @@ com.huanju.chajianhuatest.BundleReturnPackageModel -> com.huanju.chajianhuatest.
     java.lang.String packageName -> packageName
     void <init>(java.lang.String) -> <init>
 com.huanju.chajianhuatest.CircleImageView -> com.huanju.chajianhuatest.CircleImageView:
-    android.widget.ImageView$ScaleType SCALE_TYPE -> az
-    android.graphics.Bitmap$Config BITMAP_CONFIG -> aA
-    android.graphics.RectF mDrawableRect -> aB
-    android.graphics.RectF mBorderRect -> aC
+    android.widget.ImageView$ScaleType SCALE_TYPE -> aC
+    android.graphics.Bitmap$Config BITMAP_CONFIG -> aD
+    android.graphics.RectF mDrawableRect -> aE
+    android.graphics.RectF mBorderRect -> aF
     android.graphics.Matrix mShaderMatrix -> mShaderMatrix
-    android.graphics.Paint mBitmapPaint -> aD
-    android.graphics.Paint mBorderPaint -> aE
-    android.graphics.Paint mFillPaint -> ag
-    int mBorderColor -> aF
-    int mBorderWidth -> aG
-    int mFillColor -> E
+    android.graphics.Paint mBitmapPaint -> aG
+    android.graphics.Paint mBorderPaint -> aH
+    android.graphics.Paint mFillPaint -> aj
+    int mBorderColor -> aI
+    int mBorderWidth -> aJ
+    int mFillColor -> H
     android.graphics.Bitmap mBitmap -> mBitmap
     android.graphics.BitmapShader mBitmapShader -> mBitmapShader
     int mBitmapWidth -> mBitmapWidth
     int mBitmapHeight -> mBitmapHeight
-    float mDrawableRadius -> aH
-    float mBorderRadius -> aI
-    android.graphics.ColorFilter mColorFilter -> u
-    boolean mReady -> aJ
-    boolean mSetupPending -> aK
-    boolean mBorderOverlay -> aL
-    boolean mDisableCircularTransformation -> aM
+    float mDrawableRadius -> aK
+    float mBorderRadius -> aL
+    android.graphics.ColorFilter mColorFilter -> z
+    boolean mReady -> aM
+    boolean mSetupPending -> aN
+    boolean mBorderOverlay -> aO
+    boolean mDisableCircularTransformation -> aP
     void <init>(android.content.Context) -> <init>
     void <init>(android.content.Context,android.util.AttributeSet) -> <init>
     void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
-    void init() -> j
+    void init() -> k
     android.widget.ImageView$ScaleType getScaleType() -> getScaleType
     void setScaleType(android.widget.ImageView$ScaleType) -> setScaleType
     void setAdjustViewBounds(boolean) -> setAdjustViewBounds
@@ -22608,12 +22493,12 @@ com.huanju.chajianhuatest.CircleImageView -> com.huanju.chajianhuatest.CircleIma
     void setImageURI(android.net.Uri) -> setImageURI
     void setColorFilter(android.graphics.ColorFilter) -> setColorFilter
     android.graphics.ColorFilter getColorFilter() -> getColorFilter
-    void applyColorFilter() -> k
+    void applyColorFilter() -> l
     android.graphics.Bitmap getBitmapFromDrawable(android.graphics.drawable.Drawable) -> a
-    void initializeBitmap() -> l
+    void initializeBitmap() -> m
     void setup() -> setup
-    android.graphics.RectF calculateBounds() -> m
-    void updateShaderMatrix() -> n
+    android.graphics.RectF calculateBounds() -> n
+    void updateShaderMatrix() -> o
     void <clinit>() -> <clinit>
 com.huanju.chajianhuatest.ClassPathHookHelper -> com.huanju.chajianhuatest.c:
     void inject(dalvik.system.DexClassLoader) -> a
@@ -22623,8 +22508,8 @@ com.huanju.chajianhuatest.ClassPathHookHelper -> com.huanju.chajianhuatest.c:
     void setField(java.lang.Object,java.lang.Class,java.lang.String,java.lang.Object) -> a
     java.lang.Object combineArray(java.lang.Object,java.lang.Object) -> a
 com.huanju.chajianhuatest.MainActivity -> com.huanju.chajianhuatest.MainActivity:
-    boolean flag -> aN
-    boolean flag2 -> aO
+    boolean flag -> aQ
+    boolean flag2 -> aR
     void <init>() -> <init>
     void onCreate(android.os.Bundle) -> onCreate
     void attachBaseContext(android.content.Context) -> attachBaseContext
@@ -22633,22 +22518,22 @@ com.huanju.chajianhuatest.MainActivity -> com.huanju.chajianhuatest.MainActivity
     boolean access$000(com.huanju.chajianhuatest.MainActivity) -> a
     boolean access$100(com.huanju.chajianhuatest.MainActivity) -> b
 com.huanju.chajianhuatest.MainActivity$1 -> com.huanju.chajianhuatest.MainActivity$1:
-    com.huanju.chajianhuatest.MainActivity this$0 -> aP
+    com.huanju.chajianhuatest.MainActivity this$0 -> aS
     void <init>(com.huanju.chajianhuatest.MainActivity) -> <init>
     void onClick(android.view.View) -> onClick
 com.huanju.chajianhuatest.MainActivity$2 -> com.huanju.chajianhuatest.MainActivity$2:
-    com.huanju.chajianhuatest.MainActivity this$0 -> aP
+    com.huanju.chajianhuatest.MainActivity this$0 -> aS
     void <init>(com.huanju.chajianhuatest.MainActivity) -> <init>
     void onClick(android.view.View) -> onClick
 com.huanju.chajianhuatest.MainActivity$3 -> com.huanju.chajianhuatest.MainActivity$3:
-    com.huanju.chajianhuatest.BundleReturnPackageModel val$event -> aQ
-    com.huanju.chajianhuatest.MainActivity this$0 -> aP
+    com.huanju.chajianhuatest.BundleReturnPackageModel val$event -> aT
+    com.huanju.chajianhuatest.MainActivity this$0 -> aS
     void <init>(com.huanju.chajianhuatest.MainActivity,com.huanju.chajianhuatest.BundleReturnPackageModel) -> <init>
     void run() -> run
 com.huanju.chajianhuatest.MyApplication -> com.huanju.chajianhuatest.MyApplication:
     android.content.Context mContext -> mContext
-    android.content.res.AssetManager mAssetManager -> aR
-    android.content.res.Resources mNewResource -> aS
+    android.content.res.AssetManager mAssetManager -> aU
+    android.content.res.Resources mNewResource -> aV
     android.content.res.Resources$Theme mTheme -> mTheme
     void <init>() -> <init>
     void attachBaseContext(android.content.Context) -> attachBaseContext
@@ -22752,8 +22637,8 @@ com.huanju.chajianhuatest.RoundImageTest -> com.huanju.chajianhuatest.RoundImage
     void <init>(android.content.Context,android.util.AttributeSet) -> <init>
     void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
 com.huanju.chajianhuatest.aidlmode.TestBean -> com.huanju.chajianhuatest.aidlmode.TestBean:
-    java.lang.String s -> aT
-    int i -> aU
+    java.lang.String s -> aW
+    int i -> aX
     android.os.Parcelable$Creator CREATOR -> CREATOR
     int describeContents() -> describeContents
     void writeToParcel(android.os.Parcel,int) -> writeToParcel

@@ -23,7 +23,6 @@ import dalvik.system.DexClassLoader;
  */
 public class MyApplication extends Application {
     private static Context mContext;
-
     private AssetManager mAssetManager;
     private Resources mNewResource;
     private Resources.Theme mTheme;

@@ -182,7 +182,9 @@ task aaptRelease (type: Exec,dependsOn:['initBuild']) {
     inputs.file "${rootDir}/build-outputs/demo-base-release.apk"
     inputs.file "$projectDir/AndroidManifest.xml"
     inputs.dir "$projectDir/res"
-    inputs.dir "$projectDir/assets"
+    if (new File("$projectDir}/assets").exists()){
+        inputs.dir "$projectDir/assets"
+    }
 //    inputs.file "${rootDir}/app/build/generated/source/r/release/com/huanju/chajianhuatest/R.java"
     outputs.dir "$buildDir/gen/r"
     outputs.file "$buildDir/intermediates/res/resources.zip"
@@ -238,8 +240,11 @@ task aaptRelease (type: Exec,dependsOn:['initBuild']) {
                     //指定manifest文件
                     argv << '-S'
                     argv << "$buildDir/intermediates/explore-aar/${aarName}/res"
-                    argv << '-A'
-                    argv << "$buildDir/intermediates/explore-aar/${aarName}/assets"
+                    if(new File("$buildDir/intermediates/explore-aar/${aarName}/assets").exists()){
+                        argv << '-A'
+                        argv << "$buildDir/intermediates/explore-aar/${aarName}/assets"
+                    }
+
                 }
 
                 // assets目录
@@ -259,8 +264,10 @@ task aaptRelease (type: Exec,dependsOn:['initBuild']) {
     argv << "$projectDir/AndroidManifest.xml"    //指定manifest文件
     argv << '-S'
     argv << "$projectDir/res"                    //res目录
-    argv << '-A'
-    argv << "$projectDir/assets"                 //assets目录
+    if (new File("$projectDir}/assets").exists()){
+        argv << '-A'
+        argv << "$projectDir/assets"                 //assets目录
+    }
     argv << '-m'        //make package directories under location specified by -J
     argv << '-J'
     argv << "$buildDir/gen/r"         //哪里输出R.java定义
