@@ -32,7 +32,7 @@ public class TestActivityTwo extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second);
 //        ImageView imageView=(ImageView)findViewById(R.id.iv_01);
-//        imageView.setImageResource(R.drawable.abc_btn_switch_to_on_mtrl_00001);
+//        imageView.setImageResource(R.drawable.chongshan);
 //        imageView.setImageResource(getResources().getIdentifier("fenghuang","drawable",getPackageName()));
         TextView tv = (TextView) findViewById(R.id.to_demo1);
         if(tv == null){

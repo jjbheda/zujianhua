@@ -15,13 +15,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
-import dalvik.system.DexClassLoader;
 import qiyi.basemodule.BasePro;
 
 /**
@@ -49,14 +44,14 @@ public class MainActivity extends FragmentActivity {
         findViewById(R.id.bbb).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (flag) {
+                if (JsonFileUtiles.hasLoaded(getFilesDir(),"com.huanju.chajiandemo")) {
                     try {
                         startActivity(new Intent(getApplicationContext(), Class.forName("com.huanju.chajiandemo.TestActivityTwo")));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
-                    EventBus.getDefault().post(new BundlePackageModel("com.huanju.chajiandemo"));
+                    EventBus.getDefault().post(new BundleFileModel(JsonFileUtiles.getBundleVersion(getFilesDir(),"com.huanju.chajiandemo")));
                 }
             }
         });
@@ -71,7 +66,7 @@ public class MainActivity extends FragmentActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    EventBus.getDefault().post(new BundlePackageModel("qiyi.demo1"));
+                    EventBus.getDefault().post(new BundleFileModel("qiyi.demo1"));
                 }
             }
         });
@@ -90,7 +85,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(final BundleReturnPackageModel event) {
+    public void onMessageEvent(final BundleCallbackModel event) {
         if (event == null || event.packageName.isEmpty())
             return;
         if (event.packageName.equals("com.huanju.chajiandemo")) {
@@ -106,4 +101,5 @@ public class MainActivity extends FragmentActivity {
             }
         });
     }
+
 }

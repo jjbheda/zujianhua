@@ -246,7 +246,6 @@ task aaptRelease (type: Exec,dependsOn:['initBuild']) {
                     }
 
                 }
-
                 // assets目录
         }
 

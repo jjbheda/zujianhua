@@ -32,17 +32,13 @@ public class MyApplication extends Application {
         super.attachBaseContext(base);
         mContext = base;
         EventBus.getDefault().register(this);//订阅
-//        updateTotalResource("com_huanju_chajiandemo.apk");
-//        updateTotalResource("qiyi_demo1.apk");
+        saveJsonFile(JsonFileUtiles.bundleJsonFileName);
+
     }
 
     //尝试更新资源
     public void updateTotalResource(String PackageName) {
         try {
-//            List<String> mAssertBundleFilesList = getapkPathList();
-//            if (mAssertBundleFilesList.size() == 0) {
-//                return;
-//            }
             String bundleApkPath = getBundleApkPath(PackageName);
             if (bundleApkPath.isEmpty()){
                 return;
@@ -53,11 +49,6 @@ public class MyApplication extends Application {
             Method addAssetPathMethod = mAssetManager.getClass().getDeclaredMethod("addAssetPath", String.class);
             addAssetPathMethod.setAccessible(true);
             addAssetPathMethod.invoke(mAssetManager, mPath);
-//            Log.e("Main", "apkPathList.size = " + mAssertBundleFilesList.size());
-//            for (String apkPath : mAssertBundleFilesList) {
-//                addAssetPathMethod.invoke(mAssetManager, apkPath);
-//                Log.e("Main", "apkPath= " + apkPath);
-//            }
             addAssetPathMethod.invoke(mAssetManager, bundleApkPath);
             Method ensureStringBlocks = AssetManager.class.getDeclaredMethod("ensureStringBlocks");
             ensureStringBlocks.setAccessible(true);
@@ -97,9 +88,14 @@ public class MyApplication extends Application {
     public String getBundleApkPath(String bundleFileName) {
         File apkDir = new File(getFilesDir(), "apkDir");
         apkDir.mkdir();
+        File apkFile = new File(apkDir, bundleFileName);
+        if (new File(apkDir, bundleFileName).exists()){
+            Log.e("TAG",apkFile.getName()+"已解压,"+"路径："+apkFile.getAbsolutePath());
+            return apkFile.getAbsolutePath();
+        }
+
         String bundleApkFilePath = "";
         try {
-            File apkFile = new File(apkDir, bundleFileName);
             InputStream ins = getAssets().open(bundleFileName);
             if (apkFile.length() != ins.available()) {
                 FileOutputStream fos = new FileOutputStream(apkFile);
@@ -119,23 +115,52 @@ public class MyApplication extends Application {
         return bundleApkFilePath;
     }
 
-    private void setBundleClassloader(String bundleFileName) {
+    private void setBundleClassloader(String bundleVersion) {
         try {
             String cachePath = getCacheDir().getAbsolutePath();
-            String apkPath = getBundleApkPath(bundleFileName);
+            String apkPath = getBundleApkPath(bundleVersion);
             DexClassLoader mClassLoader = new DexClassLoader(apkPath, cachePath, cachePath, getClassLoader());
             ClassPathHookHelper.inject(mClassLoader);
-            EventBus.getDefault().post(new BundleReturnPackageModel(bundleFileName.replace("_",".").replace(".apk","")));
+            EventBus.getDefault().post(new BundleCallbackModel( bundleVersion.substring(0,bundleVersion.lastIndexOf("_")).replace("_",".")));
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public String saveJsonFile(String jsonFileName) {
+        File apkDir = new File(getFilesDir(), "apkDir");
+        apkDir.mkdir();
+        File apkFile = new File(apkDir, jsonFileName);
+        if(apkFile.exists()){
+            apkFile.delete();
+        }
+
+        String jsonFilePath = "";
+        try {
+            InputStream ins = getAssets().open(jsonFileName);
+            if (apkFile.length() != ins.available()) {
+                FileOutputStream fos = new FileOutputStream(apkFile);
+                byte[] buf = new byte[2048];
+                int l;
+                while ((l = ins.read(buf)) != -1) {
+                    fos.write(buf, 0, l);
+                }
+                fos.close();
+            }
+            ins.close();
+            jsonFilePath = apkFile.getAbsolutePath();
+
+        } catch (Exception e) {
+            Log.e("TAG","解压文件出现异常");
+        }
+        return jsonFilePath;
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN) //在ui线程执行
-    public void onDataSynEvent(BundlePackageModel event) {
+    public void onDataSynEvent(BundleFileModel event) {
         Log.e("TAG", "收到Bundle安装请求");
-        String realBundleName = event.packageName.replace(".", "_")+".apk";
+        String realBundleName = event.bundleVersion;
         updateTotalResource(realBundleName);
         setBundleClassloader(realBundleName);
     }

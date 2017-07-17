@@ -1,5 +1,6 @@
 package qiyi.demo1;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -7,7 +8,7 @@ import android.widget.TextView;
  * Created by jiangjingbo on 2017/5/27.
  */
 
-public class MainAc extends SoBaseActivity {
+public class MainAc extends Activity {
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

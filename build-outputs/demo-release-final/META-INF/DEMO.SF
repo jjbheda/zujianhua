@@ -1,0 +1,185 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest-Main-Attributes: zqFfJJzeCn2KOwqPWIJPyVGGa5w=
+SHA1-Digest-Manifest: 5+rJQHRBT7VAZuLgxaVwSqNR1Dw=
+Created-By: 1.8.0_121 (Oracle Corporation)
+
+Name: res/mipmap-xxxhdpi-v4/chess_blue_cat.png
+SHA1-Digest: pemAui5qomQC26fRnI4FHKv89Ps=
+
+Name: res/drawable-hdpi-v4/fenghuang.jpg
+SHA1-Digest: 0fxL7X6A0N6zRRXcO/fDCy3mUQI=
+
+Name: assets/com_huanju_chajiandemo/AndroidManifest.xml
+SHA1-Digest: 0sGsPJ+8eM04vnzjvaSFyjp63Co=
+
+Name: res/drawable/shuimo.jpg
+SHA1-Digest: P10LI8YGHiYG7SHnDquM2xoKWv8=
+
+Name: res/mipmap-xxxhdpi-v4/transparent.png
+SHA1-Digest: 8O9iIPtVFqsF9sTjmVVKfYbf/YE=
+
+Name: res/mipmap-xxxhdpi-v4/button_vs_2p.png
+SHA1-Digest: 5BAjNnY6Tq7FLqy4bx9JeGlKau8=
+
+Name: res/mipmap-xxxhdpi-v4/chess_blue_leopard.png
+SHA1-Digest: aH1QSRsyKEwpjkOqRyW8jOzlQ94=
+
+Name: res/drawable/shanshui.jpg
+SHA1-Digest: VlLn4QHsjgfqTe3HqTbxyMnpczA=
+
+Name: res/mipmap-xxxhdpi-v4/chess_red_wolf.png
+SHA1-Digest: BdNYCf2hGJuC2yTqb2ahEC0xYx8=
+
+Name: res/drawable/xin.jpg
+SHA1-Digest: Ty/8gsFr4eSt+daTWPi9t5Hm75w=
+
+Name: res/drawable/chongshan.jpg
+SHA1-Digest: T3w2hki2kibAzoNK1wBQHLqdb6Q=
+
+Name: assets/com_huanju_chajiandemo/res/layout/fragment_hello.xml
+SHA1-Digest: 980lPX65JOxMNaQB7b4DRDhGH2I=
+
+Name: res/mipmap-xxxhdpi-v4/chess_blue_elephant.png
+SHA1-Digest: 40N1yamJoTXwLog/A1NMsL0Ncfs=
+
+Name: res/layout/basebundle.xml
+SHA1-Digest: Snw6Hom1yWp9GdS87C/O3JxuebQ=
+
+Name: res/mipmap-xxxhdpi-v4/chess_red_rat.png
+SHA1-Digest: Fx8dMoRdE68HGieWgmAOHInGEK0=
+
+Name: res/mipmap-xxxhdpi-v4/button_network.png
+SHA1-Digest: FW+bkYS3PIshvP/w80UOzI6k2S4=
+
+Name: assets/com_huanju_chajiandemo.apk
+SHA1-Digest: dJ/R4/Gn2L0/x0C7Of21qAmyCMA=
+
+Name: res/mipmap-xxxhdpi-v4/chess_red_elephant.png
+SHA1-Digest: N7xX9c/lOhHOWVmaRsu3GDJk1To=
+
+Name: res/mipmap-hdpi-v4/ic_launcher.png
+SHA1-Digest: 7rQl6EYeTTp31EHiQqxTWNvHumI=
+
+Name: aidl/com/huanju/chajianhuatest/aidlmode/TestBean.aidl
+SHA1-Digest: AwGHmbsaxWNQcDT44pRbh0O2GXM=
+
+Name: res/mipmap-xxxhdpi-v4/chess_blue_wolf.png
+SHA1-Digest: ISJe2mvg6QYYQ7aoVT33hdbBgBk=
+
+Name: res/mipmap-xxxhdpi-v4/chess_red_lair.png
+SHA1-Digest: eB0cpCpUu8zGOoyUVSy7QJRe37k=
+
+Name: res/mipmap-xxxhdpi-v4/chess_blue_dog.png
+SHA1-Digest: BrRprAtzYFqNZln1/2FSagq6Dww=
+
+Name: res/mipmap-xxxhdpi-v4/chess_red_leopard.png
+SHA1-Digest: AZ/t7VQ7DmGKBnRfYk/37Lo5+rk=
+
+Name: resources.arsc
+SHA1-Digest: FLQfvvm93DCf5a3jWbCqSF6dYlY=
+
+Name: assets/com_huanju_chajiandemo/META-INF/MANIFEST.MF
+SHA1-Digest: ShG7mZz0Gao5DGhFf0NYEQOG5UU=
+
+Name: AndroidManifest.xml
+SHA1-Digest: k5ycY7qEid3jqKQFzIW6B9edtRQ=
+
+Name: assets/com_huanju_chajiandemo/classes.dex
+SHA1-Digest: JcItZCd8kEqY6yPGQokZf+l5k1I=
+
+Name: assets/com_huanju_chajiandemo/res/layout/test.xml
+SHA1-Digest: InxGbjVWA4/sCin9V3SAflSnC7E=
+
+Name: res/mipmap-xxxhdpi-v4/chess_blue_lion.png
+SHA1-Digest: uEXoQ8Pbg8WFTzYwE+ntfZ7Tkzs=
+
+Name: res/mipmap-xxxhdpi-v4/chess_blue_tiger.png
+SHA1-Digest: IcxzgGnmpgCsJTvtoaE3DNs9mP8=
+
+Name: res/mipmap-xxxhdpi-v4/jungle.png
+SHA1-Digest: P/NHxOeiN/7sIG2aF9RsNTZfICE=
+
+Name: res/mipmap-xhdpi-v4/ic_launcher.png
+SHA1-Digest: he0u+MMYOPtjL0qaRCkw275Ntw0=
+
+Name: res/mipmap-xxxhdpi-v4/button_exit.png
+SHA1-Digest: RPzpQfs2H+1uZQuxCRNLFCJP8to=
+
+Name: res/mipmap-xxxhdpi-v4/chess_red_cat.png
+SHA1-Digest: s0yXvfirclGr4XOarwzZZAguGGg=
+
+Name: assets/com_huanju_chajiandemo.so
+SHA1-Digest: +Pb0IYTw5janXmLwB85zDXQu6zA=
+
+Name: assets/com_huanju_chajiandemo/res/layout/fragment_second.xml
+SHA1-Digest: /bj9b48dK6y0nAt0u6t1u00mYeE=
+
+Name: res/mipmap-xxxhdpi-v4/chess_blue_rat.png
+SHA1-Digest: kse1IBsrSsmj3wBM69ogR6Xbz3I=
+
+Name: res/mipmap-xxxhdpi-v4/chess_blue_lair.png
+SHA1-Digest: TohO2KPsBnPY6sp+8Bre5qRu714=
+
+Name: res/mipmap-xxxhdpi-v4/title_bg.png
+SHA1-Digest: A/UFn1VxDIA5xMqzHyv3g/XXH4A=
+
+Name: res/mipmap-xxxhdpi-v4/chess_red_lion.png
+SHA1-Digest: OkclsrhERdUyacplAWne/mtTKr0=
+
+Name: assets/com_huanju_chajiandemo/resources.arsc
+SHA1-Digest: xj6/gZCw8y2O6FOA6H5QaA4ZArY=
+
+Name: res/drawable-hdpi-v4/child.jpg
+SHA1-Digest: UDXPMSYI6QuNSSVNv7jqArDx/8k=
+
+Name: res/mipmap-xxxhdpi-v4/button_vs_ai.png
+SHA1-Digest: YqBcWDBNXmRKSYWd9o7AqxAeeKE=
+
+Name: assets/qiyi_demo1.so
+SHA1-Digest: 64HayT6bqvSA0n/l1Al9bgSuRKo=
+
+Name: res/mipmap-xxxhdpi-v4/icon.png
+SHA1-Digest: Iefm2ym3SDclErF5MgNmWUgG8Iw=
+
+Name: res/mipmap-mdpi-v4/ic_launcher.png
+SHA1-Digest: eAe4aQ3DNPRP6pSEW0HgZPPU5nE=
+
+Name: res/mipmap-xxxhdpi-v4/title.png
+SHA1-Digest: fOw8oG9NGfsO0AJYoEzRukM1Czk=
+
+Name: assets/com_huanju_chajiandemo/res/layout/second.xml
+SHA1-Digest: oS+GDB18Fxzf/8dpw4Cwyhz7tHg=
+
+Name: res/mipmap-hdpi-v4/child.jpg
+SHA1-Digest: ECjjyBb9HkOk3jUvzW7zKTir19E=
+
+Name: aidl/com/huanju/chajianhuatest/IMyAidlInterface.aidl
+SHA1-Digest: SkG81s9ZFChnKhqJoRmc4/NRJTw=
+
+Name: res/layout/activity_main.xml
+SHA1-Digest: jzhYAhOSdTjdSR1uNAPKj9nMrAE=
+
+Name: assets/qiyi_demo1.apk
+SHA1-Digest: v2xgZey3jWsaTk/4kilKJrnH8u0=
+
+Name: res/mipmap-xxxhdpi-v4/ic_launcher.png
+SHA1-Digest: iLOKwoF385humB5kq5Bq46YZBTo=
+
+Name: res/mipmap-xxxhdpi-v4/chess_red_dog.png
+SHA1-Digest: PL37N2eKipYfZUwtA/y6ayRmpik=
+
+Name: assets/com_huanju_chajiandemo/res/drawable/shanshui2.jpg
+SHA1-Digest: 8NcG7JXcKlCwWjjnAbC1S0L5WNs=
+
+Name: assets/com_huanju_chajiandemo/res/layout/bundle_main.xml
+SHA1-Digest: OD+iLt/wQuaae4QrvBltMWPQSdA=
+
+Name: res/mipmap-xxxhdpi-v4/chess_red_tiger.png
+SHA1-Digest: gHMQdu+GWIwPKvliIHnG0z96kTI=
+
+Name: classes.dex
+SHA1-Digest: iYDBd6PrJH7L+vUj9cwNiRp1poA=
+
+Name: res/mipmap-xxhdpi-v4/ic_launcher.png
+SHA1-Digest: w8zlhwlle2aoufXsl5l6tyaB0OQ=
+
