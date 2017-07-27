@@ -1,4 +1,4 @@
-package com.huanju.chajianhuatest;
+package com.huanju.chajianhuatest.bundlemodel;
 
 import java.io.Serializable;
 

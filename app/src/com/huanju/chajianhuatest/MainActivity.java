@@ -1,21 +1,19 @@
 package com.huanju.chajianhuatest;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Debug;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
-import java.io.File;
-import java.util.ArrayList;
+import com.huanju.chajianhuatest.bundle.BundleInstallUtils;
+import com.huanju.chajianhuatest.bundle.JsonFileUtil;
 
 import qiyi.basemodule.BasePro;
 
@@ -26,50 +24,68 @@ import qiyi.basemodule.BasePro;
 public class MainActivity extends FragmentActivity {
     private boolean flag = false;
     private boolean flag2 = false;
-
+    public static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EventBus.getDefault().register(this);
         ImageView iv = (ImageView) findViewById(R.id.test);
         iv.setImageResource(R.drawable.shuimo);
         BasePro basePro = new BasePro();
         String ss = basePro.getBaseStatusString("110");
         Log.e("TAG", ss);
         Toast.makeText(MainActivity.this, "来自主APP" + ss, Toast.LENGTH_SHORT).show();
-        final SharedPreferences soNameFileSP = MainActivity.this.getSharedPreferences("soNameFile", 0);
-        final SharedPreferences.Editor soSpEditor = soNameFileSP.edit();
 
         findViewById(R.id.bbb).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (JsonFileUtiles.hasLoaded(getFilesDir(),"com.huanju.chajiandemo")) {
-                    try {
-                        startActivity(new Intent(getApplicationContext(), Class.forName("com.huanju.chajiandemo.TestActivityTwo")));
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                String scanVersionName = JsonFileUtil.getBundleVersion(MainActivity.this, "com.huanju.chajiandemo");
+                try {
+                    if (BundleInstallUtils.hasLoaded(scanVersionName)) {
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, Class.forName("com.huanju.chajiandemo"));
+                        startActivity(intent);
+                    } else {
+                        Log.d(TAG, "加载二维码模块");
+                        BundleInstallUtils bundleInstallUtils = new BundleInstallUtils(MainActivity.this);
+                        bundleInstallUtils.installBundle(scanVersionName, new BundleInstallUtils.LoadedCallBack() {
+                            @Override
+                            public void sucesss() {
+                                Intent intent = new Intent();
+                                try {
+                                    intent.setClass(MainActivity.this, Class.forName("com.huanju.chajiandemo.TestActivityTwo"));
+                                    startActivity(intent);
+                                } catch (Exception e) {
+                                    Log.d(TAG, "跳转二维码模块失败");
+                                }
+                            }
+                            @Override
+                            public void fail() {
+                                Log.d(TAG, "加载二维码模块失败");
+                            }
+                        });
                     }
-                } else {
-                    EventBus.getDefault().post(new BundleFileModel(JsonFileUtiles.getBundleVersion(getFilesDir(),"com.huanju.chajiandemo")));
+                } catch (ClassNotFoundException e) {
+                    Log.d(TAG, "加载二维码模块失败");
+                    e.printStackTrace();
                 }
             }
         });
 
-        findViewById(R.id.go_demo1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (flag2) {
-                    try {
-                        startActivity(new Intent(getApplicationContext(), Class.forName("qiyi.demo1.MainAc")));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    EventBus.getDefault().post(new BundleFileModel("qiyi.demo1"));
-                }
-            }
-        });
+//        findViewById(R.id.go_demo1).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (flag2) {
+//                    try {
+//                        startActivity(new Intent(getApplicationContext(), Class.forName("qiyi.demo1.MainAc")));
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                } else {
+//                    EventBus.getDefault().post(new BundleFileModel(JsonFileUtil.getBundleVersion(MainActivity.this,"qiyi.demo1")));
+//                }
+//            }
+//        });
 
     }
 
@@ -81,25 +97,7 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(final BundleCallbackModel event) {
-        if (event == null || event.packageName.isEmpty())
-            return;
-        if (event.packageName.equals("com.huanju.chajiandemo")) {
-            flag = true;
-        } else if (event.packageName.equals("qiyi.demo1")) {
-            flag2 = true;
-        }
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(MainActivity.this, event.packageName + "加载完成", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
 }

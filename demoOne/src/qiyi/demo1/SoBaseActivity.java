@@ -12,16 +12,7 @@ import android.util.Log;
 
 public class SoBaseActivity extends Activity {
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public Resources getResources() {
-        Log.e("chajian","getApplicationContext = " + getApplicationContext());
-        Log.e("chajian","getApplicationContext 2 = " + getApplication());
-        Log.e("chanjian ","getApplicationContext 2 = " + super.getResources());
-
         if(getApplication() != null && getApplication().getResources() != null){
             return getApplication().getResources();
         }
@@ -36,11 +27,4 @@ public class SoBaseActivity extends Activity {
         return super.getAssets();
     }
 
-    @Override
-    public Resources.Theme getTheme() {
-//        if(getApplication() != null && getApplication().getTheme() != null){
-//            return getApplication().getTheme();
-//        }
-        return super.getTheme();
-    }
 }
