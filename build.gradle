@@ -13,10 +13,9 @@ ext{
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
      sdkDir = properties.getProperty('sdk.dir')
     //solidMode = true 时
-    // 使用  gradle assembleRelease bundleRelease repackAll 打包
-//    solidMode = true
-    solidMode = false
-
+    // 使用 gradle assembleRelease bundleRelease repackAll  打包
+    solidMode = true
+//    solidMode = false
     supportLibraryVersion = '24.2.0'
     compileSdkVersion = 24
     buildToolsVersion = '24.0.2'

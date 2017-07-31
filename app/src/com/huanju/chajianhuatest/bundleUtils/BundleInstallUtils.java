@@ -1,10 +1,9 @@
-package com.huanju.chajianhuatest.bundle;
+package com.huanju.chajianhuatest.bundleUtils;
 
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.util.Log;
-
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -62,10 +61,8 @@ import dalvik.system.DexClassLoader;
             ensureStringBlocks.setAccessible(true);
             ensureStringBlocks.invoke(mAssetManager);
             Resources supResource = getResources();
-            Log.e(TAG, "supResource = " + supResource);
 
             mNewResource = new Resources(mAssetManager, supResource.getDisplayMetrics(), supResource.getConfiguration());
-            Log.e(TAG, "设置 getResource = " + getResources());
             flag = true;
         } catch (Exception e) {
             Log.e(TAG, "callActivityOnCreate被调用，请检查错误，错误信息= " + e.getMessage());
@@ -148,7 +145,7 @@ import dalvik.system.DexClassLoader;
 
     private boolean checkInstallBundle(String bundleVersion){
         boolean flag = false;
-        Log.e(TAG, "收到Bundle安装请求");
+        Log.d(TAG, "收到Bundle安装请求");
         if (!updateTotalResource(bundleVersion)) {
             return flag;
         }

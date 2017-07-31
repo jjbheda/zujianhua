@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.huanju.chajiandemo.fragment.HelloFragment;
 import com.huanju.chajiandemo.fragment.SecondFragment;
+import com.huanju.chajianhuatest.bundlebase.BundleBaseActivity;
+
 import java.lang.reflect.Method;
 import qiyi.basemodule.BasePro;
 import static android.R.attr.x;
@@ -26,7 +28,7 @@ import static android.R.attr.x;
  * Created by DELL-PC on 2017/2/22.
  */
 
-public class TestActivityTwo extends FragmentActivity {
+public class TestActivityTwo extends BundleBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,51 +57,23 @@ public class TestActivityTwo extends FragmentActivity {
         String ss =basePro.getBaseStatusString("112");
         Log.e("TAG",ss);
         Toast.makeText(TestActivityTwo.this,"来自插件APP"+ss,Toast.LENGTH_SHORT).show();
-        HelloFragment rightFragment = new HelloFragment();
-        FragmentManager fm = TestActivityTwo.this.getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.fragment_lt, rightFragment, "Fragment");
-        ft.commit();
+//        HelloFragment rightFragment = new HelloFragment();
+//        FragmentManager fm = TestActivityTwo.this.getSupportFragmentManager();
+//        FragmentTransaction ft = fm.beginTransaction();
+//        ft.add(R.id.fragment_lt, rightFragment, "Fragment");
+//        ft.commit();
 
         TextView tv_change = (TextView) findViewById(R.id.change_fragment);
         tv_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SecondFragment rightFragment = new SecondFragment();
-                FragmentManager fm = TestActivityTwo.this.getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment_lt, rightFragment, "Fragment2");
-                ft.commit();
+//                SecondFragment rightFragment = new SecondFragment();
+//                FragmentManager fm = TestActivityTwo.this.getSupportFragmentManager();
+//                FragmentTransaction ft = fm.beginTransaction();
+//                ft.replace(R.id.fragment_lt, rightFragment, "Fragment2");
+//                ft.commit();
             }
         });
 
-    }
-
-    @Override
-    public Resources getResources() {
-        Log.e("chajian","getApplicationContext = " + getApplicationContext());
-        Log.e("chajian","getApplicationContext 2 = " + getApplication());
-        Log.e("chanjian ","getApplicationContext 2 = " + super.getResources());
-
-        if(getApplication() != null && getApplication().getResources() != null){
-            return getApplication().getResources();
-        }
-        return super.getResources();
-    }
-
-    @Override
-    public AssetManager getAssets() {
-        if(getApplication() != null && getApplication().getAssets() != null){
-            return getApplication().getAssets();
-        }
-        return super.getAssets();
-    }
-
-    @Override
-    public Resources.Theme getTheme() {
-        if(getApplication() != null && getApplication().getTheme() != null){
-            return getApplication().getTheme();
-        }
-        return super.getTheme();
     }
 }

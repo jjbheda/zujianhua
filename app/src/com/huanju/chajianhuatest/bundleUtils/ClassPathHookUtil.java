@@ -1,4 +1,4 @@
-package com.huanju.chajianhuatest.bundle;
+package com.huanju.chajianhuatest.bundleUtils;
 
 import android.content.Context;
 

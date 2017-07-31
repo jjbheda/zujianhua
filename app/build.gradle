@@ -183,11 +183,11 @@ afterEvaluate {
 //输出：Ctrip-release-reloaded.apk
 task reload(type: Zip) {
     inputs.file "$rootDir/build-outputs/demo-base-release.apk"
-    inputs.files fileTree(new File(rootDir, 'build-outputs')).include('*.so')
+    inputs.files fileTree(new File(rootDir, 'build-outputs/bundle/')).include('*.apk')
     outputs.file "$rootDir/build-outputs/demo-release-reloaded.apk"
 
     into 'assets/', {
-        from fileTree(new File(rootDir, 'build-outputs')).include('*.so')
+        from fileTree(new File(rootDir, 'build-outputs/bundle')).include('*.apk')
     }
 
     from zipTree("$rootDir/build-outputs/demo-base-release.apk"), {
@@ -364,6 +364,17 @@ class ConcatFiles extends DefaultTask {
         target.delete()
         tmp.renameTo(target)
     }
+}
+
+
+//gradle -x test jarInitLoginReleaseBean
+task jarBundleBaseAc(type: Jar, dependsOn: ['compileReleaseJavaWithJavac']) {
+    archiveName = "bundle_base.jar"
+    from('build/intermediates/classes/release')
+    destinationDir = file('build/libs')
+    exclude('**/R.class')
+    exclude('**/R\$*.class')
+    include('com/huanju/chajianhuatest/bundlebase/**/*.class')
 }
 
 //合并base和所有模块的mapping文件

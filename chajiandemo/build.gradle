@@ -9,7 +9,7 @@ if (solidMode) {
             mavenLocal()
             jcenter()
             maven {
-                url="http://maven.mbd.qiyi.domain/nexus/content/repositories/mbd-vertical/"
+                url = "http://maven.mbd.qiyi.domain/nexus/content/repositories/mbd-vertical/"
             }
             maven {
                 url = "http://maven.mbd.qiyi.domain/nexus/content/repositories/mcg-qos/"
@@ -31,7 +31,7 @@ if (solidMode) {
             mavenLocal()
             jcenter()
             maven {
-                url="http://maven.mbd.qiyi.domain/nexus/content/repositories/mbd-vertical/"
+                url = "http://maven.mbd.qiyi.domain/nexus/content/repositories/mbd-vertical/"
             }
             maven {
                 url = "http://maven.mbd.qiyi.domain/nexus/content/repositories/mcg-qos/"
@@ -41,13 +41,13 @@ if (solidMode) {
     dependencies {
         provided project(':basemodule')
 //        compile project(':demoOne')
-        if(!solidMode){
+        if (!solidMode) {
 //            provided "com.android.support:support-v4:24.2.0"
             compile project(':tempmodule')
 //            provided "qiyi.base:baseCore:1.0.0@aar"
 //            provided "com.qiyi.hotfix:tinker-patch-gradle-plugin:1.7.4.9beta"
         }
+        compile files('libs/bundle_base.jar')
     }
 
 }
-

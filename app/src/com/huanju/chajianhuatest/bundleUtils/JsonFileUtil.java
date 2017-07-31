@@ -1,9 +1,7 @@
-package com.huanju.chajianhuatest.bundle;
+package com.huanju.chajianhuatest.bundleUtils;
 
 import android.content.Context;
 import android.util.Log;
-
-
 import com.huanju.chajianhuatest.bundlemodel.BundleFileModel;
 
 import org.json.JSONArray;

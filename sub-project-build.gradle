@@ -379,6 +379,7 @@ task obfuscateRelease(type:proguard.gradle.ProGuardTask, dependsOn:'copySofileTa
     configuration file ("$buildDir/intermediates/res/aapt-rules.txt")
     injars file("$buildDir/intermediates/classes")
     injars fileTree("${projectDir}/libs").include('*.jar')
+    libraryjars fileTree("$buildDir/intermediates/explore-aar").include('**/*.jar')
 
 //    libraryjars fileTree("$buildDir/intermediates/explore-aar").include('**/*.jar')
     outjars file("$buildDir/intermediates/classes-obfuscated/classes-obfuscated.jar")
@@ -450,10 +451,10 @@ task bundleRelease (type:Zip,dependsOn:['obfuscateRelease', 'compileRelease', 'a
     inputs.file "$buildDir/intermediates/dex/${project.name}_dex.zip"
     inputs.file "$buildDir/intermediates/res/resources.zip"
 
-    outputs.file "${rootDir}/build-outputs/${apkName}.so"
+    outputs.file "${rootDir}/build-outputs/bundle/${apkName}.apk"
 
-    archiveName = "${apkName}.so"
-    destinationDir = file("${rootDir}/build-outputs")
+    archiveName = "${apkName}.apk"
+    destinationDir = file("${rootDir}/build-outputs/bundle/")
     duplicatesStrategy = 'fail'
     from zipTree("$buildDir/intermediates/dex/${project.name}_dex.zip")
     from zipTree("$buildDir/intermediates/res/resources.zip")

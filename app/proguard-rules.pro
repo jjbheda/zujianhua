@@ -1224,8 +1224,7 @@
     @android.support.annotation.Keep <init>(...);
 }
 
-
--keep class  qiyi.basemodule.BasePro{
-    <fields>;
-    <methods>;
+-keep class com.huanju.chajianhuatest.bundleUtils.BundleInstallUtils{
+      public <fields>;
+      public <methods>;
 }

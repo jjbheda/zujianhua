@@ -11,9 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.huanju.chajianhuatest.bundle.BundleInstallUtils;
-import com.huanju.chajianhuatest.bundle.JsonFileUtil;
+import com.huanju.chajianhuatest.bundleUtils.BundleInstallUtils;
+import com.huanju.chajianhuatest.bundleUtils.JsonFileUtil;
 
 import qiyi.basemodule.BasePro;
 

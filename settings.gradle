@@ -1,4 +1,4 @@
 include ':app', ':basemodule', ':tempmodule',
-':demoOne',
+//':demoOne',
 // ':android_support','' +
 ':chajiandemo'
