@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.huanju.chajianhuatest.bundleUtils.BundleInstallUtils;
 import com.huanju.chajianhuatest.bundleUtils.JsonFileUtil;
+import com.huanju.chajianhuatest.bundlemodel.BundleFileModel;
 
 import qiyi.basemodule.BasePro;
 
@@ -38,16 +39,17 @@ public class MainActivity extends FragmentActivity {
         findViewById(R.id.bbb).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String scanVersionName = JsonFileUtil.getBundleVersion(MainActivity.this, "com.huanju.chajiandemo");
+                Log.d(TAG, "加载流程启动................");
+                final BundleFileModel model = JsonFileUtil.getBundleModel(MainActivity.this, "com.huanju.chajiandemo");
                 try {
-                    if (BundleInstallUtils.hasLoaded(scanVersionName)) {
+                    if (BundleInstallUtils.hasLoaded(model)) {
                         Intent intent = new Intent();
-                        intent.setClass(MainActivity.this, Class.forName("com.huanju.chajiandemo"));
+                        intent.setClass(MainActivity.this, Class.forName("com.huanju.chajiandemo.TestActivityTwo"));
                         startActivity(intent);
                     } else {
                         Log.d(TAG, "加载二维码模块");
                         BundleInstallUtils bundleInstallUtils = new BundleInstallUtils(MainActivity.this);
-                        bundleInstallUtils.installBundle(scanVersionName, new BundleInstallUtils.LoadedCallBack() {
+                        bundleInstallUtils.installBundle(model, new BundleInstallUtils.LoadedCallBack() {
                             @Override
                             public void sucesss() {
                                 Intent intent = new Intent();

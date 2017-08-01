@@ -447,7 +447,8 @@ class UnZipTask extends DefaultTask {
     }
 }
 
-task bundleRelease (type:Zip,dependsOn:['obfuscateRelease', 'compileRelease', 'aaptRelease', 'dexRelease']){
+//task bundleRelease (type:Zip,dependsOn:['obfuscateRelease', 'compileRelease', 'aaptRelease', 'dexRelease']){
+task bundleRelease (type:Zip,dependsOn:[ 'compileRelease', 'aaptRelease', 'dexRelease']){
     inputs.file "$buildDir/intermediates/dex/${project.name}_dex.zip"
     inputs.file "$buildDir/intermediates/res/resources.zip"
 

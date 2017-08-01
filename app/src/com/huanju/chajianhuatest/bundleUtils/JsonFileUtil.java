@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class JsonFileUtil {
 
-    public static final String bundleJsonFileName = "bundle_file.json";
+    private static final String BUNDLE_JSON_FILENAME = "bundle_file.json";
     private static boolean hasReSaveJsonFile = false;      //每次从asset 目录读取json文件重新保存
 
     private static ArrayList<BundleFileModel> bundleVersionList = new ArrayList<>();
@@ -48,7 +48,7 @@ public class JsonFileUtil {
             JSONArray data = root.getJSONArray("data");
             for (int i = 0; i < data.length(); i++) {
                 JSONObject taskObject = data.optJSONObject(i);
-                BundleFileModel model = new BundleFileModel(taskObject.optString("bundleVersion"));
+                BundleFileModel model = new BundleFileModel(taskObject.optString("bundleVersion"),taskObject.optString("md5"));
                 bundleVersionList.add(model);
             }
 
@@ -73,14 +73,14 @@ public class JsonFileUtil {
         return bundleVersionList;
     }
 
-    public static String getBundleVersion(Context context, String packageName) {
+    public static BundleFileModel getBundleModel(Context context, String version) {
         if (!hasReSaveJsonFile){
-            saveJsonFile(context, JsonFileUtil.bundleJsonFileName);
+            saveJsonFile(context, BUNDLE_JSON_FILENAME);
         }
-
+        BundleFileModel bundleFileModel = new BundleFileModel();
         String bVersion = "";
         File apkDir = new File(context.getFilesDir(), "apkDir");
-        File jsonFile = new File(apkDir, JsonFileUtil.bundleJsonFileName);
+        File jsonFile = new File(apkDir, JsonFileUtil.BUNDLE_JSON_FILENAME);
         if(jsonFile.exists()) {
             if (bundleVersionList.size() == 0 ){
                 bundleVersionList = readJsonFileToList(jsonFile.getAbsolutePath());
@@ -88,18 +88,19 @@ public class JsonFileUtil {
             for (BundleFileModel model : bundleVersionList) {
                 String bundleVersion = model.bundleVersion;
                 String pckname = bundleVersion.substring(0,bundleVersion.indexOf(".apk")).replace("_",".");
-                if(pckname.equals(packageName)) {
-                   bVersion = model.bundleVersion;
+                if(pckname.equals(version)) {
+                    bundleFileModel.bundleVersion = model.bundleVersion;
+                    bundleFileModel.md5= model.md5;
                 }
             }
         }
-        return bVersion;
+        return bundleFileModel;
     }
 
     public static void saveJsonFile(Context context, String jsonFileName) {
         File apkDir = new File(context.getFilesDir(), "apkDir");
         apkDir.mkdir();
-        File apkFile = new File(apkDir, jsonFileName);
+        File apkFile = new File(apkDir,jsonFileName);
         if(apkFile.exists()){
             apkFile.delete();
         }

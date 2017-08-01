@@ -50,17 +50,16 @@ allprojects {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-//    compile "com.qiyi.video.allclasses:support_lib:latest.release"
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //    compile "com.qiyi.video.allclasses:support_lib:latest.release"
     compile project(':basemodule')
     if (!solidMode) {
         compile project(':chajiandemo')
         compile project(':demoOne')
     }
-//    compile "com.qiyi.hotfix:tinker-patch-gradle-plugin:1.7.4.9beta"
-//    compile project(':chajiandemo')
+    //    compile "com.qiyi.hotfix:tinker-patch-gradle-plugin:1.7.4.9beta"
+    //    compile project(':chajiandemo')
     compile 'org.greenrobot:eventbus:3.0.0'
-
 }
 
 ////打包后复制到build-output 目录apk.manifest.mapping

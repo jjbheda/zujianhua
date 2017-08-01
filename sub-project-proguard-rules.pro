@@ -4,7 +4,7 @@
 -dontskipnonpubliclibraryclasses
 -dontpreverify
 -verbose
--applymapping demo-base-mapping.txt
+-applymapping build-outputs/demo-base-mapping.txt
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 -ignorewarnings
 -keepattributes *Annotation*
