@@ -1,43 +1,39 @@
-
-buildscript {
-    repositories {
-         mavenCentral()
-    }
-    dependencies {
-        classpath 'net.sf.proguard:proguard-gradle:5.2.1'
-    }
-}
-
-import org.apache.tools.ant.taskdefs.condition.Os
-
+import java.nio.MappedByteBuffer
+import java.nio.channels.FileChannel
+import java.security.MessageDigest
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipInputStream
+import org.apache.tools.ant.taskdefs.condition.Os
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.3'
+    }
+}
 
 project.ext {
-    BUILD_TOOLS_VERSION = '21.1.2'
-    TARGET_SDK_VERSION = 23
-
+    BUILD_TOOLS_VERSION = '25.0.3'
+    TARGET_SDK_VERSION = 24
     sdk = [:]
-    if(Os.isFamily(Os.FAMILY_WINDOWS)){
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
         sdk.aapt = "${rootDir}/aapt_win.exe"
         sdk.dex = "$sdkDir/build-tools/$BUILD_TOOLS_VERSION/dx.bat"
-    }
-    else if (Os.isFamily(Os.FAMILY_MAC)){
+    } else if (Os.isFamily(Os.FAMILY_MAC)) {
         sdk.aapt = "${rootDir}/aapt_mac"
         sdk.dex = "$sdkDir/build-tools/$BUILD_TOOLS_VERSION/dx"
-    }
-    else if (Os.isFamily(Os.FAMILY_UNIX)){
+    } else if (Os.isFamily(Os.FAMILY_UNIX)) {
         sdk.aapt = "${rootDir}/aapt_linux"
         sdk.dex = "$sdkDir/build-tools/$BUILD_TOOLS_VERSION/dx"
     }
     sdk.androidJar = "$sdkDir/platforms/android-$TARGET_SDK_VERSION/android.jar"
-    if(TARGET_SDK_VERSION >= 23){
+    if (TARGET_SDK_VERSION >= 23) {
         sdk.apacheJar = "$sdkDir/platforms/android-23/optional/org.apache.http.legacy.jar";
     }
-    idList = new ArrayList<HashMap<String,String>>();       //定义主APP 全局列表
+    idList = new ArrayList<HashMap<String, String>>();       //定义主APP 全局列表
 }
-
 task copyFileToInputsDir(type: Copy) {
     from configurations.needBuildFile
     into "${rootDir}/build-inputs/"
@@ -329,7 +325,7 @@ task compileRelease(type: JavaCompile,dependsOn:'aaptRelease') {
 
     destinationDir = file("$buildDir/intermediates/classes")
 
-    dependencyCacheDir = file("${buildDir}/dependency-cache")
+//    dependencyCacheDir = file("${buildDir}/dependency-cache")
 
     source = files(fileTree("$projectDir/src").include('**/*.java'),
             fileTree("$buildDir/gen/r").include('**/*.java'))
@@ -446,14 +442,48 @@ class UnZipTask extends DefaultTask {
 
     }
 }
+task bundleRelease (dependsOn:['bundleSo']) <<{
+    String value = "";
+    File file = new File( "${rootDir}/build-outputs/bundle/${apkName}.apk")
+    FileInputStream inputStream = null
+    if (file.exists()) {
+        try {
+            inputStream = new FileInputStream(file)
+            MappedByteBuffer byteBuffer = inputStream.getChannel().map(FileChannel.MapMode.READ_ONLY, 0, file.length());
+            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            md5.update(byteBuffer);
+            BigInteger bi = new BigInteger(1, md5.digest());
+            value = bi.toString(16);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(null != inputStream) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
 
-//task bundleRelease (type:Zip,dependsOn:['obfuscateRelease', 'compileRelease', 'aaptRelease', 'dexRelease']){
-task bundleRelease (type:Zip,dependsOn:[ 'compileRelease', 'aaptRelease', 'dexRelease']){
+    }
+    println "md5 = "+value
+    value = "${apkName}.apk" + "," + value +"\n"
+    def appfilepath = "${rootDir}/build-outputs/bundle/bundle_file.txt"
+    if (!(new File(appfilepath).exists())){
+        new File("${rootDir}/build-outputs/bundle/").mkdir()
+        new File(appfilepath).createNewFile()
+    }
+    new File(appfilepath).withWriterAppend('UTF-8') {
+        writer ->
+            writer.append(value)
+    }
+}
+
+task bundleSo(type: Zip, dependsOn: ['obfuscateRelease', 'compileRelease', 'aaptRelease', 'dexRelease']) {
     inputs.file "$buildDir/intermediates/dex/${project.name}_dex.zip"
     inputs.file "$buildDir/intermediates/res/resources.zip"
-
     outputs.file "${rootDir}/build-outputs/bundle/${apkName}.apk"
-
     archiveName = "${apkName}.apk"
     destinationDir = file("${rootDir}/build-outputs/bundle/")
     duplicatesStrategy = 'fail'

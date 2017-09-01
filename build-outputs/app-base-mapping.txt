@@ -1,0 +1,670 @@
+com.huanju.chajianhuatest.CircleImageView -> com.huanju.chajianhuatest.CircleImageView:
+    android.widget.ImageView$ScaleType SCALE_TYPE -> a
+    android.graphics.Bitmap$Config BITMAP_CONFIG -> b
+    android.graphics.RectF mDrawableRect -> c
+    android.graphics.RectF mBorderRect -> d
+    android.graphics.Matrix mShaderMatrix -> e
+    android.graphics.Paint mBitmapPaint -> f
+    android.graphics.Paint mBorderPaint -> g
+    android.graphics.Paint mFillPaint -> h
+    int mBorderColor -> i
+    int mBorderWidth -> j
+    int mFillColor -> k
+    android.graphics.Bitmap mBitmap -> l
+    android.graphics.BitmapShader mBitmapShader -> m
+    int mBitmapWidth -> n
+    int mBitmapHeight -> o
+    float mDrawableRadius -> p
+    float mBorderRadius -> q
+    android.graphics.ColorFilter mColorFilter -> r
+    boolean mReady -> s
+    boolean mSetupPending -> t
+    boolean mBorderOverlay -> u
+    boolean mDisableCircularTransformation -> v
+    void <init>(android.content.Context) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
+    void init() -> a
+    android.widget.ImageView$ScaleType getScaleType() -> getScaleType
+    void setScaleType(android.widget.ImageView$ScaleType) -> setScaleType
+    void setAdjustViewBounds(boolean) -> setAdjustViewBounds
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void setPadding(int,int,int,int) -> setPadding
+    void setPaddingRelative(int,int,int,int) -> setPaddingRelative
+    int getBorderColor() -> getBorderColor
+    void setBorderColor(int) -> setBorderColor
+    void setBorderColorResource(int) -> setBorderColorResource
+    int getFillColor() -> getFillColor
+    void setFillColor(int) -> setFillColor
+    void setFillColorResource(int) -> setFillColorResource
+    int getBorderWidth() -> getBorderWidth
+    void setBorderWidth(int) -> setBorderWidth
+    void setBorderOverlay(boolean) -> setBorderOverlay
+    void setDisableCircularTransformation(boolean) -> setDisableCircularTransformation
+    void setImageBitmap(android.graphics.Bitmap) -> setImageBitmap
+    void setImageDrawable(android.graphics.drawable.Drawable) -> setImageDrawable
+    void setImageResource(int) -> setImageResource
+    void setImageURI(android.net.Uri) -> setImageURI
+    void setColorFilter(android.graphics.ColorFilter) -> setColorFilter
+    android.graphics.ColorFilter getColorFilter() -> getColorFilter
+    void applyColorFilter() -> b
+    android.graphics.Bitmap getBitmapFromDrawable(android.graphics.drawable.Drawable) -> a
+    void initializeBitmap() -> c
+    void setup() -> setup
+    android.graphics.RectF calculateBounds() -> d
+    void updateShaderMatrix() -> e
+    void <clinit>() -> <clinit>
+com.huanju.chajianhuatest.MainActivity -> com.huanju.chajianhuatest.MainActivity:
+    boolean flag -> w
+    boolean flag2 -> x
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+    void attachBaseContext(android.content.Context) -> attachBaseContext
+    void onDestroy() -> onDestroy
+com.huanju.chajianhuatest.MainActivity$1 -> com.huanju.chajianhuatest.MainActivity$1:
+    com.huanju.chajianhuatest.MainActivity this$0 -> y
+    void <init>(com.huanju.chajianhuatest.MainActivity) -> <init>
+    void onClick(android.view.View) -> onClick
+com.huanju.chajianhuatest.MainActivity$1$1 -> com.huanju.chajianhuatest.MainActivity$1$1:
+    com.huanju.chajianhuatest.MainActivity$1 this$1 -> z
+    void <init>(com.huanju.chajianhuatest.MainActivity$1) -> <init>
+    void sucesss() -> f
+    void fail() -> fail
+com.huanju.chajianhuatest.MyApplication -> com.huanju.chajianhuatest.MyApplication:
+    void <init>() -> <init>
+    void attachBaseContext(android.content.Context) -> attachBaseContext
+com.huanju.chajianhuatest.R -> com.huanju.chajianhuatest.R:
+    void <init>() -> <init>
+com.huanju.chajianhuatest.R$attr -> com.huanju.chajianhuatest.R$attr:
+    int civ_border_base_color -> civ_border_base_color
+    int civ_border_color -> civ_border_color
+    int civ_border_overlay -> civ_border_overlay
+    int civ_border_width -> civ_border_width
+    int civ_fill_color -> civ_fill_color
+    void <init>() -> <init>
+com.huanju.chajianhuatest.R$color -> com.huanju.chajianhuatest.R$color:
+    int colorAccent -> colorAccent
+    int colorPrimary -> colorPrimary
+    int colorPrimaryDark -> colorPrimaryDark
+    void <init>() -> <init>
+com.huanju.chajianhuatest.R$dimen -> com.huanju.chajianhuatest.R$dimen:
+    int activity_horizontal_margin -> activity_horizontal_margin
+    int activity_vertical_margin -> activity_vertical_margin
+    void <init>() -> <init>
+com.huanju.chajianhuatest.R$drawable -> com.huanju.chajianhuatest.R$drawable:
+    int child -> child
+    int chongshan -> chongshan
+    int fenghuang -> fenghuang
+    int shanshui -> shanshui
+    int shuimo -> shuimo
+    int xin -> xin
+    void <init>() -> <init>
+com.huanju.chajianhuatest.R$id -> com.huanju.chajianhuatest.R$id:
+    int activity_main -> activity_main
+    int bbb -> bbb
+    int go_demo1 -> go_demo1
+    int go_demo2 -> go_demo2
+    int iv -> iv
+    int test -> test
+    int tv -> tv
+    void <init>() -> <init>
+com.huanju.chajianhuatest.R$layout -> com.huanju.chajianhuatest.R$layout:
+    int activity_main -> activity_main
+    int basebundle -> basebundle
+    void <init>() -> <init>
+com.huanju.chajianhuatest.R$mipmap -> com.huanju.chajianhuatest.R$mipmap:
+    int button_exit -> button_exit
+    int button_network -> button_network
+    int button_vs_2p -> button_vs_2p
+    int button_vs_ai -> button_vs_ai
+    int chess_blue_cat -> chess_blue_cat
+    int chess_blue_dog -> chess_blue_dog
+    int chess_blue_elephant -> chess_blue_elephant
+    int chess_blue_lair -> chess_blue_lair
+    int chess_blue_leopard -> chess_blue_leopard
+    int chess_blue_lion -> chess_blue_lion
+    int chess_blue_rat -> chess_blue_rat
+    int chess_blue_tiger -> chess_blue_tiger
+    int chess_blue_wolf -> chess_blue_wolf
+    int chess_red_cat -> chess_red_cat
+    int chess_red_dog -> chess_red_dog
+    int chess_red_elephant -> chess_red_elephant
+    int chess_red_lair -> chess_red_lair
+    int chess_red_leopard -> chess_red_leopard
+    int chess_red_lion -> chess_red_lion
+    int chess_red_rat -> chess_red_rat
+    int chess_red_tiger -> chess_red_tiger
+    int chess_red_wolf -> chess_red_wolf
+    int child -> child
+    int ic_launcher -> ic_launcher
+    int icon -> icon
+    int jungle -> jungle
+    int title -> title
+    int title_bg -> title_bg
+    int transparent -> transparent
+    void <init>() -> <init>
+com.huanju.chajianhuatest.R$string -> com.huanju.chajianhuatest.R$string:
+    int app_name -> app_name
+    int bundle_tv -> bundle_tv
+    int shanshui -> shanshui
+    int tv_tst -> tv_tst
+    void <init>() -> <init>
+com.huanju.chajianhuatest.R$style -> com.huanju.chajianhuatest.R$style:
+    int AppTheme -> AppTheme
+    int cardtitle -> cardtitle
+    int demo -> demo
+    void <init>() -> <init>
+com.huanju.chajianhuatest.R$styleable -> com.huanju.chajianhuatest.R$styleable:
+    int[] CircleImageView -> CircleImageView
+    int CircleImageView_civ_border_color -> CircleImageView_civ_border_color
+    int CircleImageView_civ_border_overlay -> CircleImageView_civ_border_overlay
+    int CircleImageView_civ_border_width -> CircleImageView_civ_border_width
+    int CircleImageView_civ_fill_color -> CircleImageView_civ_fill_color
+    int[] CircleImageViewBase -> CircleImageViewBase
+    int CircleImageViewBase_civ_border_base_color -> CircleImageViewBase_civ_border_base_color
+    int CircleImageViewBase_civ_border_overlay -> CircleImageViewBase_civ_border_overlay
+    int CircleImageViewBase_civ_border_width -> CircleImageViewBase_civ_border_width
+    int CircleImageViewBase_civ_fill_color -> CircleImageViewBase_civ_fill_color
+    void <init>() -> <init>
+    void <clinit>() -> <clinit>
+com.huanju.chajianhuatest.RoundImageTest -> com.huanju.chajianhuatest.RoundImageTest:
+    void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
+com.huanju.chajianhuatest.aidlmode.TestBean -> com.huanju.chajianhuatest.aidlmode.TestBean:
+    java.lang.String s -> A
+    int i -> B
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    int describeContents() -> describeContents
+    void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    void <init>() -> <init>
+    void <init>(android.os.Parcel) -> <init>
+    void <clinit>() -> <clinit>
+com.huanju.chajianhuatest.aidlmode.TestBean$1 -> com.huanju.chajianhuatest.aidlmode.TestBean$1:
+    void <init>() -> <init>
+    com.huanju.chajianhuatest.aidlmode.TestBean createFromParcel(android.os.Parcel) -> a
+    com.huanju.chajianhuatest.aidlmode.TestBean[] newArray(int) -> a
+    java.lang.Object[] newArray(int) -> newArray
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+com.huanju.chajianhuatest.bundleUtils.BundleInstallUtils -> com.huanju.chajianhuatest.bundleUtils.BundleInstallUtils:
+    java.lang.String TAG -> TAG
+    android.content.Context mContext -> mContext
+    android.content.res.AssetManager mAssetManager -> C
+    android.content.res.Resources mNewResource -> D
+    java.util.ArrayList mBundleVersionList -> E
+    com.huanju.chajianhuatest.bundleUtils.BundleInstallUtils$LoadedCallBack mLoadedCallBack -> mLoadedCallBack
+    void <init>(android.content.Context) -> <init>
+    void setLoadedCallBack(com.huanju.chajianhuatest.bundleUtils.BundleInstallUtils$LoadedCallBack) -> a
+    boolean updateTotalResource(com.huanju.chajianhuatest.bundlemodel.BundleFileModel) -> updateTotalResource
+    android.content.res.AssetManager getAssets() -> getAssets
+    android.content.res.Resources getResources() -> getResources
+    android.content.Context getContext() -> getContext
+    java.lang.String getMd5ByFile(java.io.File) -> getMd5ByFile
+    java.lang.String getBundleApkPath(com.huanju.chajianhuatest.bundlemodel.BundleFileModel) -> getBundleApkPath
+    boolean setBundleClassloaderSucess(com.huanju.chajianhuatest.bundlemodel.BundleFileModel) -> a
+    boolean hasLoaded(com.huanju.chajianhuatest.bundlemodel.BundleFileModel) -> hasLoaded
+    boolean checkInstallBundle(com.huanju.chajianhuatest.bundlemodel.BundleFileModel) -> b
+    void installBundle(com.huanju.chajianhuatest.bundlemodel.BundleFileModel,com.huanju.chajianhuatest.bundleUtils.BundleInstallUtils$LoadedCallBack) -> installBundle
+    void <clinit>() -> <clinit>
+com.huanju.chajianhuatest.bundleUtils.BundleInstallUtils$LoadedCallBack -> com.huanju.chajianhuatest.bundleUtils.BundleInstallUtils$a:
+    void sucesss() -> f
+    void fail() -> fail
+com.huanju.chajianhuatest.bundleUtils.ClassLoaderInjectHelper -> com.huanju.chajianhuatest.bundleUtils.a:
+    com.huanju.chajianhuatest.bundleUtils.ClassLoaderInjectHelper$InjectResult inject(android.content.Context,java.lang.String) -> a
+    com.huanju.chajianhuatest.bundleUtils.ClassLoaderInjectHelper$InjectResult injectBelowApiLevel14(android.content.Context,java.lang.String) -> b
+    com.huanju.chajianhuatest.bundleUtils.ClassLoaderInjectHelper$InjectResult injectBelowApiLevel14(java.lang.ClassLoader,java.lang.ClassLoader) -> a
+    com.huanju.chajianhuatest.bundleUtils.ClassLoaderInjectHelper$InjectResult injectAboveEqualApiLevel14(android.content.Context,java.lang.String) -> c
+    com.huanju.chajianhuatest.bundleUtils.ClassLoaderInjectHelper$InjectResult injectAboveApiLevel22(java.lang.ClassLoader,java.lang.ClassLoader) -> b
+    com.huanju.chajianhuatest.bundleUtils.ClassLoaderInjectHelper$InjectResult injectAboveEqualApiLevel14(java.lang.ClassLoader,java.lang.ClassLoader) -> c
+    void setField(java.lang.Object,java.lang.Class,java.lang.String,java.lang.Object) -> a
+    java.lang.Object getField(java.lang.Object,java.lang.Class,java.lang.String) -> a
+    java.lang.Object combineArray(java.lang.Object,java.lang.Object) -> a
+    java.lang.Object appendArray(java.lang.Object,java.lang.Object) -> b
+    com.huanju.chajianhuatest.bundleUtils.ClassLoaderInjectHelper$InjectResult makeInjectResult(boolean,java.lang.Throwable) -> a
+    java.lang.Object getPathList(java.lang.Object) -> a
+    java.lang.Object getDexElements(java.lang.Object) -> b
+    java.lang.Object getNativeLibraryPathElements(java.lang.Object) -> c
+    java.lang.Object getNativeLibraryDirectories(java.lang.Object) -> d
+com.huanju.chajianhuatest.bundleUtils.ClassLoaderInjectHelper$InjectResult -> com.huanju.chajianhuatest.bundleUtils.a$a:
+    boolean mIsSuccessful -> F
+    java.lang.String mErrMsg -> G
+    void <init>() -> <init>
+com.huanju.chajianhuatest.bundleUtils.JsonFileUtil -> com.huanju.chajianhuatest.bundleUtils.b:
+    boolean hasReSaveJsonFile -> H
+    java.util.ArrayList bundleVersionList -> I
+    java.util.ArrayList readJsonFileToList(java.lang.String) -> a
+    com.huanju.chajianhuatest.bundlemodel.BundleFileModel getBundleModel(android.content.Context,java.lang.String) -> d
+    void saveJsonFile(android.content.Context,java.lang.String) -> e
+    void <clinit>() -> <clinit>
+com.huanju.chajianhuatest.bundlemodel.BundleFileModel -> com.huanju.chajianhuatest.a.a:
+    long serialVersionUID -> serialVersionUID
+    java.lang.String bundleVersion -> J
+    java.lang.String md5 -> K
+    void <init>() -> <init>
+    void <init>(java.lang.String,java.lang.String) -> <init>
+org.greenrobot.eventbus.AsyncPoster -> org.greenrobot.eventbus.AsyncPoster:
+    org.greenrobot.eventbus.PendingPostQueue queue -> queue
+    org.greenrobot.eventbus.EventBus eventBus -> eventBus
+    void <init>(org.greenrobot.eventbus.EventBus) -> <init>
+    void enqueue(org.greenrobot.eventbus.Subscription,java.lang.Object) -> enqueue
+    void run() -> run
+org.greenrobot.eventbus.BackgroundPoster -> org.greenrobot.eventbus.BackgroundPoster:
+    org.greenrobot.eventbus.PendingPostQueue queue -> queue
+    org.greenrobot.eventbus.EventBus eventBus -> eventBus
+    boolean executorRunning -> executorRunning
+    void <init>(org.greenrobot.eventbus.EventBus) -> <init>
+    void enqueue(org.greenrobot.eventbus.Subscription,java.lang.Object) -> enqueue
+    void run() -> run
+org.greenrobot.eventbus.EventBus -> org.greenrobot.eventbus.EventBus:
+    java.lang.String TAG -> TAG
+    org.greenrobot.eventbus.EventBus defaultInstance -> defaultInstance
+    org.greenrobot.eventbus.EventBusBuilder DEFAULT_BUILDER -> DEFAULT_BUILDER
+    java.util.Map eventTypesCache -> eventTypesCache
+    java.util.Map subscriptionsByEventType -> subscriptionsByEventType
+    java.util.Map typesBySubscriber -> typesBySubscriber
+    java.util.Map stickyEvents -> stickyEvents
+    java.lang.ThreadLocal currentPostingThreadState -> currentPostingThreadState
+    org.greenrobot.eventbus.HandlerPoster mainThreadPoster -> mainThreadPoster
+    org.greenrobot.eventbus.BackgroundPoster backgroundPoster -> backgroundPoster
+    org.greenrobot.eventbus.AsyncPoster asyncPoster -> asyncPoster
+    org.greenrobot.eventbus.SubscriberMethodFinder subscriberMethodFinder -> subscriberMethodFinder
+    java.util.concurrent.ExecutorService executorService -> executorService
+    boolean throwSubscriberException -> throwSubscriberException
+    boolean logSubscriberExceptions -> logSubscriberExceptions
+    boolean logNoSubscriberMessages -> logNoSubscriberMessages
+    boolean sendSubscriberExceptionEvent -> sendSubscriberExceptionEvent
+    boolean sendNoSubscriberEvent -> sendNoSubscriberEvent
+    boolean eventInheritance -> eventInheritance
+    int indexCount -> indexCount
+    org.greenrobot.eventbus.EventBus getDefault() -> getDefault
+    org.greenrobot.eventbus.EventBusBuilder builder() -> builder
+    void clearCaches() -> clearCaches
+    void <init>() -> <init>
+    void <init>(org.greenrobot.eventbus.EventBusBuilder) -> <init>
+    void register(java.lang.Object) -> register
+    void subscribe(java.lang.Object,org.greenrobot.eventbus.SubscriberMethod) -> subscribe
+    void checkPostStickyEventToSubscription(org.greenrobot.eventbus.Subscription,java.lang.Object) -> checkPostStickyEventToSubscription
+    boolean isRegistered(java.lang.Object) -> isRegistered
+    void unsubscribeByEventType(java.lang.Object,java.lang.Class) -> unsubscribeByEventType
+    void unregister(java.lang.Object) -> unregister
+    void post(java.lang.Object) -> post
+    void cancelEventDelivery(java.lang.Object) -> cancelEventDelivery
+    void postSticky(java.lang.Object) -> postSticky
+    java.lang.Object getStickyEvent(java.lang.Class) -> getStickyEvent
+    java.lang.Object removeStickyEvent(java.lang.Class) -> removeStickyEvent
+    boolean removeStickyEvent(java.lang.Object) -> removeStickyEvent
+    void removeAllStickyEvents() -> removeAllStickyEvents
+    boolean hasSubscriberForEvent(java.lang.Class) -> hasSubscriberForEvent
+    void postSingleEvent(java.lang.Object,org.greenrobot.eventbus.EventBus$PostingThreadState) -> postSingleEvent
+    boolean postSingleEventForEventType(java.lang.Object,org.greenrobot.eventbus.EventBus$PostingThreadState,java.lang.Class) -> postSingleEventForEventType
+    void postToSubscription(org.greenrobot.eventbus.Subscription,java.lang.Object,boolean) -> postToSubscription
+    java.util.List lookupAllEventTypes(java.lang.Class) -> lookupAllEventTypes
+    void addInterfaces(java.util.List,java.lang.Class[]) -> addInterfaces
+    void invokeSubscriber(org.greenrobot.eventbus.PendingPost) -> invokeSubscriber
+    void invokeSubscriber(org.greenrobot.eventbus.Subscription,java.lang.Object) -> invokeSubscriber
+    void handleSubscriberException(org.greenrobot.eventbus.Subscription,java.lang.Object,java.lang.Throwable) -> handleSubscriberException
+    java.util.concurrent.ExecutorService getExecutorService() -> getExecutorService
+    java.lang.String toString() -> toString
+    void <clinit>() -> <clinit>
+org.greenrobot.eventbus.EventBus$1 -> org.greenrobot.eventbus.EventBus$1:
+    org.greenrobot.eventbus.EventBus this$0 -> this$0
+    void <init>(org.greenrobot.eventbus.EventBus) -> <init>
+    org.greenrobot.eventbus.EventBus$PostingThreadState initialValue() -> initialValue
+    java.lang.Object initialValue() -> initialValue
+org.greenrobot.eventbus.EventBus$2 -> org.greenrobot.eventbus.EventBus$2:
+    int[] $SwitchMap$org$greenrobot$eventbus$ThreadMode -> $SwitchMap$org$greenrobot$eventbus$ThreadMode
+    void <clinit>() -> <clinit>
+org.greenrobot.eventbus.EventBus$PostCallback -> org.greenrobot.eventbus.EventBus$PostCallback:
+    void onPostCompleted(java.util.List) -> onPostCompleted
+org.greenrobot.eventbus.EventBus$PostingThreadState -> org.greenrobot.eventbus.EventBus$PostingThreadState:
+    java.util.List eventQueue -> eventQueue
+    boolean isPosting -> isPosting
+    boolean isMainThread -> isMainThread
+    org.greenrobot.eventbus.Subscription subscription -> subscription
+    java.lang.Object event -> event
+    boolean canceled -> canceled
+    void <init>() -> <init>
+org.greenrobot.eventbus.EventBusBuilder -> org.greenrobot.eventbus.EventBusBuilder:
+    java.util.concurrent.ExecutorService DEFAULT_EXECUTOR_SERVICE -> DEFAULT_EXECUTOR_SERVICE
+    boolean logSubscriberExceptions -> logSubscriberExceptions
+    boolean logNoSubscriberMessages -> logNoSubscriberMessages
+    boolean sendSubscriberExceptionEvent -> sendSubscriberExceptionEvent
+    boolean sendNoSubscriberEvent -> sendNoSubscriberEvent
+    boolean throwSubscriberException -> throwSubscriberException
+    boolean eventInheritance -> eventInheritance
+    boolean ignoreGeneratedIndex -> ignoreGeneratedIndex
+    boolean strictMethodVerification -> strictMethodVerification
+    java.util.concurrent.ExecutorService executorService -> executorService
+    java.util.List skipMethodVerificationForClasses -> skipMethodVerificationForClasses
+    java.util.List subscriberInfoIndexes -> subscriberInfoIndexes
+    void <init>() -> <init>
+    org.greenrobot.eventbus.EventBusBuilder logSubscriberExceptions(boolean) -> logSubscriberExceptions
+    org.greenrobot.eventbus.EventBusBuilder logNoSubscriberMessages(boolean) -> logNoSubscriberMessages
+    org.greenrobot.eventbus.EventBusBuilder sendSubscriberExceptionEvent(boolean) -> sendSubscriberExceptionEvent
+    org.greenrobot.eventbus.EventBusBuilder sendNoSubscriberEvent(boolean) -> sendNoSubscriberEvent
+    org.greenrobot.eventbus.EventBusBuilder throwSubscriberException(boolean) -> throwSubscriberException
+    org.greenrobot.eventbus.EventBusBuilder eventInheritance(boolean) -> eventInheritance
+    org.greenrobot.eventbus.EventBusBuilder executorService(java.util.concurrent.ExecutorService) -> executorService
+    org.greenrobot.eventbus.EventBusBuilder skipMethodVerificationFor(java.lang.Class) -> skipMethodVerificationFor
+    org.greenrobot.eventbus.EventBusBuilder ignoreGeneratedIndex(boolean) -> ignoreGeneratedIndex
+    org.greenrobot.eventbus.EventBusBuilder strictMethodVerification(boolean) -> strictMethodVerification
+    org.greenrobot.eventbus.EventBusBuilder addIndex(org.greenrobot.eventbus.meta.SubscriberInfoIndex) -> addIndex
+    org.greenrobot.eventbus.EventBus installDefaultEventBus() -> installDefaultEventBus
+    org.greenrobot.eventbus.EventBus build() -> build
+    void <clinit>() -> <clinit>
+org.greenrobot.eventbus.EventBusException -> org.greenrobot.eventbus.EventBusException:
+    long serialVersionUID -> serialVersionUID
+    void <init>(java.lang.String) -> <init>
+    void <init>(java.lang.Throwable) -> <init>
+    void <init>(java.lang.String,java.lang.Throwable) -> <init>
+org.greenrobot.eventbus.HandlerPoster -> org.greenrobot.eventbus.HandlerPoster:
+    org.greenrobot.eventbus.PendingPostQueue queue -> queue
+    int maxMillisInsideHandleMessage -> maxMillisInsideHandleMessage
+    org.greenrobot.eventbus.EventBus eventBus -> eventBus
+    boolean handlerActive -> handlerActive
+    void <init>(org.greenrobot.eventbus.EventBus,android.os.Looper,int) -> <init>
+    void enqueue(org.greenrobot.eventbus.Subscription,java.lang.Object) -> enqueue
+    void handleMessage(android.os.Message) -> handleMessage
+org.greenrobot.eventbus.NoSubscriberEvent -> org.greenrobot.eventbus.NoSubscriberEvent:
+    org.greenrobot.eventbus.EventBus eventBus -> eventBus
+    java.lang.Object originalEvent -> originalEvent
+    void <init>(org.greenrobot.eventbus.EventBus,java.lang.Object) -> <init>
+org.greenrobot.eventbus.PendingPost -> org.greenrobot.eventbus.PendingPost:
+    java.util.List pendingPostPool -> pendingPostPool
+    java.lang.Object event -> event
+    org.greenrobot.eventbus.Subscription subscription -> subscription
+    org.greenrobot.eventbus.PendingPost next -> next
+    void <init>(java.lang.Object,org.greenrobot.eventbus.Subscription) -> <init>
+    org.greenrobot.eventbus.PendingPost obtainPendingPost(org.greenrobot.eventbus.Subscription,java.lang.Object) -> obtainPendingPost
+    void releasePendingPost(org.greenrobot.eventbus.PendingPost) -> releasePendingPost
+    void <clinit>() -> <clinit>
+org.greenrobot.eventbus.PendingPostQueue -> org.greenrobot.eventbus.PendingPostQueue:
+    org.greenrobot.eventbus.PendingPost head -> head
+    org.greenrobot.eventbus.PendingPost tail -> tail
+    void <init>() -> <init>
+    void enqueue(org.greenrobot.eventbus.PendingPost) -> enqueue
+    org.greenrobot.eventbus.PendingPost poll() -> poll
+    org.greenrobot.eventbus.PendingPost poll(int) -> poll
+org.greenrobot.eventbus.Subscribe -> org.greenrobot.eventbus.Subscribe:
+    org.greenrobot.eventbus.ThreadMode threadMode() -> threadMode
+    boolean sticky() -> sticky
+    int priority() -> priority
+org.greenrobot.eventbus.SubscriberExceptionEvent -> org.greenrobot.eventbus.SubscriberExceptionEvent:
+    org.greenrobot.eventbus.EventBus eventBus -> eventBus
+    java.lang.Throwable throwable -> throwable
+    java.lang.Object causingEvent -> causingEvent
+    java.lang.Object causingSubscriber -> causingSubscriber
+    void <init>(org.greenrobot.eventbus.EventBus,java.lang.Throwable,java.lang.Object,java.lang.Object) -> <init>
+org.greenrobot.eventbus.SubscriberMethod -> org.greenrobot.eventbus.SubscriberMethod:
+    java.lang.reflect.Method method -> method
+    org.greenrobot.eventbus.ThreadMode threadMode -> threadMode
+    java.lang.Class eventType -> eventType
+    int priority -> priority
+    boolean sticky -> sticky
+    java.lang.String methodString -> methodString
+    void <init>(java.lang.reflect.Method,java.lang.Class,org.greenrobot.eventbus.ThreadMode,int,boolean) -> <init>
+    boolean equals(java.lang.Object) -> equals
+    void checkMethodString() -> checkMethodString
+    int hashCode() -> hashCode
+org.greenrobot.eventbus.SubscriberMethodFinder -> org.greenrobot.eventbus.SubscriberMethodFinder:
+    int BRIDGE -> BRIDGE
+    int SYNTHETIC -> SYNTHETIC
+    int MODIFIERS_IGNORE -> MODIFIERS_IGNORE
+    java.util.Map METHOD_CACHE -> METHOD_CACHE
+    java.util.List subscriberInfoIndexes -> subscriberInfoIndexes
+    boolean strictMethodVerification -> strictMethodVerification
+    boolean ignoreGeneratedIndex -> ignoreGeneratedIndex
+    int POOL_SIZE -> POOL_SIZE
+    org.greenrobot.eventbus.SubscriberMethodFinder$FindState[] FIND_STATE_POOL -> FIND_STATE_POOL
+    void <init>(java.util.List,boolean,boolean) -> <init>
+    java.util.List findSubscriberMethods(java.lang.Class) -> findSubscriberMethods
+    java.util.List findUsingInfo(java.lang.Class) -> findUsingInfo
+    java.util.List getMethodsAndRelease(org.greenrobot.eventbus.SubscriberMethodFinder$FindState) -> getMethodsAndRelease
+    org.greenrobot.eventbus.SubscriberMethodFinder$FindState prepareFindState() -> prepareFindState
+    org.greenrobot.eventbus.meta.SubscriberInfo getSubscriberInfo(org.greenrobot.eventbus.SubscriberMethodFinder$FindState) -> getSubscriberInfo
+    java.util.List findUsingReflection(java.lang.Class) -> findUsingReflection
+    void findUsingReflectionInSingleClass(org.greenrobot.eventbus.SubscriberMethodFinder$FindState) -> findUsingReflectionInSingleClass
+    void clearCaches() -> clearCaches
+    void <clinit>() -> <clinit>
+org.greenrobot.eventbus.SubscriberMethodFinder$FindState -> org.greenrobot.eventbus.SubscriberMethodFinder$FindState:
+    java.util.List subscriberMethods -> subscriberMethods
+    java.util.Map anyMethodByEventType -> anyMethodByEventType
+    java.util.Map subscriberClassByMethodKey -> subscriberClassByMethodKey
+    java.lang.StringBuilder methodKeyBuilder -> methodKeyBuilder
+    java.lang.Class subscriberClass -> subscriberClass
+    java.lang.Class clazz -> clazz
+    boolean skipSuperClasses -> skipSuperClasses
+    org.greenrobot.eventbus.meta.SubscriberInfo subscriberInfo -> subscriberInfo
+    void <init>() -> <init>
+    void initForSubscriber(java.lang.Class) -> initForSubscriber
+    void recycle() -> recycle
+    boolean checkAdd(java.lang.reflect.Method,java.lang.Class) -> checkAdd
+    boolean checkAddWithMethodSignature(java.lang.reflect.Method,java.lang.Class) -> checkAddWithMethodSignature
+    void moveToSuperclass() -> moveToSuperclass
+org.greenrobot.eventbus.Subscription -> org.greenrobot.eventbus.Subscription:
+    java.lang.Object subscriber -> subscriber
+    org.greenrobot.eventbus.SubscriberMethod subscriberMethod -> subscriberMethod
+    boolean active -> active
+    void <init>(java.lang.Object,org.greenrobot.eventbus.SubscriberMethod) -> <init>
+    boolean equals(java.lang.Object) -> equals
+    int hashCode() -> hashCode
+org.greenrobot.eventbus.ThreadMode -> org.greenrobot.eventbus.ThreadMode:
+    org.greenrobot.eventbus.ThreadMode POSTING -> POSTING
+    org.greenrobot.eventbus.ThreadMode MAIN -> MAIN
+    org.greenrobot.eventbus.ThreadMode BACKGROUND -> BACKGROUND
+    org.greenrobot.eventbus.ThreadMode ASYNC -> ASYNC
+    org.greenrobot.eventbus.ThreadMode[] $VALUES -> $VALUES
+    org.greenrobot.eventbus.ThreadMode[] values() -> values
+    org.greenrobot.eventbus.ThreadMode valueOf(java.lang.String) -> valueOf
+    void <init>(java.lang.String,int) -> <init>
+    void <clinit>() -> <clinit>
+org.greenrobot.eventbus.meta.AbstractSubscriberInfo -> org.greenrobot.eventbus.meta.AbstractSubscriberInfo:
+    java.lang.Class subscriberClass -> subscriberClass
+    java.lang.Class superSubscriberInfoClass -> superSubscriberInfoClass
+    boolean shouldCheckSuperclass -> shouldCheckSuperclass
+    void <init>(java.lang.Class,java.lang.Class,boolean) -> <init>
+    java.lang.Class getSubscriberClass() -> getSubscriberClass
+    org.greenrobot.eventbus.meta.SubscriberInfo getSuperSubscriberInfo() -> getSuperSubscriberInfo
+    boolean shouldCheckSuperclass() -> shouldCheckSuperclass
+    org.greenrobot.eventbus.SubscriberMethod createSubscriberMethod(java.lang.String,java.lang.Class) -> createSubscriberMethod
+    org.greenrobot.eventbus.SubscriberMethod createSubscriberMethod(java.lang.String,java.lang.Class,org.greenrobot.eventbus.ThreadMode) -> createSubscriberMethod
+    org.greenrobot.eventbus.SubscriberMethod createSubscriberMethod(java.lang.String,java.lang.Class,org.greenrobot.eventbus.ThreadMode,int,boolean) -> createSubscriberMethod
+org.greenrobot.eventbus.meta.SimpleSubscriberInfo -> org.greenrobot.eventbus.meta.SimpleSubscriberInfo:
+    org.greenrobot.eventbus.meta.SubscriberMethodInfo[] methodInfos -> methodInfos
+    void <init>(java.lang.Class,boolean,org.greenrobot.eventbus.meta.SubscriberMethodInfo[]) -> <init>
+    org.greenrobot.eventbus.SubscriberMethod[] getSubscriberMethods() -> getSubscriberMethods
+org.greenrobot.eventbus.meta.SubscriberInfo -> org.greenrobot.eventbus.meta.SubscriberInfo:
+    java.lang.Class getSubscriberClass() -> getSubscriberClass
+    org.greenrobot.eventbus.SubscriberMethod[] getSubscriberMethods() -> getSubscriberMethods
+    org.greenrobot.eventbus.meta.SubscriberInfo getSuperSubscriberInfo() -> getSuperSubscriberInfo
+    boolean shouldCheckSuperclass() -> shouldCheckSuperclass
+org.greenrobot.eventbus.meta.SubscriberInfoIndex -> org.greenrobot.eventbus.meta.SubscriberInfoIndex:
+    org.greenrobot.eventbus.meta.SubscriberInfo getSubscriberInfo(java.lang.Class) -> getSubscriberInfo
+org.greenrobot.eventbus.meta.SubscriberMethodInfo -> org.greenrobot.eventbus.meta.SubscriberMethodInfo:
+    java.lang.String methodName -> methodName
+    org.greenrobot.eventbus.ThreadMode threadMode -> threadMode
+    java.lang.Class eventType -> eventType
+    int priority -> priority
+    boolean sticky -> sticky
+    void <init>(java.lang.String,java.lang.Class,org.greenrobot.eventbus.ThreadMode,int,boolean) -> <init>
+    void <init>(java.lang.String,java.lang.Class) -> <init>
+    void <init>(java.lang.String,java.lang.Class,org.greenrobot.eventbus.ThreadMode) -> <init>
+org.greenrobot.eventbus.util.AsyncExecutor -> org.greenrobot.eventbus.util.AsyncExecutor:
+    java.util.concurrent.Executor threadPool -> threadPool
+    java.lang.reflect.Constructor failureEventConstructor -> failureEventConstructor
+    org.greenrobot.eventbus.EventBus eventBus -> eventBus
+    java.lang.Object scope -> scope
+    org.greenrobot.eventbus.util.AsyncExecutor$Builder builder() -> builder
+    org.greenrobot.eventbus.util.AsyncExecutor create() -> create
+    void <init>(java.util.concurrent.Executor,org.greenrobot.eventbus.EventBus,java.lang.Class,java.lang.Object) -> <init>
+    void execute(org.greenrobot.eventbus.util.AsyncExecutor$RunnableEx) -> execute
+    void <init>(java.util.concurrent.Executor,org.greenrobot.eventbus.EventBus,java.lang.Class,java.lang.Object,org.greenrobot.eventbus.util.AsyncExecutor$1) -> <init>
+    java.lang.reflect.Constructor access$200(org.greenrobot.eventbus.util.AsyncExecutor) -> access$200
+    java.lang.Object access$300(org.greenrobot.eventbus.util.AsyncExecutor) -> access$300
+    org.greenrobot.eventbus.EventBus access$400(org.greenrobot.eventbus.util.AsyncExecutor) -> access$400
+org.greenrobot.eventbus.util.AsyncExecutor$1 -> org.greenrobot.eventbus.util.AsyncExecutor$1:
+    org.greenrobot.eventbus.util.AsyncExecutor$RunnableEx val$runnable -> val$runnable
+    org.greenrobot.eventbus.util.AsyncExecutor this$0 -> this$0
+    void <init>(org.greenrobot.eventbus.util.AsyncExecutor,org.greenrobot.eventbus.util.AsyncExecutor$RunnableEx) -> <init>
+    void run() -> run
+org.greenrobot.eventbus.util.AsyncExecutor$Builder -> org.greenrobot.eventbus.util.AsyncExecutor$Builder:
+    java.util.concurrent.Executor threadPool -> threadPool
+    java.lang.Class failureEventType -> failureEventType
+    org.greenrobot.eventbus.EventBus eventBus -> eventBus
+    void <init>() -> <init>
+    org.greenrobot.eventbus.util.AsyncExecutor$Builder threadPool(java.util.concurrent.Executor) -> threadPool
+    org.greenrobot.eventbus.util.AsyncExecutor$Builder failureEventType(java.lang.Class) -> failureEventType
+    org.greenrobot.eventbus.util.AsyncExecutor$Builder eventBus(org.greenrobot.eventbus.EventBus) -> eventBus
+    org.greenrobot.eventbus.util.AsyncExecutor build() -> build
+    org.greenrobot.eventbus.util.AsyncExecutor buildForActivityScope(android.app.Activity) -> buildForActivityScope
+    org.greenrobot.eventbus.util.AsyncExecutor buildForScope(java.lang.Object) -> buildForScope
+    void <init>(org.greenrobot.eventbus.util.AsyncExecutor$1) -> <init>
+org.greenrobot.eventbus.util.AsyncExecutor$RunnableEx -> org.greenrobot.eventbus.util.AsyncExecutor$RunnableEx:
+    void run() -> run
+org.greenrobot.eventbus.util.ErrorDialogConfig -> org.greenrobot.eventbus.util.ErrorDialogConfig:
+    android.content.res.Resources resources -> resources
+    int defaultTitleId -> defaultTitleId
+    int defaultErrorMsgId -> defaultErrorMsgId
+    org.greenrobot.eventbus.util.ExceptionToResourceMapping mapping -> mapping
+    org.greenrobot.eventbus.EventBus eventBus -> eventBus
+    boolean logExceptions -> logExceptions
+    java.lang.String tagForLoggingExceptions -> tagForLoggingExceptions
+    int defaultDialogIconId -> defaultDialogIconId
+    java.lang.Class defaultEventTypeOnDialogClosed -> defaultEventTypeOnDialogClosed
+    void <init>(android.content.res.Resources,int,int) -> <init>
+    org.greenrobot.eventbus.util.ErrorDialogConfig addMapping(java.lang.Class,int) -> addMapping
+    int getMessageIdForThrowable(java.lang.Throwable) -> getMessageIdForThrowable
+    void setDefaultDialogIconId(int) -> setDefaultDialogIconId
+    void setDefaultEventTypeOnDialogClosed(java.lang.Class) -> setDefaultEventTypeOnDialogClosed
+    void disableExceptionLogging() -> disableExceptionLogging
+    void setTagForLoggingExceptions(java.lang.String) -> setTagForLoggingExceptions
+    void setEventBus(org.greenrobot.eventbus.EventBus) -> setEventBus
+    org.greenrobot.eventbus.EventBus getEventBus() -> getEventBus
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory -> org.greenrobot.eventbus.util.ErrorDialogFragmentFactory:
+    org.greenrobot.eventbus.util.ErrorDialogConfig config -> config
+    void <init>(org.greenrobot.eventbus.util.ErrorDialogConfig) -> <init>
+    java.lang.Object prepareErrorFragment(org.greenrobot.eventbus.util.ThrowableFailureEvent,boolean,android.os.Bundle) -> prepareErrorFragment
+    java.lang.Object createErrorFragment(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle) -> createErrorFragment
+    java.lang.String getTitleFor(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle) -> getTitleFor
+    java.lang.String getMessageFor(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle) -> getMessageFor
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Honeycomb -> org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Honeycomb:
+    void <init>(org.greenrobot.eventbus.util.ErrorDialogConfig) -> <init>
+    android.app.Fragment createErrorFragment(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle) -> createErrorFragment
+    java.lang.Object createErrorFragment(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle) -> createErrorFragment
+org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Support -> org.greenrobot.eventbus.util.ErrorDialogFragmentFactory$Support:
+    void <init>(org.greenrobot.eventbus.util.ErrorDialogConfig) -> <init>
+    android.support.v4.app.Fragment createErrorFragment(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle) -> createErrorFragment
+    java.lang.Object createErrorFragment(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle) -> createErrorFragment
+org.greenrobot.eventbus.util.ErrorDialogFragments -> org.greenrobot.eventbus.util.ErrorDialogFragments:
+    int ERROR_DIALOG_ICON -> ERROR_DIALOG_ICON
+    java.lang.Class EVENT_TYPE_ON_CLICK -> EVENT_TYPE_ON_CLICK
+    void <init>() -> <init>
+    android.app.Dialog createDialog(android.content.Context,android.os.Bundle,android.content.DialogInterface$OnClickListener) -> createDialog
+    void handleOnClick(android.content.DialogInterface,int,android.app.Activity,android.os.Bundle) -> handleOnClick
+    void <clinit>() -> <clinit>
+org.greenrobot.eventbus.util.ErrorDialogFragments$Honeycomb -> org.greenrobot.eventbus.util.ErrorDialogFragments$Honeycomb:
+    void <init>() -> <init>
+    android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
+    void onClick(android.content.DialogInterface,int) -> onClick
+org.greenrobot.eventbus.util.ErrorDialogFragments$Support -> org.greenrobot.eventbus.util.ErrorDialogFragments$Support:
+    void <init>() -> <init>
+    android.app.Dialog onCreateDialog(android.os.Bundle) -> onCreateDialog
+    void onClick(android.content.DialogInterface,int) -> onClick
+org.greenrobot.eventbus.util.ErrorDialogManager -> org.greenrobot.eventbus.util.ErrorDialogManager:
+    org.greenrobot.eventbus.util.ErrorDialogFragmentFactory factory -> factory
+    java.lang.String TAG_ERROR_DIALOG -> TAG_ERROR_DIALOG
+    java.lang.String TAG_ERROR_DIALOG_MANAGER -> TAG_ERROR_DIALOG_MANAGER
+    java.lang.String KEY_TITLE -> KEY_TITLE
+    java.lang.String KEY_MESSAGE -> KEY_MESSAGE
+    java.lang.String KEY_FINISH_AFTER_DIALOG -> KEY_FINISH_AFTER_DIALOG
+    java.lang.String KEY_ICON_ID -> KEY_ICON_ID
+    java.lang.String KEY_EVENT_TYPE_ON_CLOSE -> KEY_EVENT_TYPE_ON_CLOSE
+    void <init>() -> <init>
+    void attachTo(android.app.Activity) -> attachTo
+    void attachTo(android.app.Activity,boolean) -> attachTo
+    void attachTo(android.app.Activity,boolean,android.os.Bundle) -> attachTo
+    void attachTo(android.app.Activity,java.lang.Object,boolean,android.os.Bundle) -> attachTo
+    boolean isSupportActivity(android.app.Activity) -> isSupportActivity
+    void checkLogException(org.greenrobot.eventbus.util.ThrowableFailureEvent) -> checkLogException
+    boolean isInExecutionScope(java.lang.Object,org.greenrobot.eventbus.util.ThrowableFailureEvent) -> isInExecutionScope
+    boolean access$000(java.lang.Object,org.greenrobot.eventbus.util.ThrowableFailureEvent) -> access$000
+org.greenrobot.eventbus.util.ErrorDialogManager$HoneycombManagerFragment -> org.greenrobot.eventbus.util.ErrorDialogManager$HoneycombManagerFragment:
+    boolean finishAfterDialog -> finishAfterDialog
+    android.os.Bundle argumentsForErrorDialog -> argumentsForErrorDialog
+    org.greenrobot.eventbus.EventBus eventBus -> eventBus
+    java.lang.Object executionScope -> executionScope
+    void <init>() -> <init>
+    void onResume() -> onResume
+    void onPause() -> onPause
+    void onEventMainThread(org.greenrobot.eventbus.util.ThrowableFailureEvent) -> onEventMainThread
+    void attachTo(android.app.Activity,java.lang.Object,boolean,android.os.Bundle) -> attachTo
+org.greenrobot.eventbus.util.ErrorDialogManager$SupportManagerFragment -> org.greenrobot.eventbus.util.ErrorDialogManager$SupportManagerFragment:
+    boolean finishAfterDialog -> finishAfterDialog
+    android.os.Bundle argumentsForErrorDialog -> argumentsForErrorDialog
+    org.greenrobot.eventbus.EventBus eventBus -> eventBus
+    boolean skipRegisterOnNextResume -> skipRegisterOnNextResume
+    java.lang.Object executionScope -> executionScope
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+    void onResume() -> onResume
+    void onPause() -> onPause
+    void onEventMainThread(org.greenrobot.eventbus.util.ThrowableFailureEvent) -> onEventMainThread
+    void attachTo(android.app.Activity,java.lang.Object,boolean,android.os.Bundle) -> attachTo
+org.greenrobot.eventbus.util.ExceptionToResourceMapping -> org.greenrobot.eventbus.util.ExceptionToResourceMapping:
+    java.util.Map throwableToMsgIdMap -> throwableToMsgIdMap
+    void <init>() -> <init>
+    java.lang.Integer mapThrowable(java.lang.Throwable) -> mapThrowable
+    java.lang.Integer mapThrowableFlat(java.lang.Throwable) -> mapThrowableFlat
+    org.greenrobot.eventbus.util.ExceptionToResourceMapping addMapping(java.lang.Class,int) -> addMapping
+org.greenrobot.eventbus.util.HasExecutionScope -> org.greenrobot.eventbus.util.HasExecutionScope:
+    java.lang.Object getExecutionScope() -> getExecutionScope
+    void setExecutionScope(java.lang.Object) -> setExecutionScope
+org.greenrobot.eventbus.util.ThrowableFailureEvent -> org.greenrobot.eventbus.util.ThrowableFailureEvent:
+    java.lang.Throwable throwable -> throwable
+    boolean suppressErrorUi -> suppressErrorUi
+    java.lang.Object executionContext -> executionContext
+    void <init>(java.lang.Throwable) -> <init>
+    void <init>(java.lang.Throwable,boolean) -> <init>
+    java.lang.Throwable getThrowable() -> getThrowable
+    boolean isSuppressErrorUi() -> isSuppressErrorUi
+    java.lang.Object getExecutionScope() -> getExecutionScope
+    void setExecutionScope(java.lang.Object) -> setExecutionScope
+qiyi.basemodule.BasePro -> qiyi.basemodule.a:
+    int video_int -> L
+    int open_aar -> M
+    boolean isForTest -> N
+    void <init>() -> <init>
+    java.lang.String getBaseStatusString(java.lang.String) -> b
+    void <clinit>() -> <clinit>
+qiyi.basemodule.R -> qiyi.basemodule.R:
+    void <init>() -> <init>
+qiyi.basemodule.R$attr -> qiyi.basemodule.R$attr:
+    int civ_border_base_color -> civ_border_base_color
+    int civ_border_overlay -> civ_border_overlay
+    int civ_border_width -> civ_border_width
+    int civ_fill_color -> civ_fill_color
+    void <init>() -> <init>
+qiyi.basemodule.R$drawable -> qiyi.basemodule.R$drawable:
+    int child -> child
+    int chongshan -> chongshan
+    int fenghuang -> fenghuang
+    void <init>() -> <init>
+qiyi.basemodule.R$id -> qiyi.basemodule.R$id:
+    int iv -> iv
+    int tv -> tv
+    void <init>() -> <init>
+qiyi.basemodule.R$layout -> qiyi.basemodule.R$layout:
+    int basebundle -> basebundle
+    void <init>() -> <init>
+qiyi.basemodule.R$string -> qiyi.basemodule.R$string:
+    int app_name -> app_name
+    int bundle_tv -> bundle_tv
+    void <init>() -> <init>
+qiyi.basemodule.R$styleable -> qiyi.basemodule.R$styleable:
+    int[] CircleImageViewBase -> CircleImageViewBase
+    int CircleImageViewBase_civ_border_base_color -> CircleImageViewBase_civ_border_base_color
+    int CircleImageViewBase_civ_border_overlay -> CircleImageViewBase_civ_border_overlay
+    int CircleImageViewBase_civ_border_width -> CircleImageViewBase_civ_border_width
+    int CircleImageViewBase_civ_fill_color -> CircleImageViewBase_civ_fill_color
+    void <init>() -> <init>
+    void <clinit>() -> <clinit>

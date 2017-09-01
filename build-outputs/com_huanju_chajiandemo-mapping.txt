@@ -1,0 +1,75 @@
+com.huanju.chajiandemo.ChajianCircleImageView -> com.huanju.chajiandemo.ChajianCircleImageView:
+    android.widget.ImageView$ScaleType SCALE_TYPE -> a
+    android.graphics.Bitmap$Config BITMAP_CONFIG -> b
+    android.graphics.RectF mDrawableRect -> c
+    android.graphics.RectF mBorderRect -> d
+    android.graphics.Matrix mShaderMatrix -> e
+    android.graphics.Paint mBitmapPaint -> f
+    android.graphics.Paint mBorderPaint -> g
+    android.graphics.Paint mFillPaint -> h
+    int mBorderColor -> i
+    int mBorderWidth -> j
+    int mFillColor -> k
+    android.graphics.Bitmap mBitmap -> l
+    android.graphics.BitmapShader mBitmapShader -> m
+    int mBitmapWidth -> n
+    int mBitmapHeight -> o
+    float mDrawableRadius -> p
+    float mBorderRadius -> q
+    android.graphics.ColorFilter mColorFilter -> r
+    boolean mReady -> s
+    boolean mSetupPending -> t
+    boolean mBorderOverlay -> u
+    boolean mDisableCircularTransformation -> v
+    void <init>(android.content.Context,android.util.AttributeSet) -> <init>
+    void <init>(android.content.Context,android.util.AttributeSet,int) -> <init>
+    void init() -> a
+    android.widget.ImageView$ScaleType getScaleType() -> getScaleType
+    void setScaleType(android.widget.ImageView$ScaleType) -> setScaleType
+    void setAdjustViewBounds(boolean) -> setAdjustViewBounds
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void setPadding(int,int,int,int) -> setPadding
+    void setPaddingRelative(int,int,int,int) -> setPaddingRelative
+    void setImageBitmap(android.graphics.Bitmap) -> setImageBitmap
+    void setImageDrawable(android.graphics.drawable.Drawable) -> setImageDrawable
+    void setImageResource(int) -> setImageResource
+    void setImageURI(android.net.Uri) -> setImageURI
+    void setColorFilter(android.graphics.ColorFilter) -> setColorFilter
+    android.graphics.ColorFilter getColorFilter() -> getColorFilter
+    void applyColorFilter() -> b
+    android.graphics.Bitmap getBitmapFromDrawable(android.graphics.drawable.Drawable) -> a
+    void initializeBitmap() -> c
+    void setup() -> setup
+    android.graphics.RectF calculateBounds() -> d
+    void updateShaderMatrix() -> e
+    void <clinit>() -> <clinit>
+com.huanju.chajiandemo.R -> com.huanju.chajiandemo.a:
+com.huanju.chajiandemo.R$styleable -> com.huanju.chajiandemo.b:
+    int[] ChajianCircleImageView -> w
+    void <clinit>() -> <clinit>
+com.huanju.chajiandemo.TestActivityTwo -> com.huanju.chajiandemo.TestActivityTwo:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+com.huanju.chajiandemo.TestActivityTwo$1 -> com.huanju.chajiandemo.c:
+    com.huanju.chajiandemo.TestActivityTwo this$0 -> x
+    void <init>(com.huanju.chajiandemo.TestActivityTwo) -> <init>
+    void onClick(android.view.View) -> onClick
+com.huanju.chajiandemo.TestActivityTwo$2 -> com.huanju.chajiandemo.d:
+    com.huanju.chajiandemo.TestActivityTwo this$0 -> x
+    void <init>(com.huanju.chajiandemo.TestActivityTwo) -> <init>
+    void onClick(android.view.View) -> onClick
+com.huanju.chajiandemo.fragment.HelloFragment -> com.huanju.chajiandemo.fragment.HelloFragment:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    void onPause() -> onPause
+com.huanju.chajiandemo.fragment.SecondFragment -> com.huanju.chajiandemo.fragment.SecondFragment:
+    void <init>() -> <init>
+    void onCreate(android.os.Bundle) -> onCreate
+    android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    void onPause() -> onPause
+com.huanju.chajianhuatest.bundlebase.BundleBaseActivity -> com.huanju.chajianhuatest.bundlebase.BundleBaseActivity:
+    void <init>() -> <init>
+    android.content.res.Resources getResources() -> getResources
+    android.content.res.AssetManager getAssets() -> getAssets

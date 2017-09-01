@@ -1,7 +1,11 @@
 package com.huanju.chajianhuatest.bundleUtils;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
+
+
 import java.io.File;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
@@ -12,6 +16,8 @@ import dalvik.system.DexClassLoader;
 import dalvik.system.PathClassLoader;
 
 public class ClassLoaderInjectHelper {
+
+    private static final String TAG = "ClassLoaderInjectHelper";
     /**
      * 注入jar
      *
@@ -27,11 +33,14 @@ public class ClassLoaderInjectHelper {
             hasBaseDexClassLoader = false;
         }
         if (!hasBaseDexClassLoader) {
+            Log.d(TAG, "inject bundle dex,has no BaseDexClassLoader ");
             return injectBelowApiLevel14(context, dexPath);
         } else {
+            Log.d(TAG, "inject bundle dex,has BaseDexClassLoader ");
             return injectAboveEqualApiLevel14(context, dexPath);
         }
     }
+
 
     /**
      * api < 14时，注入jar
@@ -79,10 +88,13 @@ public class ClassLoaderInjectHelper {
                 for (String path : libArray) {
                     libPaths.add(path);
                 }
+
+                Log.d(TAG, "inject bundle dex,injectBelowApiLevel14 success ");
             } catch (Exception e) {
                 setField(pathClassLoader, PathClassLoader.class, "mLibPaths",
                         combineArray(getField(pathClassLoader, PathClassLoader.class, "mLibPaths"),
                                 getField(dexClassLoader, DexClassLoader.class, "mLibPaths")));
+                Log.d(TAG, "inject bundle dex,injectBelowApiLevel14 exception and setField ");
             }
         } catch (NoSuchFieldException e) {
             result = makeInjectResult(false, e);
@@ -116,8 +128,10 @@ public class ClassLoaderInjectHelper {
 
         // If version > 22 LOLLIPOP_MR1
         if (Build.VERSION.SDK_INT > 22) {
+            Log.d(TAG, "inject bundle dex,SDK_INT >22 ");
             result = injectAboveApiLevel22(pathClassLoader, dexClassLoader);
         } else {
+            Log.d(TAG, "inject bundle dex,SDK_INT <=22 ");
             result = injectAboveEqualApiLevel14(pathClassLoader, dexClassLoader);
         }
 
@@ -168,6 +182,7 @@ public class ClassLoaderInjectHelper {
             if (childNativeLibraryDirectories != null) {
                 nativeLibraryDirectories.addAll(childNativeLibraryDirectories);
             }
+            Log.d(TAG, "bundle inject,injectAboveApiLevel22 success");
         } catch (IllegalArgumentException e) {
             result = makeInjectResult(false, e);
             e.printStackTrace();
@@ -215,6 +230,7 @@ public class ClassLoaderInjectHelper {
                     getNativeLibraryDirectories(getPathList(dexClassLoader)));
 
             setField(pathList, pathList.getClass(), "nativeLibraryDirectories", dexNativeLibraryDirs);
+            Log.d(TAG, "bundle inject,injectAboveEqualApiLevel14 success");
         } catch (IllegalArgumentException e) {
             result = makeInjectResult(false, e);
             e.printStackTrace();
@@ -451,13 +467,6 @@ public class ClassLoaderInjectHelper {
     }
 
     public static InjectResult eject(ClassLoader parentClassLoader, ClassLoader childClassLoader) {
-        // ali云 暂不实现，后边再看。
-        // try {
-        // Class.forName("dalvik.system.LexClassLoader");
-        // return injectInAliyunOs(aApp, aLibPath);
-        // } catch (ClassNotFoundException e) {
-        // e.printStackTrace();
-        // }
         boolean hasBaseDexClassLoader = true;
         try {
             Class.forName("dalvik.system.BaseDexClassLoader");

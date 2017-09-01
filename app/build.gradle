@@ -7,12 +7,12 @@ import java.util.zip.ZipOutputStream
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '24.0.2'
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
     defaultConfig {
         applicationId "com.huanju.chajianhuatest"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -80,7 +80,7 @@ task copyClass(type: Copy, dependsOn: 'jarClass') {
 //在终端执行生成JAR包
 // gradlew makeJar
 
-clean {
+ clean {
     delete buildDir
     delete "${rootDir}/build-outputs/demo-base-release.apk"
     delete "${rootDir}/build-outputs/AndroidManifest.xml"
@@ -90,6 +90,8 @@ clean {
     delete "${rootDir}/build-outputs/demo-release-resigned.apk"
     delete "${rootDir}/build-outputs/demo-release-repacked.apk"
     delete "${rootDir}/build-outputs/demo-release-final.apk"
+    delete "${rootDir}/build-outputs/bundle/"
+    delete "${rootDir}/build-outputs/bundle/bundle_file.txt"
     delete fileTree("${rootDir}/build-outputs") {
         include '*.so'
     }
@@ -173,6 +175,9 @@ task copyReleaseOutputs(type: Copy) {
 }
 
 afterEvaluate {
+//    tasks['assembleRelease'].doFirst {
+//        cleanDir.execute()
+//    }
     tasks['assembleRelease'].doLast {
         copyReleaseOutputs.execute()
     }
@@ -187,6 +192,7 @@ task reload(type: Zip) {
 
     into 'assets/', {
         from fileTree(new File(rootDir, 'build-outputs/bundle')).include('*.apk')
+        from file(new File(rootDir, 'build-outputs/bundle/bundle_file.txt'))
     }
 
     from zipTree("$rootDir/build-outputs/demo-base-release.apk"), {

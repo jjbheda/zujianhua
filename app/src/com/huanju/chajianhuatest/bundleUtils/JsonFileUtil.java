@@ -2,9 +2,9 @@ package com.huanju.chajianhuatest.bundleUtils;
 
 import android.content.Context;
 import android.util.Log;
+
 import com.huanju.chajianhuatest.bundlemodel.BundleFileModel;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -22,10 +22,10 @@ import java.util.ArrayList;
 
 public class JsonFileUtil {
 
-    private static final String BUNDLE_JSON_FILENAME = "bundle_file.json";
+    public static final String bundleJsonFileName = "bundle_file.txt";
     private static boolean hasReSaveJsonFile = false;      //每次从asset 目录读取json文件重新保存
 
-    private static ArrayList<BundleFileModel> bundleVersionList = new ArrayList<>();
+    private static ArrayList<BundleFileModel>  bundleVersionList = new ArrayList<>();
     /**
      * 读取json文件，输出为modelList
      */
@@ -41,15 +41,14 @@ public class JsonFileUtil {
                     new InputStreamReader(is));
             String line = null;
             while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
+                BundleFileModel model = new BundleFileModel();
+                String [] data = line.split(",");
+                if (data.length >=1) {
+                    model.bundleVersion = data[0];
+                    model.md5 = data[1];
+                    bundleVersionList.add(model);
+                }
 
-            root = new JSONObject(sb.toString());
-            JSONArray data = root.getJSONArray("data");
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject taskObject = data.optJSONObject(i);
-                BundleFileModel model = new BundleFileModel(taskObject.optString("bundleVersion"),taskObject.optString("md5"));
-                bundleVersionList.add(model);
             }
 
         } catch (Exception e) {
@@ -73,22 +72,21 @@ public class JsonFileUtil {
         return bundleVersionList;
     }
 
-    public static BundleFileModel getBundleModel(Context context, String version) {
+    public  static BundleFileModel  getBundleVersion(Context context, String packageName) {
         if (!hasReSaveJsonFile){
-            saveJsonFile(context, BUNDLE_JSON_FILENAME);
+            saveJsonFile(context, JsonFileUtil.bundleJsonFileName);
         }
         BundleFileModel bundleFileModel = new BundleFileModel();
-        String bVersion = "";
         File apkDir = new File(context.getFilesDir(), "apkDir");
-        File jsonFile = new File(apkDir, JsonFileUtil.BUNDLE_JSON_FILENAME);
+        File jsonFile = new File(apkDir, JsonFileUtil.bundleJsonFileName);
         if(jsonFile.exists()) {
             if (bundleVersionList.size() == 0 ){
                 bundleVersionList = readJsonFileToList(jsonFile.getAbsolutePath());
             }
             for (BundleFileModel model : bundleVersionList) {
                 String bundleVersion = model.bundleVersion;
-                String pckname = bundleVersion.substring(0,bundleVersion.indexOf(".apk")).replace("_",".");
-                if(pckname.equals(version)) {
+                String packname = bundleVersion.substring(0,bundleVersion.indexOf(".apk")).replace("_",".");
+                if(packname.equals(packageName)) {
                     bundleFileModel.bundleVersion = model.bundleVersion;
                     bundleFileModel.md5= model.md5;
                 }
@@ -97,13 +95,14 @@ public class JsonFileUtil {
         return bundleFileModel;
     }
 
-    public static void saveJsonFile(Context context, String jsonFileName) {
+    public static void saveJsonFile(Context context,String jsonFileName) {
         File apkDir = new File(context.getFilesDir(), "apkDir");
         apkDir.mkdir();
-        File apkFile = new File(apkDir,jsonFileName);
-        if(apkFile.exists()){
-            apkFile.delete();
+        File oldApkFile = new File(apkDir, jsonFileName);
+        if(oldApkFile.exists()){
+            oldApkFile.delete();
         }
+        File apkFile = new File(apkDir, jsonFileName);
         InputStream ins = null;
         FileOutputStream fos = null;
         try {
